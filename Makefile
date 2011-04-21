@@ -5,22 +5,23 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Tue Mar  8 11:46:52 2011 maxime constantinian
+## Last update Tue Apr 19 16:02:59 2011 yann vaillant
 ##
 
 CC=     cc
 
 NAME=   42sh
 
-CFLAGS= -I./include -W -Wall -pedantic -ansi -O3
+CFLAGS= -I./include -W -Wall -O3
 
-LDFLAGS= 
+LDFLAGS= -lcurses
 
 OBJ_DIR= obj
 
 RM=     rm -f
 
-SRC=    src/main.c
+SRC=    src/main.c \
+	src/termcap.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
