@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Tue Apr 19 16:18:40 2011 yann vaillant
+** Last update Tue Apr 26 18:24:44 2011 yann vaillant
 */
 
 #include	<unistd.h>
@@ -19,10 +19,20 @@
 #include	<term.h>
 #include	<signal.h>
 
-int		main()
+#include	"graph.h"
+#include	"shell.h"
+#include	"xmalloc.h"
+#include	"header.h"
+
+int		main(int ac, char **av, char **envp)
 {
-  struct termios term;
-  
-  mode_raw(&term);       
+  t_shell *shell = malloc(sizeof(t_shell));
+
+  if (ac)
+    if (av)
+      {
+      }
+  copy_env(envp, shell);
+  printf("test \n%s\n", shell->env[5]);
   return (0);
 }
