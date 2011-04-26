@@ -5,16 +5,15 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 26 14:59:40 2011 yann vaillant
-** Last update Tue Apr 26 18:14:33 2011 yann vaillant
+** Last update Tue Apr 26 19:09:28 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
-#include        "graph.h"
 #include        "shell.h"
+#include        "graph.h"
 #include        "xmalloc.h"
-#include        "header.h"
 
-int	get_nbr_ligne_tab(char **env)
+int		get_nbr_ligne_tab(char **env)
 {
   int	x = 0;
   
