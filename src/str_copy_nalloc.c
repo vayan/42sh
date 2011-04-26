@@ -5,14 +5,13 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 26 17:25:15 2011 yann vaillant
-** Last update Tue Apr 26 18:45:12 2011 justin pugeat
+** Last update Tue Apr 26 19:09:55 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
-#include	"graph.h"
 #include	"shell.h"
+#include	"graph.h"
 #include	"xmalloc.h"
-#include	"header.h"
 
 char	*my_strcopynalloc(char *src)
 {

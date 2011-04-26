@@ -5,10 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Apr 11 14:47:49 2011 maxime constantinian
-** Last update Mon Apr 11 15:48:31 2011 maxime constantinian
+** Last update Tue Apr 26 19:08:51 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
+#include	"shell.h"
 #include	"graph.h"
 
 void		free_graph(t_hach_bin *tab)
