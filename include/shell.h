@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr 20 13:13:56 2011 maxime constantinian
-** Last update Tue Apr 26 14:17:37 2011 maxime constantinian
+** Last update Tue Apr 26 18:39:21 2011 maxime constantinian
 */
 
 #ifndef		SHELL_H__
@@ -18,14 +18,25 @@ typedef struct		s_list_var
   struct s_list_var	*next;
 }			t_list_var;
 
+typedef struct		s_commande_root
+{
+  struct s_commande	**cmd;
+  struct s_commande_root	*before_historique;
+  struct s_commande_root	*next_historique;
+}			t_commande_root;
+
 typedef struct		s_commande
 {
   int			type;
   char			**cmd;
-  struct s_commande	**next_cmd;
-  struct s_commande	*before_historique;
-  struct s_commande	*next_historique;
+  struct s_commande	**next;
 }			t_commande;
+
+typedef struct		s_hach
+{
+  char			*path;
+  struct s_hach		**next;
+}			t_hach_bin;
 
 typedef struct		s_shell
 {
@@ -34,5 +45,12 @@ typedef struct		s_shell
   t_list_var		*variable;
   t_commande		*commande;
 }			t_shell;
+
+typedef struct		s_buffer
+{
+  char			*buffer;
+  int			i;
+  int			size;
+}			t_buffer;
 
 #endif
