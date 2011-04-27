@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Tue Apr 26 18:15:39 2011 yann vaillant
+## Last update Wed Apr 27 00:06:45 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -25,6 +25,7 @@ SRC=    src/main.c \
 	src/cpy_env.c \
 	src/str_copy_nalloc.c \
 	src/xmalloc.c
+
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
 OBJ:=   $(OBJ:.c=.o)
