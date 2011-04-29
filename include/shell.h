@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr 20 13:13:56 2011 maxime constantinian
-** Last update Wed Apr 27 18:02:15 2011 maxime constantinian
+** Last update Fri Apr 29 18:54:38 2011 timothee maurin
 */
 
 #ifndef		SHELL_H__
@@ -28,6 +28,7 @@ typedef struct		s_commande
 typedef struct			s_commande_root
 {
   struct s_commande		*cmd;
+  char				*buffer;
   struct s_commande_root	*before_histo;
   struct s_commande_root	*next_histo;
 }				t_commande_root;
