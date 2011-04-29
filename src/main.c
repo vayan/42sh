@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Tue Apr 26 18:52:04 2011 maxime constantinian
+** Last update Fri Apr 29 18:51:01 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -25,12 +25,16 @@
 int		main(int ac, char **av, char **envp)
 {
   t_shell *shell = malloc(sizeof(t_shell));
+  struct termios	term2;
 
+  mode_raw(&term2);
   if (ac)
     if (av)
       {
       }
   copy_env(envp, shell);
+  while (42)
+    get_next_comm(shell, &term2);
   printf("test \n%s\n", shell->env[5]);
   return (0);
 }

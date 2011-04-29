@@ -5,14 +5,14 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Tue Apr 26 22:27:17 2011 justin pugeat
+## Last update Fri Apr 29 18:56:47 2011 timothee maurin
 ##
 
 CC=     cc
 
 NAME=   42sh
 
-CFLAGS= -I./include -W -Wall -O3
+CFLAGS= -I./include -W -Wall -O3 -g
 
 LDFLAGS= -lcurses
 
@@ -24,7 +24,13 @@ SRC=    src/main.c \
 	src/termcap.c \
 	src/cpy_env.c \
 	src/str_copy_nalloc.c \
-	src/xmalloc.c
+	src/xmalloc.c \
+	src/buffer.c \
+	src/xmalloc.c \
+	src/my_strcpy.c \
+	src/exec_str.c \
+	src/get_touche.c
+
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
 OBJ:=   $(OBJ:.c=.o)
