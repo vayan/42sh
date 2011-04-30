@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Fri Apr 29 18:56:11 2011 timothee maurin
+** Last update Sat Apr 30 17:14:29 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -44,11 +44,11 @@ void		clear_it(int nbr_line, int *pos, int *i)
   int		tmp;
 
   tmp = 0;
-  if (max < ((*i) + 2) / (nbr_column() + 1))
-    max = (((*i) + 2) / (nbr_column() + 1));
-  while (tmp < max - ((*pos + 2)) / (nbr_column() - 1))
+  if (max < ((*i) + 3) / (nbr_column()))
+    max = (((*i) + 3) / (nbr_column()));
+  while (tmp < max - ((*pos) + 3)  / (nbr_column()))
     {
-      exec_parm("do", 1);
+      exec_parm("do", 2);
       tmp++;
     }
   tmp = max;
@@ -184,6 +184,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 
   pos = 0;
   i = 0;
+  init_new_cmd(shell);
   shell->commande->buffer = xmalloc(1024 * sizeof(*cha));
   cha = xmalloc(2 * sizeof(*cha));
   write(0, "$>", 2);
@@ -200,5 +201,6 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 	  && !(verif_touche(cha)))
 	write(0, "\n", 1);
     }
+  write(0, "\n", 1);
   free(cha);
 }
