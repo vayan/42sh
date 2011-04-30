@@ -5,17 +5,27 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Apr 21 17:41:38 2011 yann vaillant
-** Last update Tue Apr 26 16:20:32 2011 yann vaillant
+** Last update Wed Apr 27 17:49:47 2011 timothee maurin
 */
 
-#include <unistd.h>
+#include        <sys/ioctl.h>
+#include        <sys/types.h>
+#include        <termcap.h>
+#include        <termios.h>
+#include        <stdlib.h>
+#include        <curses.h>
+#include        <term.h>
+#include        <signal.h>
 
-char *get_touche()
+char	*get_touche(struct termios *t)
 {
   int	ret;
-  char *touche = xmalloc(6 * sizeof(char));
+  char	*touche;
 
-  ret = read(0, touche, 5);
+  touche = xmalloc(11 * sizeof(*touche));
+  activate_ultra_secret_mode(t);
+  ret = read(0, touche, 10);
   touche[ret] = '\0';
+  desactivate_ultra_secret_mode(t);
   return (touche);
 }

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Tue Apr 19 16:00:42 2011 yann vaillant
+** Last update Fri Apr 29 17:43:58 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -24,10 +24,11 @@ int  mode_raw(struct termios *term2)
   char          *termtype;
 
   termtype = getenv("TERM");
+  
   tgetent(NULL, termtype);
   if (ioctl(STDIN_FILENO, TCGETS, term2) == -1)
     {
-      fprintf(stderr, "Erreur ioctl");
+      fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
   term2->c_lflag &= ~ICANON;
@@ -35,9 +36,10 @@ int  mode_raw(struct termios *term2)
   term2->c_cc[VTIME] = 0;
   if (ioctl(STDIN_FILENO, TCSETS, term2) == -1)
     {
-      fprintf(stderr, "Erreur ioctl");
+      fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
+  exec_str("bw");
   return (0);
 }
 
