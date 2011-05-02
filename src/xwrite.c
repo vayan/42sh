@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Tue Mar 15 12:42:01 2011 justin pugeat
+** Last update Mon May  2 20:17:24 2011 timothee maurin
 */
 
 #include <string.h>
@@ -17,5 +17,20 @@ int	xwrite(int fd, char *str, int len)
 {
   if (write(fd, str, len) == -1)
     exit(xwrite(2, "Error on write\n", 15));
+  return (0);
+}
+
+int	my_putstr_buf(char *str, int pos)
+{
+  int	i;
+
+  i = 0;
+  while (str[i] != '\0')
+    {
+      xwrite(0, &(str[i]), 1);
+      i++;
+      /*      if (!(((pos) + i) % nbr_column()))
+	      xwrite(0, "\n", 1);*/
+    }
   return (0);
 }

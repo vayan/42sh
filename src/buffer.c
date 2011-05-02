@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Sat Apr 30 17:14:29 2011 timothee maurin
+** Last update Mon May  2 20:30:40 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -72,10 +72,36 @@ int	nbr_column()
   return (w.ws_col);
 }
 
-void	func_remove(char *cha, int *i, int *pos, char *buf)
+void	place_cursor(int i, int pos)
 {
   int	a;
 
+  a = 0;
+  while (i - a > pos)
+    {
+      if (((i - a + 3) % (nbr_column())) == 0)
+	{
+	  if ((i - a + 3) / (nbr_column()))
+	    {
+	      exec_parm("up", 1);
+	      exec_parm("ch", nbr_column());
+	    }
+	}
+      else
+	write(0, "\b", 1);
+      a++;
+    }
+}
+
+void	place_cursor2(int i, int pos)
+{
+  if ((i + 1) / nbr_column() - (pos + 2) / nbr_column() > 0)
+    exec_parm("up", (i + 1) / nbr_column() - (pos + 2) / nbr_column());
+  exec_parm("ch", ((pos + 2) % nbr_column()));
+}
+
+void	func_remove(char *cha, int *i, int *pos, char *buf)
+{
   if (*i > 0)
     {
       if (*pos != *i && is_del(cha))
@@ -86,7 +112,7 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
       if (cha[0] == 127 && *pos > 0)
 	{
 	  if (*pos != *i)
-	    my_strcpy(&(buf[*pos]), &(buf[*pos + 1]));
+	    my_strcpy(&(buf[*pos - 1]), &(buf[*pos]));
 	  (*pos)--;
 	  (*i)--;
 	  buf[(*i)] = '\0';
@@ -97,25 +123,14 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
   write(0, buf, strlen(buf));
   if (((strlen(buf) + 2) % nbr_column()) == 0 && cha[1] != 127)
     write(0, " \b", 2);
-  a = 0;
-  while (a++ < *i - *pos)
-    {
-      if (((*i - a + 3) % (nbr_column())) == 0)
-      	{
-	  if ((*i - a + 3) / (nbr_column()))
-	    {
-	      exec_parm("up", 1);
-	      exec_parm("ch", nbr_column() + 1);
-	    }
-      	}
-      else
-      	write(0, "\b", 1);
-    }
+  place_cursor(*i, *pos);
 }
 
 char			*other_cha(char cha, char *buf, int *pos, int *i)
 {
   static int		buffer_size = 1024;
+  static int		test = 80;
+
 
   if (!(verif_touche(&cha)))
     {
@@ -132,10 +147,21 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
     {
       my_strcpy_buf(&(buf[*pos]), &(buf[(*pos) - 1]));
       buf[*pos - 1] = cha;
-      exec_str("im");
-      write(0, &cha, 1);
-      exec_str("ei");
+      if ((*i) != (*pos))
+	{
+	  my_putstr_buf(&(buf[*pos - 1]), (*pos));
+	  place_cursor2((*i), (*pos));
+	}
+      else
+	{
+	  printf("1\n");
+	  exec_str("im");
+	  write(0, &cha, 1);
+	  exec_str("ei");
+	}
     }
+  else
+    buffer_size = 1024;
   return (buf);
 }
 
@@ -198,9 +224,10 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
       if (((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0
-	  && !(verif_touche(cha)))
-	write(0, "\n", 1);
+	  && !(verif_touche(cha)) && i == pos)
+	  write(0, "\n", 1);
     }
+  printf(">>%s<<\n", shell->commande->buffer);
   write(0, "\n", 1);
   free(cha);
 }

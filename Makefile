@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Fri Apr 29 19:08:29 2011 timothee maurin
+## Last update Mon May  2 18:15:22 2011 timothee maurin
 ##
 
 CC=     cc
@@ -25,6 +25,7 @@ SRC=    src/main.c \
 	src/cpy_env.c \
 	src/str_copy_nalloc.c \
 	src/xmalloc.c \
+	src/xwrite.c \
 	src/buffer.c \
 	src/xmalloc.c \
 	src/my_strcpy.c \
