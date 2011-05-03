@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Mon May  2 20:30:40 2011 timothee maurin
+** Last update Tue May  3 18:00:16 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -128,40 +128,30 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
 
 char			*other_cha(char cha, char *buf, int *pos, int *i)
 {
-  static int		buffer_size = 1024;
-  static int		test = 80;
-
-
-  if (!(verif_touche(&cha)))
+  if (*i < 8192)
     {
       (*pos)++;
       (*i)++;
-    }
-  if (*i >= buffer_size)
-    {
-      buffer_size += 1024;
-      buf = realloc(buf, buffer_size);
-    }
-  buf[*i] = '\0';
-  if (cha != '\n')
-    {
-      my_strcpy_buf(&(buf[*pos]), &(buf[(*pos) - 1]));
-      buf[*pos - 1] = cha;
-      if ((*i) != (*pos))
+      buf[*i] = '\0';
+      if (cha != '\n')
 	{
-	  my_putstr_buf(&(buf[*pos - 1]), (*pos));
-	  place_cursor2((*i), (*pos));
-	}
-      else
-	{
-	  printf("1\n");
-	  exec_str("im");
-	  write(0, &cha, 1);
-	  exec_str("ei");
+	  my_strcpy_buf(&(buf[*pos]), &(buf[(*pos) - 1]));
+	  buf[*pos - 1] = cha;
+	  if ((*i) != (*pos))
+	    {
+	      my_putstr_buf(&(buf[*pos - 1]), (*pos));
+	      place_cursor2((*i), (*pos));
+	    }
+	  else
+	    {
+	      exec_str("im");
+	      write(0, &cha, 1);
+	      exec_str("ei");
+	    }
 	}
     }
   else
-    buffer_size = 1024;
+    exec_str("bl");
   return (buf);
 }
 
@@ -211,7 +201,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
   pos = 0;
   i = 0;
   init_new_cmd(shell);
-  shell->commande->buffer = xmalloc(1024 * sizeof(*cha));
+  shell->commande->buffer = xmalloc(8193 * sizeof(*cha));
   cha = xmalloc(2 * sizeof(*cha));
   write(0, "$>", 2);
   while (cha[0] != '\n')
@@ -225,9 +215,8 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 					    shell->commande->buffer, &pos, &i);
       if (((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0
 	  && !(verif_touche(cha)) && i == pos)
-	  write(0, "\n", 1);
+	write(0, "\n", 1);
     }
-  printf(">>%s<<\n", shell->commande->buffer);
   write(0, "\n", 1);
   free(cha);
 }

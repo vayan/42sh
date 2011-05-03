@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Mon May  2 20:17:24 2011 timothee maurin
+** Last update Tue May  3 17:26:36 2011 timothee maurin
 */
 
 #include <string.h>
@@ -29,8 +29,6 @@ int	my_putstr_buf(char *str, int pos)
     {
       xwrite(0, &(str[i]), 1);
       i++;
-      /*      if (!(((pos) + i) % nbr_column()))
-	      xwrite(0, "\n", 1);*/
     }
   return (0);
 }

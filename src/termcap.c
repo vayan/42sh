@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Fri Apr 29 17:43:58 2011 timothee maurin
+** Last update Tue May  3 17:26:54 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -24,7 +24,6 @@ int  mode_raw(struct termios *term2)
   char          *termtype;
 
   termtype = getenv("TERM");
-  
   tgetent(NULL, termtype);
   if (ioctl(STDIN_FILENO, TCGETS, term2) == -1)
     {
