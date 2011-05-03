@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 26 17:25:15 2011 yann vaillant
-** Last update Tue May  3 17:27:10 2011 timothee maurin
+** Last update Tue Apr 26 19:09:55 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -17,7 +17,7 @@ char	*my_strcopynalloc(char *src)
 {
   char	*retour;
   int	x = 0;
-
+  
   if (src == NULL)
     return (NULL);
   retour = xmalloc((strlen(src) + 1) * sizeof(*retour));
