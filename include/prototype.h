@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Wed May  4 18:02:51 2011 timothee maurin
+** Last update Wed May  4 20:48:40 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -37,5 +37,21 @@ void		parser(char *str, t_shell *shell);
 void		exec_cmd(t_shell *shell);
 char		*concat(char *s1, char *s2);
 char		*my_pwd(char *pwd);
+int		xwrite(int fd, char *str, int len);
+int		verif_touche(char *cha);
+int		is_del(char *cha);
+int		nbr_column();
+void		place_cursor(int i, int pos);
+void		place_cursor_back(int i, int pos);
+void		clear_it(int *pos, int *i);
+void		func_remove(char *cha, int *i, int *pos, char *buf);
+char		*other_cha(char cha, char *buf, int *pos, int *i);
+void		func_fleche(char *cha, int *i, int *pos);
+void		exec_parm(char *str, int nb);
+char		*my_strcpy(char *dest, char *src);
+char		*my_strcpy_buf(char *dest, char *src);
+void		exec_str(char *str);
+int		my_putstr_buf(char *str);
+void		init_new_cmd(t_shell *shell);
 
 #endif
