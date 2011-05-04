@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Feb  3 13:38:29 2011 maxime constantinian
-** Last update Wed May  4 17:21:26 2011 maxime constantinian
+** Last update Wed May  4 17:52:00 2011 timothee maurin
 */
 
 #include	<curses.h>
@@ -30,8 +30,8 @@ void		exec_str(char *str)
 
 void		exec_parm(char *str, int nb)
 {
-  char          **area;
-  char          *ins;
+  char		**area;
+  char		*ins;
 
   area = 0;
   if ((ins = tgetstr(str, area)))

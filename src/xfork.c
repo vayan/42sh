@@ -5,16 +5,16 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Mar  1 18:27:42 2011 timothee maurin
-** Last update Wed May  4 16:06:32 2011 maxime constantinian
+** Last update Wed May  4 17:49:43 2011 timothee maurin
 */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
 
-int	xfork()
+int     xfork()
 {
-  int	pid;
+  int   pid;
 
   pid = fork();
   if (pid == -1)

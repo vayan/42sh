@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Wed May  4 11:28:35 2011 maxime constantinian
+** Last update Wed May  4 17:16:08 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -90,7 +90,7 @@ void	place_cursor(int i, int pos)
 	    }
 	}
       else
-	write(0, "\b", 1);
+	xwrite(0, "\b", 1);
       a++;
     }
 }
@@ -121,10 +121,10 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
 	}
     }
   clear_it((strlen(buf)) / nbr_column(), pos, i);
-  write(0, "$>", 2);
-  write(0, buf, strlen(buf));
+  xwrite(0, "$>", 2);
+  xwrite(0, buf, strlen(buf));
   if (((strlen(buf) + 2) % nbr_column()) == 0 && cha[1] != 127)
-    write(0, " \b", 2);
+    xwrite(0, " \b", 2);
   place_cursor(*i, *pos);
 }
 
@@ -147,7 +147,7 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
 	  else
 	    {
 	      exec_str("im");
-	      write(0, &cha, 1);
+	      xwrite(0, &cha, 1);
 	      exec_str("ei");
 	    }
 	}
@@ -206,7 +206,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
   init_new_cmd(shell);
   shell->commande->buffer = xmalloc(8193 * sizeof(*cha));
   cha = xmalloc(2 * sizeof(*cha));
-  write(0, "$>", 2);
+  xwrite(0, "$>", 2);
   while (cha[0] != '\n')
     {
       free(cha);
@@ -218,8 +218,8 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 					    shell->commande->buffer, &pos, &i);
       if (((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0
 	  && !(verif_touche(cha)) && i == pos)
-	write(0, "\n", 1);
+	xwrite(0, "\n", 1);
     }
-  write(0, "\n", 1);
+  xwrite(0, "\n", 1);
   free(cha);
 }
