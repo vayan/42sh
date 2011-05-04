@@ -5,10 +5,11 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sun Nov  7 20:06:34 2010 timothee maurin
-** Last update Sat Apr 30 18:56:26 2011 timothee maurin
+** Last update Wed May  4 11:26:22 2011 maxime constantinian
 */
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "xmalloc.h"
 
 void		*xmalloc(int size)

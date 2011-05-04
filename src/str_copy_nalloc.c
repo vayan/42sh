@@ -5,10 +5,11 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 26 17:25:15 2011 yann vaillant
-** Last update Sat Apr 30 15:45:14 2011 maxime constantinian
+** Last update Wed May  4 11:25:53 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
+#include	<string.h>
 #include	"shell.h"
 #include	"graph.h"
 #include	"xmalloc.h"

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 15:37:02 2011 maxime constantinian
-** Last update Wed May  4 00:07:25 2011 maxime constantinian
+** Last update Wed May  4 02:57:49 2011 maxime constantinian
 */
 
 int		my_strlen_quote(char *str)
@@ -25,6 +25,15 @@ int		my_strlen_createtab(char *str)
 	 && strncmp(&str[i], "&&", 2) != 0  && strncmp(&str[i], "||", 2) != 0
 	 && str[i] != '|' && strncmp(&str[i], "<<", 2) != 0 && str[i] != '<'
 	 && strncmp(&str[i], ">>", 2) != 0 && str[i] != '>')
+    i++;
+  return (i);
+}
+
+int		my_strlen_hach(char *str)
+{
+  int		i = 0;
+
+  while (str[i] && str[i] != ':')
     i++;
   return (i);
 }

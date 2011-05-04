@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Apr 28 16:44:10 2011 maxime constantinian
-** Last update Wed May  4 02:00:42 2011 maxime constantinian
+** Last update Wed May  4 11:23:58 2011 maxime constantinian
 */
 
 #include	"shell.h"
@@ -20,9 +20,16 @@ int		if_have_and(char *str)
     return (0);
   while (str[i] && str[i] != ';')
     {
+      if (str[i] == '"')
+	{
+	  i++;
+	  while (str[i] && str[i] != '"')
+	    i++;
+	}
       if (strncmp(&str[i], "&&", 2) == 0)
 	nb_and++;
-      i++;
+      if (str[i])
+	i++;
     }
   return (nb_and);
 }
@@ -35,7 +42,6 @@ void		check_and(char *str, t_commande *cmd)
   nb_and = if_have_and(str);
   if (nb_and)
     {
-      printf("%s\n", &str[i]);
       cmd->type = OP_AND;
       cmd->next = xmalloc(sizeof(*(cmd->next)) * (3));
       cmd->next[0] = xmalloc(sizeof(t_commande));

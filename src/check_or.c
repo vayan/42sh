@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Apr 28 16:44:10 2011 maxime constantinian
-** Last update Wed May  4 02:03:36 2011 maxime constantinian
+** Last update Wed May  4 03:51:58 2011 maxime constantinian
 */
 
 #include	"shell.h"
@@ -20,9 +20,16 @@ int		if_have_or(char *str)
     return (0);
   while (str[i] && str[i] != ';' && strncmp(&str[i], "&&", 2) != 0)
     {
+      if (str[i] == '"')
+	{
+	  i++;
+	  while (str[i] && str[i] != '"')
+	    i++;
+	}
       if (strncmp(&str[i], "||", 2) == 0)
 	nb_and++;
-      i++;
+      if (str[i])
+	i++;
     }
   return (nb_and);
 }

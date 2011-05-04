@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Sun May  1 18:05:05 2011 maxime constantinian
+** Last update Wed May  4 15:31:37 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -20,7 +20,7 @@
 #include	<signal.h>
 #include	"shell.h"
 #include	"graph.h"
-#include	"xmalloc.h"
+#include	"prototype.h"
 
 int		main(int ac, char **av, char **envp)
 {
@@ -31,11 +31,12 @@ int		main(int ac, char **av, char **envp)
   av = av;
   mode_raw(&term2);
   copy_env(envp, shell);
+  add_hachtab_to_shell(shell);
   while (42)
     {
       get_next_comm(shell, &term2);
       parser(shell->commande->buffer, shell);
+      exec_cmd(shell);
     }
-    // printf("test \n%s\n", shell->env[5]);
   return (0);
 }

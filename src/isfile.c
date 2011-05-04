@@ -5,12 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sun Apr 10 17:51:08 2011 maxime constantinian
-** Last update Sun Apr 10 18:12:59 2011 maxime constantinian
+** Last update Wed May  4 03:07:02 2011 maxime constantinian
 */
 
 #include	<sys/stat.h>
 #include	<stdio.h>
-#include	"isfile.h"
 
 int		isfile(char *str)
 {

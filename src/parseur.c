@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Apr 26 19:49:14 2011 maxime constantinian
-** Last update Fri Apr 29 19:03:15 2011 maxime constantinian
+** Last update Wed May  4 03:40:55 2011 maxime constantinian
 */
 
 #include	"shell.h"
@@ -22,8 +22,8 @@ void		parser(char *str, t_shell *shell)
   if (nb_sep)
     {
       shell->commande->cmd->type = OP_SEP;
-      shell->commande->cmd->next = xmalloc(sizeof(void *) * (nb_sep + 2));
-      while (i < nb_sep + 2)
+      shell->commande->cmd->next = xmalloc(sizeof(char *) * (nb_sep + 2));
+      while (str[j] && i < nb_sep + 2)
 	{
 	  shell->commande->cmd->next[i] = xmalloc(sizeof(t_commande));
 	  check_and(&str[j], shell->commande->cmd->next[i]);
