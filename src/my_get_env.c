@@ -5,14 +5,16 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Tue Apr 19 17:04:07 2011 justin pugeat
-** Last update Sat Apr 30 18:53:00 2011 timothee maurin
+** Last update Wed Apr 27 00:05:49 2011 maxime constantinian
 */
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "shell.h"
+#include "graph.h"
 #include "xmalloc.h"
+#include "header.h"
 
 int	my_strcmp2(char *s1, char *s2)
 {
