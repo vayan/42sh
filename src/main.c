@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Sat Apr 30 17:02:47 2011 timothee maurin
+** Last update Sun May  1 18:05:05 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -31,8 +31,11 @@ int		main(int ac, char **av, char **envp)
   av = av;
   mode_raw(&term2);
   copy_env(envp, shell);
-  //  while (42)
-    get_next_comm(shell, &term2);
+  while (42)
+    {
+      get_next_comm(shell, &term2);
+      parser(shell->commande->buffer, shell);
+    }
     // printf("test \n%s\n", shell->env[5]);
   return (0);
 }

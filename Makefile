@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Mon May  2 18:15:22 2011 timothee maurin
+## Last update Wed May  4 01:43:35 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -27,11 +27,21 @@ SRC=    src/main.c \
 	src/xmalloc.c \
 	src/xwrite.c \
 	src/buffer.c \
-	src/xmalloc.c \
 	src/my_strcpy.c \
 	src/exec_str.c \
 	src/get_touche.c \
-	src/init_new_cmd.c
+	src/init_new_cmd.c \
+	src/parseur.c \
+	src/if_have_sep.c \
+	src/check_and.c \
+	src/check_or.c \
+	src/check_pipe.c \
+	src/check_commande.c \
+	src/aff_tab.c \
+	src/str_to_wordtab.c \
+	src/my_strlen.c\
+	src/check_file.c\
+	src/dec_str.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
