@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Wed May  4 17:16:08 2011 timothee maurin
+** Last update Wed May  4 20:48:18 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -20,27 +20,12 @@
 #include        <signal.h>
 #include	<string.h>
 #include	"shell.h"
+#include	"prototype.h"
 #include	"xmalloc.h"
 
 char    *get_touche(struct termios *t);
 
-int	verif_touche(char *cha)
-{
-  if (cha[0] < ' ' || cha[0] == 127)
-    return (1);
-  else
-    return (0);
-}
-
-int	is_del(char *cha)
-{
-  if (cha[0] == 27 && cha[1] == 91 && cha[2] == 51 && cha[3] == 126)
-    return (1);
-  else
-    return (0);
-}
-
-void		clear_it(int nbr_line, int *pos, int *i)
+void		clear_it(int *pos, int *i)
 {
   static int	max;
   int		tmp;
@@ -65,43 +50,6 @@ void		clear_it(int nbr_line, int *pos, int *i)
   exec_str("cd");
 }
 
-int	nbr_column()
-{
-  struct winsize        w;
-
-  if (ioctl(0, TIOCGWINSZ, &w) == -1)
-    fprintf(stderr, "ioclt error\n");
-  return (w.ws_col);
-}
-
-void	place_cursor(int i, int pos)
-{
-  int	a;
-
-  a = 0;
-  while (i - a > pos)
-    {
-      if (((i - a + 3) % (nbr_column())) == 0)
-	{
-	  if ((i - a + 3) / (nbr_column()))
-	    {
-	      exec_parm("up", 1);
-	      exec_parm("ch", nbr_column());
-	    }
-	}
-      else
-	xwrite(0, "\b", 1);
-      a++;
-    }
-}
-
-void	place_cursor2(int i, int pos)
-{
-  if ((i + 1) / nbr_column() - (pos + 2) / nbr_column() > 0)
-    exec_parm("up", (i + 1) / nbr_column() - (pos + 2) / nbr_column());
-  exec_parm("ch", ((pos + 2) % nbr_column()));
-}
-
 void	func_remove(char *cha, int *i, int *pos, char *buf)
 {
   if (*i > 0)
@@ -120,7 +68,7 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
 	  buf[(*i)] = '\0';
 	}
     }
-  clear_it((strlen(buf)) / nbr_column(), pos, i);
+  clear_it(pos, i);
   xwrite(0, "$>", 2);
   xwrite(0, buf, strlen(buf));
   if (((strlen(buf) + 2) % nbr_column()) == 0 && cha[1] != 127)
@@ -141,8 +89,8 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
 	  buf[*pos - 1] = cha;
 	  if ((*i) != (*pos))
 	    {
-	      my_putstr_buf(&(buf[*pos - 1]), (*pos));
-	      place_cursor2((*i), (*pos));
+	      my_putstr_buf(&(buf[*pos - 1]));
+	      place_cursor_back((*i), (*pos));
 	    }
 	  else
 	    {
@@ -157,7 +105,7 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
   return (buf);
 }
 
-void	func_fleche(char *cha, int *i, int *pos, char *buf)
+void	func_fleche(char *cha, int *i, int *pos)
 {
   if (cha[2] == 68 && *pos > 0)
     {
@@ -189,7 +137,7 @@ void	func_special(char *cha, int *i, int *pos, char *buf)
     func_remove(cha, i, pos, buf);
   else if (cha[0] == 27 && cha[1] == 91
 	   && (cha[2] == 65 || cha[2] == 66 || cha[2] == 67 || cha[2] == 68))
-    func_fleche(cha, i, pos, buf);
+    func_fleche(cha, i, pos);
 }
 
 /*  else

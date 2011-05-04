@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Wed May  4 18:05:16 2011 timothee maurin
+** Last update Wed May  4 19:10:08 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -30,7 +30,7 @@ int		funct_cd_move(char **av, char **env,
       if (*last_cd != 0)
 	free(*last_cd);
       *last_cd = my_pwd(tmp);
-      change_env(av);
+      change_dir(av, env);
     }
   else
     {
@@ -59,6 +59,7 @@ int		move_home(char **av, char **env, int *option, char **last_cd)
 	    free(*last_cd);
 	  *last_cd = my_pwd(tmp);
 	  chdir(home);
+	  change_env(env);
 	}
       else
 	return (write_error("%s: No such file or directory.\n", home));

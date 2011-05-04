@@ -5,12 +5,14 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sun Nov  7 20:06:34 2010 timothee maurin
-** Last update Wed May  4 17:17:21 2011 timothee maurin
+** Last update Wed May  4 20:38:50 2011 timothee maurin
 */
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include "xmalloc.h"
+#include	<stdlib.h>
+#include	<unistd.h>
+#include	<string.h>
+#include	"xmalloc.h"
+#include	"shell.h"
+#include	"prototype.h"
 
 void		*xmalloc(int size)
 {
