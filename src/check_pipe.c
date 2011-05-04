@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 15:20:29 2011 maxime constantinian
-** Last update Wed May  4 02:01:16 2011 maxime constantinian
+** Last update Wed May  4 03:51:09 2011 maxime constantinian
 */
 
 #include	"shell.h"
@@ -21,9 +21,16 @@ int		if_have_pipe(char *str)
   while (str[i] && str[i] != ';' && strncmp(&str[i], "&&", 2) != 0
 	 && strncmp(&str[i], "||", 2) != 0)
     {
+      if (str[i] == '"')
+	{
+	  i++;
+	  while (str[i] && str[i] != '"')
+	    i++;
+	}
       if (str[i] == '|')
 	nb_pipe++;
-      i++;
+      if (str[i])
+	i++;
     }
   return (nb_pipe);
 }

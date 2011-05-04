@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Tue May  3 18:00:16 2011 timothee maurin
+** Last update Wed May  4 11:28:35 2011 maxime constantinian
 */
 
 #include        <unistd.h>
@@ -21,6 +21,8 @@
 #include	<string.h>
 #include	"shell.h"
 #include	"xmalloc.h"
+
+char    *get_touche(struct termios *t);
 
 int	verif_touche(char *cha)
 {
@@ -188,9 +190,10 @@ void	func_special(char *cha, int *i, int *pos, char *buf)
   else if (cha[0] == 27 && cha[1] == 91
 	   && (cha[2] == 65 || cha[2] == 66 || cha[2] == 67 || cha[2] == 68))
     func_fleche(cha, i, pos, buf);
-  /*  else
-      printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]);*/
 }
+
+/*  else
+      printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]);*/
 
 void			get_next_comm(t_shell *shell, struct termios *term2)
 {

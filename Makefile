@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Wed May  4 01:43:35 2011 maxime constantinian
+## Last update Wed May  4 13:22:00 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -37,11 +37,15 @@ SRC=    src/main.c \
 	src/check_or.c \
 	src/check_pipe.c \
 	src/check_commande.c \
-	src/aff_tab.c \
 	src/str_to_wordtab.c \
-	src/my_strlen.c\
-	src/check_file.c\
-	src/dec_str.c
+	src/my_strlen.c \
+	src/create_hach.c \
+	src/exec_cmd.c \
+	src/isfile.c \
+	src/my_get_env.c \
+	src/xpipe.c \
+	src/xfork.c \
+	src/xdup2.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

@@ -5,8 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Wed May  4 00:10:50 2011 maxime constantinian
+** Last update Wed May  4 11:23:38 2011 maxime constantinian
 */
+
+#include	"shell.h"
 
 int		count_word(char	*str)
 {

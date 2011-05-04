@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Tue Apr 19 17:04:07 2011 justin pugeat
-** Last update Wed Apr 27 00:05:49 2011 maxime constantinian
+** Last update Wed May  4 15:39:03 2011 maxime constantinian
 */
 
 #include <string.h>
@@ -14,9 +14,9 @@
 #include "shell.h"
 #include "graph.h"
 #include "xmalloc.h"
-#include "header.h"
+#include "prototype.h"
 
-int	my_strcmp2(char *s1, char *s2)
+int	my_strcmp_equal(char *s1, char *s2)
 {
   int	a;
 
@@ -24,7 +24,7 @@ int	my_strcmp2(char *s1, char *s2)
   while (s1[a] == s2[a] && s1[a] != '\0' && s2[a] != '\0')
     {
       a++;
-      if (s1[a] == '=' || s1[a] == '\0' && s2[a] == '=')
+      if ((s1[a] == '=' || s1[a] == '\0') && s2[a] == '=')
         return (1);
     }
   return (0);
@@ -32,7 +32,6 @@ int	my_strcmp2(char *s1, char *s2)
 
 char	*my_get_env(char *to_find, char **env)
 {
-  char	*str;
   int	i;
   int	j;
 
@@ -40,7 +39,7 @@ char	*my_get_env(char *to_find, char **env)
   j = 0;
   while (env[i])
     {
-      if (my_strcmp2(to_find, env[i]))
+      if (my_strcmp_equal(to_find, env[i]))
 	{
 	  while (env[i][j] != '=')
 	    j++;

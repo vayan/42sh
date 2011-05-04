@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr 27 00:09:08 2011 maxime constantinian
-** Last update Wed Apr 27 00:12:19 2011 maxime constantinian
+** Last update Wed May  4 03:44:03 2011 maxime constantinian
 */
 
 int		if_have_sep(char *str)
@@ -17,9 +17,13 @@ int		if_have_sep(char *str)
   i = 0;
   while (str[i])
     {
+      if (str[i] == '"')
+	while (str[i] && str[i] != '"')
+	  i++;
       if (str[i] == ';')
 	nb_sep++;
-      i++;
+      if (str[i])
+	i++;
     }
   return (nb_sep);
 }

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr 20 13:13:56 2011 maxime constantinian
-** Last update Fri Apr 29 18:54:38 2011 timothee maurin
+** Last update Wed May  4 13:22:37 2011 maxime constantinian
 */
 
 #ifndef		SHELL_H__
@@ -46,12 +46,5 @@ typedef struct		s_shell
   t_list_var		*variable;
   t_commande_root	*commande;
 }			t_shell;
-
-typedef struct		s_buffer
-{
-  char			*buffer;
-  int			i;
-  int			size;
-}			t_buffer;
 
 #endif

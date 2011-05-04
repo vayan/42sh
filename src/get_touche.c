@@ -6,7 +6,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Apr 21 17:41:38 2011 yann vaillant
-** Last update Wed May  4 01:29:23 2011 maxime constantinian
+** Last update Wed May  4 11:24:26 2011 maxime constantinian
 */
 
 #include        <sys/ioctl.h>
@@ -17,6 +17,7 @@
 #include        <curses.h>
 #include        <term.h>
 #include        <signal.h>
+#include	"shell.h"
 
 char	*get_touche(struct termios *t)
 {
