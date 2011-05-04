@@ -5,11 +5,12 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Apr 26 19:49:14 2011 maxime constantinian
-** Last update Wed May  4 03:40:55 2011 maxime constantinian
+** Last update Wed May  4 16:32:24 2011 maxime constantinian
 */
 
 #include	"shell.h"
 #include	"parseur.h"
+#include	"prototype.h"
 
 void		parser(char *str, t_shell *shell)
 {

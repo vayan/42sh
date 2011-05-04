@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Wed May  4 15:31:37 2011 maxime constantinian
+** Last update Wed May  4 17:32:13 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -21,6 +21,7 @@
 #include	"shell.h"
 #include	"graph.h"
 #include	"prototype.h"
+#include	"termcap_include.h"
 
 int		main(int ac, char **av, char **envp)
 {

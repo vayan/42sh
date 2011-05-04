@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Tue May  3 17:26:36 2011 timothee maurin
+** Last update Wed May  4 17:26:39 2011 maxime constantinian
 */
 
 #include <string.h>
@@ -20,7 +20,7 @@ int	xwrite(int fd, char *str, int len)
   return (0);
 }
 
-int	my_putstr_buf(char *str, int pos)
+int	my_putstr_buf(char *str)
 {
   int	i;
 

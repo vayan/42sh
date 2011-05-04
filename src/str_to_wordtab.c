@@ -5,10 +5,12 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Wed May  4 11:23:38 2011 maxime constantinian
+** Last update Wed May  4 16:18:45 2011 maxime constantinian
 */
 
+#include	<string.h>
 #include	"shell.h"
+#include	"prototype.h"
 
 int		count_word(char	*str)
 {
@@ -40,7 +42,7 @@ int		count_word(char	*str)
   return (count_w);
 }
 
-void		str_to_wordtab2(char *str, int *i, int *j, char **ret)
+void		str_to_wordtab_not_quote(char *str, int *i, int *j, char **ret)
 {
   if (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
       && strncmp(&str[*i], "&&", 2) != 0  && strncmp(&str[*i], "||", 2) != 0
@@ -84,7 +86,7 @@ char		**str_to_wordtab(char *str)
 	  i++;
 	}
       else
-	str_to_wordtab2(str, &i, &j, ret);
+	str_to_wordtab_not_quote(str, &i, &j, ret);
     }
   return (ret);
 }

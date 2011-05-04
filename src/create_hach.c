@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 12:29:25 2011 maxime constantinian
-** Last update Wed May  4 03:21:40 2011 maxime constantinian
+** Last update Wed May  4 16:12:52 2011 maxime constantinian
 */
 
 #include	<sys/types.h>
@@ -18,7 +18,7 @@
 #include	"shell.h"
 #include	"graph.h"
 #include	"parseur.h"
-#include	"xmalloc.h"
+#include	"prototype.h"
 
 char		*recup_hach(t_hach_bin *tab, char *name)
 {

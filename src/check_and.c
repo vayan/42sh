@@ -5,11 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Apr 28 16:44:10 2011 maxime constantinian
-** Last update Wed May  4 11:23:58 2011 maxime constantinian
+** Last update Wed May  4 16:30:59 2011 maxime constantinian
 */
 
+#include	<string.h>
 #include	"shell.h"
 #include	"parseur.h"
+#include	"prototype.h"
 
 int		if_have_and(char *str)
 {

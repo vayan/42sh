@@ -5,8 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 15:37:02 2011 maxime constantinian
-** Last update Wed May  4 02:57:49 2011 maxime constantinian
+** Last update Wed May  4 16:16:26 2011 maxime constantinian
 */
+
+#include	<string.h>
 
 int		my_strlen_quote(char *str)
 {

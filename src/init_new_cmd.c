@@ -5,10 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 19:02:04 2011 maxime constantinian
-** Last update Fri Apr 29 19:08:05 2011 timothee maurin
+** Last update Wed May  4 16:36:11 2011 maxime constantinian
 */
 
 #include	"shell.h"
+#include	"prototype.h"
 
 void		init_new_cmd(t_shell *shell)
 {
