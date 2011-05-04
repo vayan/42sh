@@ -5,15 +5,17 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Feb  3 13:38:29 2011 maxime constantinian
-** Last update Thu Apr 28 19:27:33 2011 timothee maurin
+** Last update Wed May  4 17:21:26 2011 maxime constantinian
 */
 
 #include	<curses.h>
 #include	<term.h>
+#include	"shell.h"
+#include	"prototype.h"
 
 int		my_putchar(int c)
 {
-  return (write(0, &c, 1));
+  return (xwrite(0, (char *)&c, 1));
 }
 
 void		exec_str(char *str)
@@ -32,6 +34,6 @@ void		exec_parm(char *str, int nb)
   char          *ins;
 
   area = 0;
-  if (ins = tgetstr(str, area))
+  if ((ins = tgetstr(str, area)))
     tputs(tparm(ins, nb), 1, my_putchar);
 }

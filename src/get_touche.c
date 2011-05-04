@@ -1,4 +1,3 @@
-
 /*
 ** get_touche.c for 42sh  in /home/vailla_y//Projet/42sh/src
 ** 
@@ -6,9 +5,10 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Apr 21 17:41:38 2011 yann vaillant
-** Last update Wed May  4 11:24:26 2011 maxime constantinian
+** Last update Wed May  4 17:02:30 2011 maxime constantinian
 */
 
+#include	<unistd.h>
 #include        <sys/ioctl.h>
 #include        <sys/types.h>
 #include        <termcap.h>
@@ -18,6 +18,8 @@
 #include        <term.h>
 #include        <signal.h>
 #include	"shell.h"
+#include	"prototype.h"
+#include	"termcap_include.h"
 
 char	*get_touche(struct termios *t)
 {

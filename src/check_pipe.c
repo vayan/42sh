@@ -5,11 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 15:20:29 2011 maxime constantinian
-** Last update Wed May  4 03:51:09 2011 maxime constantinian
+** Last update Wed May  4 16:26:44 2011 maxime constantinian
 */
 
+#include	<string.h>
 #include	"shell.h"
 #include	"parseur.h"
+#include	"prototype.h"
 
 int		if_have_pipe(char *str)
 {

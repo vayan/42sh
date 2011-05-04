@@ -5,11 +5,12 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 16:53:47 2011 maxime constantinian
-** Last update Wed May  4 02:07:32 2011 maxime constantinian
+** Last update Wed May  4 16:26:15 2011 maxime constantinian
 */
 
 #include	"shell.h"
 #include	"parseur.h"
+#include	"prototype.h"
 
 void		check_commande(char *str, t_commande *cmd)
 {

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Tue May  3 17:26:54 2011 timothee maurin
+** Last update Wed May  4 17:31:04 2011 maxime constantinian
 */
 
 #include        <unistd.h>
@@ -18,8 +18,11 @@
 #include        <curses.h>
 #include        <term.h>
 #include        <signal.h>
+#include	"shell.h"
+#include	"prototype.h"
+#include	"termcap_include.h"
 
-int  mode_raw(struct termios *term2)
+int		mode_raw(struct termios *term2)
 {
   char          *termtype;
 
