@@ -5,13 +5,15 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Dec 14 17:11:24 2010 timothee maurin
-** Last update Sat Apr 30 18:56:11 2011 timothee maurin
+** Last update Wed May  4 18:00:44 2011 timothee maurin
 */
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <string.h>
+#include "xmalloc.h"
 
 char		*concat(char *s1, char *s2)
 {

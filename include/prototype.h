@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Wed May  4 17:42:21 2011 maxime constantinian
+** Last update Wed May  4 18:02:51 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -35,5 +35,7 @@ void		copy_env(char **env, t_shell *shell);
 void		add_hachtab_to_shell(t_shell *shell);
 void		parser(char *str, t_shell *shell);
 void		exec_cmd(t_shell *shell);
+char		*concat(char *s1, char *s2);
+char		*my_pwd(char *pwd);
 
 #endif

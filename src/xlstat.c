@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Dec 18 12:51:31 2010 timothee maurin
-** Last update Sat Jan  8 17:32:30 2011 timothee maurin
+** Last update Wed May  4 17:30:55 2011 timothee maurin
 */
 
 #include <errno.h>
@@ -13,7 +13,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "xlstat.h"
+//#include "xlstat.h"
 
 int	xlstat(char *file, struct stat *sb)
 {

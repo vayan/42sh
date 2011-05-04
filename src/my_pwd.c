@@ -5,27 +5,27 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sun Jan  2 19:38:21 2011 timothee maurin
-** Last update Mon Jan  3 16:45:42 2011 timothee maurin
+** Last update Wed May  4 18:03:24 2011 timothee maurin
 */
 
-#include <dirent.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include "concat.h"
-#include "xopendir.h"
-#include "xlstat.h"
+#include	<dirent.h>
+#include	<stdlib.h>
+#include	<sys/types.h>
+#include	<sys/stat.h>
+#include	<unistd.h>
+#include	"shell.h"
+#include	"prototype.h"
+#include	"xopendir.h"
 
-void	funct_eco(DIR *dirp, char *pwd)
+void		funct_eco(DIR *dirp, char *pwd)
 {
   free(dirp);
   chdir(pwd);
 }
 
-char	*funct_concat(char *pwd, char *name)
+char		*funct_concat(char *pwd, char *name)
 {
-  char	*tmp;
+  char		*tmp;
 
   tmp = concat(pwd, name);
   free(pwd);
