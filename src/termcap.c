@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Thu May  5 15:45:12 2011 timothee maurin
+** Last update Thu May  5 16:18:03 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -70,7 +70,7 @@ int     activate_ultra_secret_mode(struct termios *t)
   t->c_lflag &= ~ECHO;
   if (ioctl(STDIN_FILENO, TCSETS, t) == -1)
     {
-      fprintf(stderr, "Erreur ioctl");
+      fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
   return (0);
@@ -81,7 +81,7 @@ int     desactivate_ultra_secret_mode(struct termios *t)
   t->c_lflag &= ECHO;
   if (ioctl(STDIN_FILENO, TCSETS, t) == -1)
     {
-      fprintf(stderr, "Erreur ioctl");
+      fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
   return (0);
