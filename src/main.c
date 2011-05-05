@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Wed May  4 17:32:13 2011 maxime constantinian
+** Last update Thu May  5 12:54:20 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -33,7 +33,7 @@ int		main(int ac, char **av, char **envp)
   mode_raw(&term2);
   copy_env(envp, shell);
   add_hachtab_to_shell(shell);
-  while (42)
+  //  while (42)
     {
       get_next_comm(shell, &term2);
       parser(shell->commande->buffer, shell);

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Wed May  4 20:48:18 2011 timothee maurin
+** Last update Thu May  5 13:25:28 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -31,11 +31,11 @@ void		clear_it(int *pos, int *i)
   int		tmp;
 
   tmp = 0;
-  if (max < ((*i) + 3) / (nbr_column()))
-    max = (((*i) + 3) / (nbr_column()));
-  while (tmp < max - ((*pos) + 3)  / (nbr_column()))
+  if (max < ((*i) + 2) / (nbr_column()))
+    max = (((*i) + 2) / (nbr_column()));
+  while (tmp < max - ((*pos) + 3) / (nbr_column()))
     {
-      exec_parm("do", 2);
+      exec_parm("do", 1);
       tmp++;
     }
   tmp = max;
@@ -131,17 +131,17 @@ void	func_fleche(char *cha, int *i, int *pos)
     }
 }
 
-void	func_special(char *cha, int *i, int *pos, char *buf)
+void		func_special(char *cha, int *i, int *pos, char *buf)
 {
   if (is_del(cha) || cha[0] == 127)
     func_remove(cha, i, pos, buf);
   else if (cha[0] == 27 && cha[1] == 91
 	   && (cha[2] == 65 || cha[2] == 66 || cha[2] == 67 || cha[2] == 68))
     func_fleche(cha, i, pos);
+  else if (cha[0] == 27 && cha[1] == 91 && cha[2] == 90)
+    other_cha('	', buf, pos, i);
 }
-
-/*  else
-      printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]);*/
+  //  printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]);
 
 void			get_next_comm(t_shell *shell, struct termios *term2)
 {
