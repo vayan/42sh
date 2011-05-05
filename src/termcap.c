@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Wed May  4 17:31:04 2011 maxime constantinian
+** Last update Thu May  5 15:45:12 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -22,9 +22,9 @@
 #include	"prototype.h"
 #include	"termcap_include.h"
 
-int		mode_raw(struct termios *term2)
+int		init_termios(struct termios *term2)
 {
-  char          *termtype;
+  char		*termtype;
 
   termtype = getenv("TERM");
   tgetent(NULL, termtype);
@@ -33,6 +33,11 @@ int		mode_raw(struct termios *term2)
       fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
+  return (0);
+}
+
+int		mode_raw(struct termios *term2)
+{
   term2->c_lflag &= ~ICANON;
   term2->c_cc[VMIN] = 1;
   term2->c_cc[VTIME] = 0;
@@ -42,6 +47,21 @@ int		mode_raw(struct termios *term2)
       return (1);
     }
   exec_str("bw");
+  return (0);
+}
+
+int		desactivate_mode_raw(struct termios *term2)
+{
+  static int	lflag;
+
+  if (lflag == 0)
+    lflag = term2->c_lflag;
+  term2->c_lflag = lflag;
+  if (ioctl(STDIN_FILENO, TCSETS, term2) == -1)
+    {
+      fprintf(stderr, "Erreur ioctl\n");
+      return (1);
+    }
   return (0);
 }
 
