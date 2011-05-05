@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Thu May  5 13:25:28 2011 timothee maurin
+** Last update Thu May  5 13:30:23 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -24,31 +24,6 @@
 #include	"xmalloc.h"
 
 char    *get_touche(struct termios *t);
-
-void		clear_it(int *pos, int *i)
-{
-  static int	max;
-  int		tmp;
-
-  tmp = 0;
-  if (max < ((*i) + 2) / (nbr_column()))
-    max = (((*i) + 2) / (nbr_column()));
-  while (tmp < max - ((*pos) + 3) / (nbr_column()))
-    {
-      exec_parm("do", 1);
-      tmp++;
-    }
-  tmp = max;
-  while (tmp > 0)
-    {
-      exec_str("cr");
-      exec_str("cd");
-      exec_parm("up", 1);
-      tmp--;
-    }
-  exec_str("cr");
-  exec_str("cd");
-}
 
 void	func_remove(char *cha, int *i, int *pos, char *buf)
 {

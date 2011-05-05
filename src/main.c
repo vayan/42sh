@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Thu May  5 12:54:20 2011 timothee maurin
+** Last update Thu May  5 15:44:07 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -30,12 +30,15 @@ int		main(int ac, char **av, char **envp)
 
   ac = ac;
   av = av;
-  mode_raw(&term2);
+  init_termios(&term2);
+  desactivate_mode_raw(&term2);
   copy_env(envp, shell);
   add_hachtab_to_shell(shell);
   //  while (42)
     {
+      mode_raw(&term2);
       get_next_comm(shell, &term2);
+      desactivate_mode_raw(&term2);
       parser(shell->commande->buffer, shell);
       exec_cmd(shell);
     }

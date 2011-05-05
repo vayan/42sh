@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Wed May  4 17:26:39 2011 maxime constantinian
+** Last update Thu May  5 15:55:45 2011 timothee maurin
 */
 
 #include <string.h>
@@ -16,7 +16,10 @@
 int	xwrite(int fd, char *str, int len)
 {
   if (write(fd, str, len) == -1)
-    exit(xwrite(2, "Error on write\n", 15));
+    {
+      xwrite(2, "Error on write\n", 15);
+      return (1);
+    }
   return (0);
 }
 
