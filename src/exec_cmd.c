@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Wed May  4 15:59:05 2011 maxime constantinian
+** Last update Thu May  5 17:47:35 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -48,7 +48,6 @@ void		pipe_fonction(t_commande *cmd, t_shell *shell)
 
 void		exec_type_cmd(t_commande *cmd, t_shell *shell)
 {
-
   if (cmd->type == OP_PIP)
     pipe_fonction(cmd, shell);
   if (cmd->type == CMD)

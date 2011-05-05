@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 19:59:04 2011 timothee maurin
-** Last update Wed May  4 20:33:29 2011 timothee maurin
+** Last update Thu May  5 17:19:37 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -42,7 +42,7 @@ int			nbr_column()
 {
   struct winsize        w;
 
-  if (ioctl(0, TIOCGWINSZ, &w) == -1)
+  if (ioctl(STDIN_FILENO, TIOCGWINSZ, &w) == -1)
     fprintf(stderr, "ioclt error\n");
   return (w.ws_col);
 }
