@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Wed May  4 19:10:08 2011 timothee maurin
+** Last update Thu May  5 19:14:44 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -15,7 +15,7 @@
 #include	"prototype.h"
 
 int		funct_cd_move(char **av, char **env,
-			      int *option, char **last_cd)
+			      int *option)
 {
   char		*home;
   char		*tmp;
@@ -27,9 +27,6 @@ int		funct_cd_move(char **av, char **env,
   tmp[0] = '/';
   if (!(access(av[1], F_OK)))
     {
-      if (*last_cd != 0)
-	free(*last_cd);
-      *last_cd = my_pwd(tmp);
       change_dir(av, env);
     }
   else
@@ -40,7 +37,7 @@ int		funct_cd_move(char **av, char **env,
   return (0);
 }
 
-int		move_home(char **av, char **env, int *option, char **last_cd)
+int		move_home(char **av, char **env, int *option)
 {
   char		*home;
   char		*tmp;
@@ -55,9 +52,6 @@ int		move_home(char **av, char **env, int *option, char **last_cd)
       pwd[0] = '/';
       if (!(access(home, F_OK)))
 	{
-	  if (*last_cd != 0)
-	    free(*last_cd);
-	  *last_cd = my_pwd(tmp);
 	  chdir(home);
 	  change_env(env);
 	}
@@ -94,7 +88,6 @@ int		rempl_option(char **av, int *option)
 int		exec_cd(char **av, char **env)
 {
   int		*option;
-  static char	*last_cd;
   char		*pwd;
   char		*tmp;
 
@@ -104,15 +97,15 @@ int		exec_cd(char **av, char **env)
   tmp = xmalloc(2 * sizeof(*tmp));
   tmp[0] = '/';
   if (count_param(av) > 2)
-    fprintf(stderr, "cd: Too many arguments.\n");
+    return (fprintf(stderr, "cd: Too many arguments.\n"));
   if (rempl_option(av, option) == -1)
     {
       fprintf(stderr, "Usage: cd [-pl][<dir>].\n");
       return (1);
     }
   else if (count_param(av) == 1)
-    return (move_home(av, env, option, &last_cd));
+    return (move_home(av, env, option));
   else
-    return (funct_cd_move(av, env, option, &last_cd));
+    return (funct_cd_move(av, env, option));
   return (1);
 }

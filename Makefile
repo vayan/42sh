@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Wed May  4 20:35:26 2011 timothee maurin
+## Last update Thu May  5 17:35:34 2011 timothee maurin
 ##
 
 CC=     cc
@@ -44,10 +44,12 @@ SRC=    src/main.c \
 	src/isfile.c \
 	src/my_get_env.c \
 	src/xpipe.c \
+	src/xread.c \
 	src/xfork.c \
 	src/xdup2.c \
 	src/place_cursor.c \
-	src/buffer_utils.c
+	src/buffer_utils.c \
+	src/my_signal.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
