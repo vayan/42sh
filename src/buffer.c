@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Thu May  5 13:30:23 2011 timothee maurin
+** Last update Thu May  5 16:00:31 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -139,8 +139,8 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
       else
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
-      if (((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0
-	  && !(verif_touche(cha)) && i == pos)
+      if (nbr_column() && !(verif_touche(cha)) && i == pos
+	  && ((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0)
 	xwrite(0, "\n", 1);
     }
   xwrite(0, "\n", 1);
