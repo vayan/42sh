@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 12:29:25 2011 maxime constantinian
-** Last update Wed May  4 16:12:52 2011 maxime constantinian
+** Last update Wed May 11 01:50:11 2011 maxime constantinian
 */
 
 #include	<sys/types.h>
@@ -25,7 +25,7 @@ char		*recup_hach(t_hach_bin *tab, char *name)
   int		i;
 
   i = 0;
-  while (name[i])
+  while (name && tab && name[i])
     {
       if (tab->next == NULL || tab->next[name[i] - 32] == NULL)
 	return (NULL);
