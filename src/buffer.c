@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Thu May  5 19:26:49 2011 maxime constantinian
+** Last update Tue May 10 21:37:15 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -22,6 +22,8 @@
 #include	"shell.h"
 #include	"prototype.h"
 #include	"xmalloc.h"
+
+char    *get_touche(struct termios *t);
 
 void	func_remove(char *cha, int *i, int *pos, char *buf)
 {
@@ -78,7 +80,7 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
   return (buf);
 }
 
-void	func_fleche(char *cha, int *i, int *pos)
+void	func_fleche(char *cha, int *i, int *pos, char **buf)
 {
   if (cha[2] == 68 && *pos > 0)
     {
@@ -96,44 +98,44 @@ void	func_fleche(char *cha, int *i, int *pos)
     }
   if (cha[2] == 67 && *pos < *i)
     {
-
       exec_str("nd");
       (*pos)++;
       if ((*pos + 2) % nbr_column() == 0 && *pos != *i)
 	exec_str("do");
     }
+  if (cha[2] == 65 || cha[2] == 66)
+    funct_histo(cha, i, pos, buf);
 }
 
-void		func_special(char *cha, int *i, int *pos, char *buf)
+void		func_special(char *cha, int *i, int *pos, char **buf)
 {
   if (is_del(cha) || cha[0] == 127)
-    func_remove(cha, i, pos, buf);
+    func_remove(cha, i, pos, *buf);
   else if (cha[0] == 27 && cha[1] == 91
 	   && (cha[2] == 65 || cha[2] == 66 || cha[2] == 67 || cha[2] == 68))
-    func_fleche(cha, i, pos);
+    func_fleche(cha, i, pos, buf);
   else if (cha[0] == 27 && cha[1] == 91 && cha[2] == 90)
-    other_cha('	', buf, pos, i);
+    other_cha('	', *buf, pos, i);
 }
-  //  printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]);
+  /* printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]); */
 
 void			get_next_comm(t_shell *shell, struct termios *term2)
 {
-  int			pos;
-  int			i;
+  int			pos = 0;
+  int			i = 0;
   char			*cha;
 
-  pos = 0;
-  i = 0;
   init_new_cmd(shell);
+  recup_com(shell, 0);
   shell->commande->buffer = xmalloc(8193 * sizeof(*cha));
+  free_buf(shell->commande->buffer, 0);
   cha = xmalloc(2 * sizeof(*cha));
-  xwrite(0, "$>", 2);
   while (cha[0] != '\n')
     {
       free(cha);
       cha = get_touche(term2);
       if (verif_touche(cha))
-	func_special(cha, &i, &pos, shell->commande->buffer);
+	func_special(cha, &i, &pos, &(shell->commande->buffer));
       else
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
@@ -141,6 +143,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 	  && ((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0)
 	xwrite(0, "\n", 1);
     }
+  free_buf(shell->commande->buffer, 1);
   xwrite(0, "\n", 1);
   free(cha);
 }

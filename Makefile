@@ -5,14 +5,14 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Thu May  5 19:19:51 2011 maxime constantinian
+## Last update Tue May 10 14:48:22 2011 timothee maurin
 ##
 
 CC=     cc
 
 NAME=   42sh
 
-CFLAGS= -I./include -W -Wall -O3 -O2 -g
+CFLAGS= -I./include -W -Wall -O3 -g
 
 LDFLAGS= -lcurses
 
@@ -49,7 +49,9 @@ SRC=    src/main.c \
 	src/xdup2.c \
 	src/place_cursor.c \
 	src/buffer_utils.c \
-	src/my_signal.c
+	src/buffer_histo.c \
+	src/my_signal.c \
+	src/recup_shell.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

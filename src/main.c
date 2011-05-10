@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Thu May  5 17:59:20 2011 timothee maurin
+** Last update Tue May 10 15:01:47 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -35,6 +35,7 @@ int		main(int ac, char **av, char **envp)
   desactivate_mode_raw(&term2);
   copy_env(envp, shell);
   add_hachtab_to_shell(shell);
+  recup_shell(shell);
   while (42)
     {
       signal(SIGINT, &funct_noexit);
