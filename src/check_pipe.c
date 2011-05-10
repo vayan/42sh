@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 15:20:29 2011 maxime constantinian
-** Last update Wed May  4 16:26:44 2011 maxime constantinian
+** Last update Tue May 10 21:30:52 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -48,7 +48,7 @@ void		check_pipe(char *str, t_commande *cmd)
       cmd->type = OP_PIP;
       cmd->next = xmalloc(sizeof(*(cmd->next)) * (3));
       cmd->next[0] = xmalloc(sizeof(t_commande));
-      check_commande(str, cmd->next[0]);
+      check_redirection(str, cmd->next[0]);
       while (str[i] && str[i] != ';' && strncmp(&str[i], "&&", 2) != 0
 	     && strncmp(&str[i], "||", 2) != 0 && str[i] != '|')
 	i++;
@@ -60,5 +60,5 @@ void		check_pipe(char *str, t_commande *cmd)
 	}
     }
   else
-    check_commande(str, cmd);
+    check_redirection(str, cmd);
 }
