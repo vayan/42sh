@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 19:59:04 2011 timothee maurin
-** Last update Thu May  5 17:19:37 2011 timothee maurin
+** Last update Fri May  6 18:49:07 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -21,7 +21,8 @@
 #include	<string.h>
 #include	"shell.h"
 #include	"xmalloc.h"
-
+#include	<errno.h>
+#include	<string.h>
 int		verif_touche(char *cha)
 {
   if (cha[0] < ' ' || cha[0] == 127)
@@ -43,6 +44,9 @@ int			nbr_column()
   struct winsize        w;
 
   if (ioctl(STDIN_FILENO, TIOCGWINSZ, &w) == -1)
-    fprintf(stderr, "ioclt error\n");
+    {
+      fprintf(stderr, "ioclt: %s %d\n", strerror(errno), STDIN_FILENO);
+      fprintf(stderr, "ioclt error\n");
+    }
   return (w.ws_col);
 }

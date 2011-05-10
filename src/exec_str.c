@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Feb  3 13:38:29 2011 maxime constantinian
-** Last update Wed May  4 17:52:00 2011 timothee maurin
+** Last update Thu May  5 19:30:41 2011 maxime constantinian
 */
 
 #include	<curses.h>

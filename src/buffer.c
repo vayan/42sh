@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Thu May  5 16:00:31 2011 timothee maurin
+** Last update Thu May  5 19:26:49 2011 maxime constantinian
 */
 
 #include        <unistd.h>
@@ -22,8 +22,6 @@
 #include	"shell.h"
 #include	"prototype.h"
 #include	"xmalloc.h"
-
-char    *get_touche(struct termios *t);
 
 void	func_remove(char *cha, int *i, int *pos, char *buf)
 {

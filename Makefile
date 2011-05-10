@@ -5,14 +5,14 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Thu May  5 17:35:34 2011 timothee maurin
+## Last update Thu May  5 19:19:51 2011 maxime constantinian
 ##
 
 CC=     cc
 
 NAME=   42sh
 
-CFLAGS= -I./include -W -Wall -O3 -g
+CFLAGS= -I./include -W -Wall -O3 -O2 -g
 
 LDFLAGS= -lcurses
 
