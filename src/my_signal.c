@@ -5,10 +5,12 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May  5 17:31:36 2011 timothee maurin
-** Last update Thu May  5 18:00:41 2011 timothee maurin
+** Last update Tue May 10 21:35:43 2011 timothee maurin
 */
 
 #include	<stdlib.h>
+#include	"shell.h"
+#include	"prototype.h"
 
 void            funct_exit(int sig)
 {

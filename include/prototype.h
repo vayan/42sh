@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Thu May  5 17:37:22 2011 timothee maurin
+** Last update Tue May 10 21:48:41 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -46,14 +46,21 @@ void		place_cursor_back(int i, int pos);
 void		clear_it(int *pos, int *i);
 void		func_remove(char *cha, int *i, int *pos, char *buf);
 char		*other_cha(char cha, char *buf, int *pos, int *i);
-void		func_fleche(char *cha, int *i, int *pos);
+void		func_fleche(char *cha, int *i, int *pos, char **buf);
 void		exec_parm(char *str, int nb);
 char		*my_strcpy(char *dest, char *src);
 char		*my_strcpy_buf(char *dest, char *src);
 void		exec_str(char *str);
 int		my_putstr_buf(char *str);
 void		init_new_cmd(t_shell *shell);
-void            funct_exit(int sig);
-void            funct_noexit(int sig);
+void		funct_exit(int sig);
+void		funct_noexit(int sig);
+t_shell		*recup_shell(t_shell *ptr);
+void		funct_histo(char *cha, int *i,
+			    int *pos, char **buf);
+void		reaf(int *i, int *pos, char *buf);
+char		*free_buf(char *buf, int test);
+t_commande_root	*recup_com(t_shell *shell, int test);
+int		xread(int fd, char *buf, int nb);
 
 #endif
