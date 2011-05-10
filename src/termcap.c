@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Thu May  5 16:18:03 2011 timothee maurin
+** Last update Fri May  6 18:48:17 2011 maxime constantinian
 */
 
 #include        <unistd.h>
@@ -21,7 +21,8 @@
 #include	"shell.h"
 #include	"prototype.h"
 #include	"termcap_include.h"
-
+#include	<errno.h>
+#include	<string.h>
 int		init_termios(struct termios *term2)
 {
   char		*termtype;
@@ -30,6 +31,7 @@ int		init_termios(struct termios *term2)
   tgetent(NULL, termtype);
   if (ioctl(STDIN_FILENO, TCGETS, term2) == -1)
     {
+      fprintf(stderr, "ioctl: %s\n %d", strerror(errno), STDIN_FILENO);
       fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
@@ -43,7 +45,8 @@ int		mode_raw(struct termios *term2)
   term2->c_cc[VTIME] = 0;
   if (ioctl(STDIN_FILENO, TCSETS, term2) == -1)
     {
-      fprintf(stderr, "Erreur ioctl\n");
+      fprintf(stderr, "ioctl: %s\n %d", strerror(errno), STDIN_FILENO);
+      /* fprintf(stderr, "Erreur ioctl\n"); */
       return (1);
     }
   exec_str("bw");
@@ -59,6 +62,7 @@ int		desactivate_mode_raw(struct termios *term2)
   term2->c_lflag = lflag;
   if (ioctl(STDIN_FILENO, TCSETS, term2) == -1)
     {
+      fprintf(stderr, "ioctl: %s\n %d", strerror(errno), STDIN_FILENO);
       fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
@@ -70,6 +74,7 @@ int     activate_ultra_secret_mode(struct termios *t)
   t->c_lflag &= ~ECHO;
   if (ioctl(STDIN_FILENO, TCSETS, t) == -1)
     {
+      fprintf(stderr, "ioctl: %s\n %d", strerror(errno), STDIN_FILENO);
       fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }
@@ -81,6 +86,7 @@ int     desactivate_ultra_secret_mode(struct termios *t)
   t->c_lflag &= ECHO;
   if (ioctl(STDIN_FILENO, TCSETS, t) == -1)
     {
+      fprintf(stderr, "ioctl: %s\n %d", strerror(errno), STDIN_FILENO);
       fprintf(stderr, "Erreur ioctl\n");
       return (1);
     }

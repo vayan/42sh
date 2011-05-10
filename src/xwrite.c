@@ -1,3 +1,4 @@
+
 /*
 ** xwrite.c for xwrite in /home/pugeat_j/
 ** 
@@ -5,7 +6,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Thu May  5 15:55:45 2011 timothee maurin
+** Last update Thu May  5 15:58:02 2011 maxime constantinian
 */
 
 #include <string.h>
