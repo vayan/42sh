@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Thu May  5 19:14:44 2011 timothee maurin
+** Last update Thu May  5 19:34:36 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -18,15 +18,18 @@ int		funct_cd_move(char **av, char **env,
 			      int *option)
 {
   char		*home;
-  char		*tmp;
 
   home = my_get_env("HOME", env);
+  if (av[1][0] == '-' && av[1][1] == '\0')
+    {
+      free(av[1]);
+      av[1] = my_get_env("OLDPWD", env);
+    }
   if (av[1][0] == '~' && home != 0)
     av[1] = concat(home, av[1]);
-  tmp = xmalloc(2 * sizeof(*tmp));
-  tmp[0] = '/';
   if (!(access(av[1], F_OK)))
     {
+      change_env_last(env);
       change_dir(av, env);
     }
   else
@@ -52,6 +55,7 @@ int		move_home(char **av, char **env, int *option)
       pwd[0] = '/';
       if (!(access(home, F_OK)))
 	{
+	  change_env_last(env);
 	  chdir(home);
 	  change_env(env);
 	}

@@ -1,4 +1,3 @@
-
 /*
 ** xwrite.c for xwrite in /home/pugeat_j/
 ** 
@@ -6,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Thu May  5 15:58:02 2011 maxime constantinian
+** Last update Fri May  6 22:41:29 2011 timothee maurin
 */
 
 #include <string.h>
@@ -18,7 +17,7 @@ int	xwrite(int fd, char *str, int len)
 {
   if (write(fd, str, len) == -1)
     {
-      xwrite(2, "Error on write\n", 15);
+      fprintf(stderr, "Error on write\n");
       return (1);
     }
   return (0);

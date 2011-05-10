@@ -5,25 +5,25 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 19:59:04 2011 timothee maurin
-** Last update Fri May  6 18:49:07 2011 maxime constantinian
+** Last update Tue May 10 14:43:10 2011 timothee maurin
 */
 
-#include	<unistd.h>
-#include	<stdio.h>
-#include	<sys/ioctl.h>
-#include	<sys/types.h>
-#include	<termcap.h>
-#include	<termios.h>
-#include	<stdlib.h>
-#include	<curses.h>
-#include	<term.h>
-#include	<signal.h>
-#include	<string.h>
-#include	"shell.h"
-#include	"xmalloc.h"
-#include	<errno.h>
-#include	<string.h>
-int		verif_touche(char *cha)
+#include<unistd.h>
+#include<stdio.h>
+#include<sys/ioctl.h>
+#include<sys/types.h>
+#include<termcap.h>
+#include<termios.h>
+#include<stdlib.h>
+#include<curses.h>
+#include<term.h>
+#include<signal.h>
+#include<string.h>
+#include"shell.h"
+#include"xmalloc.h"
+#include<errno.h>
+#include<string.h>
+intverif_touche(char *cha)
 {
   if (cha[0] < ' ' || cha[0] == 127)
     return (1);
@@ -31,7 +31,7 @@ int		verif_touche(char *cha)
     return (0);
 }
 
-int		is_del(char *cha)
+intis_del(char *cha)
 {
   if (cha[0] == 27 && cha[1] == 91 && cha[2] == 51 && cha[3] == 126)
     return (1);
@@ -39,7 +39,7 @@ int		is_del(char *cha)
     return (0);
 }
 
-int			nbr_column()
+intnbr_column()
 {
   struct winsize        w;
 
