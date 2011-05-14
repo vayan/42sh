@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Tue May 10 21:37:15 2011 timothee maurin
+** Last update Sat May 14 15:35:50 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -22,8 +22,7 @@
 #include	"shell.h"
 #include	"prototype.h"
 #include	"xmalloc.h"
-
-char    *get_touche(struct termios *t);
+#include	"termcap_include.h"
 
 void	func_remove(char *cha, int *i, int *pos, char *buf)
 {
@@ -43,12 +42,13 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
 	  buf[(*i)] = '\0';
 	}
     }
-  clear_it(pos, i);
+  place_cursor_del((*i), *pos, buf, 0);
   xwrite(0, "$>", 2);
-  xwrite(0, buf, strlen(buf));
-  if (((strlen(buf) + 2) % nbr_column()) == 0 && cha[1] != 127)
+  my_putstr_del(buf);
+  if ((cur_pos(buf, *i) % nbr_column()) == 0 && cha[1] != 127)
     xwrite(0, " \b", 2);
-  place_cursor(*i, *pos);
+  if (*i != *pos)
+    place_cursor(*i, *pos, buf);
 }
 
 char			*other_cha(char cha, char *buf, int *pos, int *i)
@@ -64,8 +64,9 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
 	  buf[*pos - 1] = cha;
 	  if ((*i) != (*pos))
 	    {
-	      my_putstr_buf(&(buf[*pos - 1]));
-	      place_cursor_back((*i), (*pos));
+	      exec_str("cd");
+	      my_putstr_buf(&(buf[*pos - 1]), *i, *pos, buf);
+	      place_cursor((*i), (*pos), buf);
 	    }
 	  else
 	    {
@@ -82,26 +83,24 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
 
 void	func_fleche(char *cha, int *i, int *pos, char **buf)
 {
+  int	tmp;
+
   if (cha[2] == 68 && *pos > 0)
     {
-      if ((*pos + 2) % nbr_column() == 0 && *pos != 0)
-	{
-	  if ((*pos + 2) / nbr_column())
-	    {
-	      exec_str("up");
-	      exec_parm("ch", nbr_column() - 1);
-	    }
-	}
-      else
-	exec_str("le");
       (*pos)--;
+      if (!((cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
+	     - cur_pos(*buf, *pos)) % nbr_column())
+	  && (cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
+	      - cur_pos(*buf, *pos)) / nbr_column())
+	exec_str("up");
+      exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
     }
   if (cha[2] == 67 && *pos < *i)
     {
-      exec_str("nd");
       (*pos)++;
-      if ((*pos + 2) % nbr_column() == 0 && *pos != *i)
-	exec_str("do");
+      if (!((cur_pos(*buf, *pos)) % nbr_column()))
+        exec_str("do");
+      exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
     }
   if (cha[2] == 65 || cha[2] == 66)
     funct_histo(cha, i, pos, buf);
@@ -115,7 +114,7 @@ void		func_special(char *cha, int *i, int *pos, char **buf)
 	   && (cha[2] == 65 || cha[2] == 66 || cha[2] == 67 || cha[2] == 68))
     func_fleche(cha, i, pos, buf);
   else if (cha[0] == 27 && cha[1] == 91 && cha[2] == 90)
-    other_cha('	', *buf, pos, i);
+    other_cha(9, *buf, pos, i);
 }
   /* printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]); */
 
@@ -139,10 +138,13 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
       else
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
-      if (nbr_column() && !(verif_touche(cha)) && i == pos
-	  && ((strlen(shell->commande->buffer) + 2) % nbr_column()) == 0)
+      if (nbr_column() && (!(verif_touche(cha))
+			   || (cha[0] == 27 && cha[1] == 91 && cha[2] == 90))
+	  && i == pos
+	  && cur_pos(shell->commande->buffer, i) % nbr_column() == 0)
 	xwrite(0, "\n", 1);
     }
+  place_cursor_del(i, pos, shell->commande->buffer, 2);
   free_buf(shell->commande->buffer, 1);
   xwrite(0, "\n", 1);
   free(cha);

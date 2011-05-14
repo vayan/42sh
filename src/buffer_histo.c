@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon May  9 18:47:47 2011 timothee maurin
-** Last update Tue May 10 21:48:01 2011 timothee maurin
+** Last update Thu May 12 18:17:44 2011 timothee maurin
 */
 
 #include			<string.h>
@@ -42,7 +42,7 @@ char				*free_buf(char *buf, int test)
 
 void				reaf(int *i, int *pos, char *buf)
 {
-  place_cursor(*i, 0);
+  place_cursor(*i, 0, buf);
   exec_str("cd");
   xwrite(0, buf, strlen(buf));
   *i = strlen(buf);

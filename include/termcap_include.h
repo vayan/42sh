@@ -5,12 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 16:44:26 2011 maxime constantinian
-** Last update Tue May 10 21:48:57 2011 timothee maurin
+** Last update Thu May 12 14:15:39 2011 timothee maurin
 */
 
 #ifndef		TERMCAP_H__
 # define	TERMCAP_H__
 
+char		*get_touche(struct termios *t);
 int		mode_raw(struct termios *term2);
 int		activate_ultra_secret_mode(struct termios *t);
 int		desactivate_ultra_secret_mode(struct termios *t);
