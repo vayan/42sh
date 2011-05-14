@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Sat May 14 15:35:50 2011 timothee maurin
+** Last update Sat May 14 16:42:26 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -56,8 +56,7 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
   if (*i < 8192)
     {
       (*pos)++;
-      (*i)++;
-      buf[*i] = '\0';
+      buf[++(*i)] = '\0';
       if (cha != '\n')
 	{
 	  my_strcpy_buf(&(buf[*pos]), &(buf[(*pos) - 1]));
@@ -83,8 +82,6 @@ char			*other_cha(char cha, char *buf, int *pos, int *i)
 
 void	func_fleche(char *cha, int *i, int *pos, char **buf)
 {
-  int	tmp;
-
   if (cha[2] == 68 && *pos > 0)
     {
       (*pos)--;
@@ -116,7 +113,6 @@ void		func_special(char *cha, int *i, int *pos, char **buf)
   else if (cha[0] == 27 && cha[1] == 91 && cha[2] == 90)
     other_cha(9, *buf, pos, i);
 }
-  /* printf(">>%d %d %d %d %d %d<<\n", cha[0], cha[1], cha[2], cha[3], cha[4], cha[5]); */
 
 void			get_next_comm(t_shell *shell, struct termios *term2)
 {
@@ -126,8 +122,6 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 
   init_new_cmd(shell);
   recup_com(shell, 0);
-  shell->commande->buffer = xmalloc(8193 * sizeof(*cha));
-  free_buf(shell->commande->buffer, 0);
   cha = xmalloc(2 * sizeof(*cha));
   while (cha[0] != '\n')
     {
@@ -138,10 +132,9 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
       else
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
-      if (nbr_column() && (!(verif_touche(cha))
-			   || (cha[0] == 27 && cha[1] == 91 && cha[2] == 90))
-	  && i == pos
-	  && cur_pos(shell->commande->buffer, i) % nbr_column() == 0)
+      if (cur_pos(shell->commande->buffer, i) % nbr_column() == 0 && i == pos
+	  && (!(verif_touche(cha)) || (cha[0] == 27 && cha[1] == 91
+				       && cha[2] == 90)) && nbr_column())
 	xwrite(0, "\n", 1);
     }
   place_cursor_del(i, pos, shell->commande->buffer, 2);

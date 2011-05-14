@@ -4,8 +4,8 @@
 ** Made by timothee maurin
 ** Login   <maurin_t@epitech.net>
 ** 
-** Started on  Wed May  4 19:59:04 2011 timothee maurin
-** Last update Tue May 10 20:26:55 2011 timothee maurin
+** Started on  Sat May 14 16:43:10 2011 timothee maurin
+** Last update Sat May 14 16:44:00 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -19,10 +19,10 @@
 #include	<term.h>
 #include	<signal.h>
 #include	<string.h>
-#include	"shell.h"
-#include	"xmalloc.h"
 #include	<errno.h>
 #include	<string.h>
+#include	"shell.h"
+#include	"xmalloc.h"
 
 int		verif_touche(char *cha)
 {

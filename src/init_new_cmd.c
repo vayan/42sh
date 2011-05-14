@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 19:02:04 2011 maxime constantinian
-** Last update Fri May 13 02:45:24 2011 timothee maurin
+** Last update Sat May 14 16:35:21 2011 timothee maurin
 */
 
 #include	"shell.h"
@@ -26,4 +26,6 @@ void		init_new_cmd(t_shell *shell)
       shell->commande = shell->commande->next_histo;
     }
   place_cursor_del(0, 0, 0, 1);
+  shell->commande->buffer = xmalloc(8193 * sizeof(*(shell->commande->buffer)));
+  free_buf(shell->commande->buffer, 0);
 }
