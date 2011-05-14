@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Thu Feb  3 13:38:29 2011 maxime constantinian
-** Last update Fri May  6 18:41:43 2011 timothee maurin
+** Last update Thu May 12 19:43:00 2011 timothee maurin
 */
 
 #include	<curses.h>
@@ -16,6 +16,11 @@
 int		my_putchar(int c)
 {
   return (xwrite(0, (char *)&c, 1));
+}
+
+int		my_putchar2(int c)
+{
+  return (xwrite(1, (char *)&c, 1));
 }
 
 void		exec_str(char *str)

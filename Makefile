@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Wed May 11 00:11:16 2011 maxime constantinian
+## Last update Thu May 12 14:31:13 2011 timothee maurin
 ##
 
 CC=     cc
@@ -53,7 +53,8 @@ SRC=    src/main.c \
 	src/my_signal.c \
 	src/recup_shell.c \
 	src/check_redirection.c \
-	src/str_to_wordtab_redirection.c
+	src/str_to_wordtab_redirection.c \
+	src/cur_pos.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

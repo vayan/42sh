@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Tue May 10 21:48:41 2011 timothee maurin
+** Last update Sat May 14 15:16:46 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -41,9 +41,9 @@ int		xwrite(int fd, char *str, int len);
 int		verif_touche(char *cha);
 int		is_del(char *cha);
 int		nbr_column();
-void		place_cursor(int i, int pos);
-void		place_cursor_back(int i, int pos);
-void		clear_it(int *pos, int *i);
+void		place_cursor(int i, int pos, char *buf);
+void		place_cursor_back(int i, int pos, char *buf);
+void		clear_it(int *pos, int *i, char *buf);
 void		func_remove(char *cha, int *i, int *pos, char *buf);
 char		*other_cha(char cha, char *buf, int *pos, int *i);
 void		func_fleche(char *cha, int *i, int *pos, char **buf);
@@ -51,7 +51,7 @@ void		exec_parm(char *str, int nb);
 char		*my_strcpy(char *dest, char *src);
 char		*my_strcpy_buf(char *dest, char *src);
 void		exec_str(char *str);
-int		my_putstr_buf(char *str);
+int		my_putstr_buf(char *str, int i1, int pos, char *buf);
 void		init_new_cmd(t_shell *shell);
 void		funct_exit(int sig);
 void		funct_noexit(int sig);
