@@ -5,8 +5,11 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 14:20:09 2011 timothee maurin
-** Last update Fri May 13 17:15:43 2011 timothee maurin
+** Last update Sat May 14 16:36:17 2011 timothee maurin
 */
+
+#include "shell.h"
+#include "prototype.h"
 
 int	cur_pos(char *buf, int i)
 {

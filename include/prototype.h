@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sat May 14 15:16:46 2011 timothee maurin
+** Last update Sat May 14 16:29:14 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -62,5 +62,9 @@ void		reaf(int *i, int *pos, char *buf);
 char		*free_buf(char *buf, int test);
 t_commande_root	*recup_com(t_shell *shell, int test);
 int		xread(int fd, char *buf, int nb);
+int		nbr_column();
+int		cur_pos(char *buf, int i);
+void		place_cursor_del(int i, int pos, char *buf, int test);
+void		my_putstr_del(char *buf);
 
 #endif
