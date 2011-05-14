@@ -5,13 +5,24 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Wed May 11 00:11:47 2011 maxime constantinian
+** Last update Sat May 14 13:42:59 2011 maxime constantinian
 */
 
 #include	<string.h>
 #include	"shell.h"
 #include	"prototype.h"
 
+void		move_red(char *str, int *i, int *count_w, int *have_space)
+{
+  if (str[*i] == '<' || str[*i] == '>')
+    {
+      (*have_space) = 1;
+      if (strncmp(&str[*i], "<<", 2) == 0
+	  || strncmp(&str[*i], ">>", 2) == 0)
+	*i += 1;
+    }
+}
+  
 int		count_word_red(char *str)
 {
   int		i = 0;
@@ -23,7 +34,7 @@ int		count_word_red(char *str)
     {
       if (str[i] == ' ' || str[i] == '\t')
 	have_space = 1;
-      else if (have_space == 1)
+      else if (have_space == 1 || str[i] == '<' || str[i] == '>')
 	{
 	  have_space = 0;
 	  count_w++;
@@ -33,11 +44,29 @@ int		count_word_red(char *str)
 	      while (str[i] && str[i] != '"')
 		i++;
 	    }
+	  move_red(str, &i, &count_w, &have_space);
 	}
       if (str[i])
 	i++;
     }
   return (count_w);
+}
+
+void		str_to_wordtab_not_quote_if_red(char *str, int *i,
+						int *j, char **ret)
+{
+  if (strncmp(&str[*i], "<<", 2) == 0
+      || strncmp(&str[*i], ">>", 2) == 0)
+    {
+      ret[*j] = my_strcopynalloc_gen(&str[*i], 2);
+      *i += 2;
+    }
+  else
+    {
+      ret[*j] = my_strcopynalloc_gen(&str[*i], 1);
+      *i += 1;
+    }
+  *j += 1;
 }
 
 void		str_to_wordtab_not_quote_red(char *str, int *i,
@@ -47,13 +76,19 @@ void		str_to_wordtab_not_quote_red(char *str, int *i,
       && strncmp(&str[*i], "&&", 2) != 0  && strncmp(&str[*i], "||", 2) != 0
       && str[*i] != '|')
     {
-      ret[*j] = my_strcopynalloc_gen(&str[*i], my_strlen_create_red(&str[*i]));
-      (*j)++;
-      while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
-	     && strncmp(&str[*i], "&&", 2) != 0
-	     && strncmp(&str[*i], "||", 2) != 0
-	     && str[*i] != '|')
-	(*i)++;
+      if (str[*i] == '<' || str[*i] == '>')
+	str_to_wordtab_not_quote_if_red(str, i, j, ret);
+      else
+	{
+	  ret[*j] = my_strcopynalloc_gen(&str[*i],
+					 my_strlen_createtab(&str[*i]));
+	  (*j)++;
+	  while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
+		 && strncmp(&str[*i], "&&", 2) != 0
+		 && strncmp(&str[*i], "||", 2) != 0
+		 && str[*i] != '|' && str[*i] != '<' && str[*i] != '>')
+	    (*i)++;
+	}
     }
 }
 
