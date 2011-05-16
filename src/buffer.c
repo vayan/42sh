@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Sat May 14 16:42:26 2011 timothee maurin
+** Last update Mon May 16 15:47:13 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -45,7 +45,7 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
   place_cursor_del((*i), *pos, buf, 0);
   xwrite(0, "$>", 2);
   my_putstr_del(buf);
-  if ((cur_pos(buf, *i) % nbr_column()) == 0 && cha[1] != 127)
+  if (nbr_column() && (cur_pos(buf, *i) % nbr_column()) == 0 && cha[1] != 127)
     xwrite(0, " \b", 2);
   if (*i != *pos)
     place_cursor(*i, *pos, buf);
@@ -85,19 +85,21 @@ void	func_fleche(char *cha, int *i, int *pos, char **buf)
   if (cha[2] == 68 && *pos > 0)
     {
       (*pos)--;
-      if (!((cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
+      if (nbr_column() && !((cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
 	     - cur_pos(*buf, *pos)) % nbr_column())
 	  && (cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
 	      - cur_pos(*buf, *pos)) / nbr_column())
 	exec_str("up");
-      exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
+      if (nbr_column())
+	exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
     }
   if (cha[2] == 67 && *pos < *i)
     {
       (*pos)++;
-      if (!((cur_pos(*buf, *pos)) % nbr_column()))
+      if (nbr_column() && !((cur_pos(*buf, *pos)) % nbr_column()))
         exec_str("do");
-      exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
+      if (nbr_column())
+	exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
     }
   if (cha[2] == 65 || cha[2] == 66)
     funct_histo(cha, i, pos, buf);
@@ -132,7 +134,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
       else
 	shell->commande->buffer = other_cha(cha[0],
 					    shell->commande->buffer, &pos, &i);
-      if (cur_pos(shell->commande->buffer, i) % nbr_column() == 0 && i == pos
+      if (nbr_column() && cur_pos(shell->commande->buffer, i) % nbr_column() == 0 && i == pos
 	  && (!(verif_touche(cha)) || (cha[0] == 27 && cha[1] == 91
 				       && cha[2] == 90)) && nbr_column())
 	xwrite(0, "\n", 1);
