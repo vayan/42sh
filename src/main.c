@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Tue May 10 15:01:47 2011 timothee maurin
+** Last update Mon May 16 18:00:43 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -24,6 +24,16 @@
 #include	"prototype.h"
 #include	"termcap_include.h"
 
+void		main_bis(t_shell *shell)
+{
+  shell->commande = xmalloc(sizeof(*(shell->commande)));
+  shell->commande->buffer = get_next_line(0);
+  parser(shell->commande->buffer, shell);
+  exec_cmd(shell);
+  free(shell->commande->buffer);
+  exit(42);
+}
+
 int		main(int ac, char **av, char **envp)
 {
   t_shell *shell = xmalloc(sizeof(t_shell));
@@ -31,11 +41,12 @@ int		main(int ac, char **av, char **envp)
 
   ac = ac;
   av = av;
-  init_termios(&term2);
-  desactivate_mode_raw(&term2);
   copy_env(envp, shell);
   add_hachtab_to_shell(shell);
   recup_shell(shell);
+  if (init_termios(&term2))
+    main_bis(shell);
+  desactivate_mode_raw(&term2);
   while (42)
     {
       signal(SIGINT, &funct_noexit);

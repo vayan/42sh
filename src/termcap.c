@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Fri May  6 18:51:45 2011 timothee maurin
+** Last update Mon May 16 16:24:12 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -18,12 +18,17 @@
 #include        <curses.h>
 #include        <term.h>
 #include        <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include	"shell.h"
 #include	"prototype.h"
 #include	"termcap_include.h"
 
 int		init_termios(struct termios *term2)
 {
+  int		fd;
+
   tgetent(NULL, "xterm");
   if (tcgetattr(0, term2) == -1)
     {
@@ -54,7 +59,7 @@ int		desactivate_mode_raw(struct termios *term2)
   if (lflag == 0)
     lflag = term2->c_lflag;
   term2->c_lflag = lflag;
-  if (tcsetattr(0, TCSANOW, term2) == -1)
+  if (tcsetattr(0, TCSAFLUSH, term2) == -1)
     {
       fprintf(stderr, "Erreur tcsetattr\n");
       return (1);
@@ -65,7 +70,7 @@ int		desactivate_mode_raw(struct termios *term2)
 int     activate_ultra_secret_mode(struct termios *t)
 {
   t->c_lflag &= ~ECHO;
-  if (tcsetattr(0, TCSANOW, t) == -1)
+  if (tcsetattr(0, TCSAFLUSH, t) == -1)
     {
       fprintf(stderr, "Erreur tcsetattr\n");
       return (1);
@@ -76,7 +81,7 @@ int     activate_ultra_secret_mode(struct termios *t)
 int     desactivate_ultra_secret_mode(struct termios *t)
 {
   t->c_lflag &= ECHO;
-  if (tcsetattr(0, TCSANOW, t) == -1)
+  if (tcsetattr(0, TCSAFLUSH, t) == -1)
     {
       fprintf(stderr, "Erreur tcsetattr\n");
       return (1);

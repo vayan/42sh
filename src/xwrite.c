@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Sat May 14 16:30:37 2011 timothee maurin
+** Last update Mon May 16 15:45:32 2011 timothee maurin
 */
 
 #include <string.h>
@@ -22,12 +22,12 @@ void	my_putstr_del(char *buf)
   i = 0;
   while (buf[i] != '\0')
     {
-      if (((cur_pos(buf, i)) % nbr_column()) == 0 && i != 0)
+      if (nbr_column() && ((cur_pos(buf, i)) % nbr_column()) == 0 && i != 0)
 	write(0, "\n", 1);
       write(0, &(buf[i]), 1);
       i++;
     }
-  if (((cur_pos(buf, i)) % nbr_column()) == 0 && i != 0)
+  if (nbr_column() && ((cur_pos(buf, i)) % nbr_column()) == 0 && i != 0)
     write(0, "\n", 1);
 }
 
@@ -50,7 +50,7 @@ int	my_putstr_buf(char *str, int i1, int pos, char *buf)
   while (str[i] != '\0')
     {
       xwrite(0, &(str[i]), 1);
-      if (((cur_pos(buf, pos + i)) % nbr_column()) == 0)
+      if (nbr_column() && ((cur_pos(buf, pos + i)) % nbr_column()) == 0)
 	write(0, "\n", 1);
       i++;
     }
