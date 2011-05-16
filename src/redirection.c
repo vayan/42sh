@@ -5,9 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sun May 15 17:36:04 2011 maxime constantinian
+** Last update Mon May 16 19:00:52 2011 maxime constantinian
 */
 
+#include	<string.h>
 #include	<unistd.h>
 #include	<stdio.h>
 #include	<sys/types.h>
@@ -17,6 +18,7 @@
 #include	<stdlib.h>
 #include	<sys/stat.h>
 #include	<fcntl.h>
+#include	<errno.h>
 #include	"shell.h"
 #include	"parseur.h"
 #include	"prototype.h"
@@ -75,6 +77,9 @@ void		srl_fonction(t_commande *cmd, t_shell *shell)
     {
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
 	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
+      else
+	exit(fprintf(stderr, "42sh: %s %s\n", cmd->next[1]->cmd[0],
+		     (char*)strerror(errno)));
     }
   if (fd != -1)
     {
@@ -91,7 +96,7 @@ int             fill_file_drl(t_commande *cmd, int fd)
   char          *tmp;
 
   if (fd == -1)
-    fprintf(stderr ,"42sh: Open failed.\n");
+    fprintf(stderr, "42sh: Open failed.\n");
   else
     {
       xwrite(0, "?", 1);

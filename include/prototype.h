@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sat May 14 16:29:14 2011 timothee maurin
+** Last update Mon May 16 19:03:12 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
@@ -17,6 +17,7 @@ void		exec_type_cmd(t_commande *cmd, t_shell *shell);
 char		*my_get_env(char *str, char **env);
 void		*xmalloc(int size);
 char		**str_to_wordtab(char *str);
+char		**str_to_wordtab_red(char *str);
 char		*recup_hach(t_hach_bin *num, char *name);
 int		*xpipe(int *num);
 int		xfork();
@@ -27,6 +28,7 @@ int		my_strlen_quote(char *str);
 int		my_strlen_createtab(char *str);
 void		check_commande(char *str, t_commande *cmd);
 void		check_pipe(char *str, t_commande *cmd);
+void		check_redirection(char *str, t_commande *cmd);
 void		check_or(char *str, t_commande *cmd);
 void		check_and(char *str, t_commande *cmd);
 int		if_have_sep(char *str);
@@ -66,5 +68,10 @@ int		nbr_column();
 int		cur_pos(char *buf, int i);
 void		place_cursor_del(int i, int pos, char *buf, int test);
 void		my_putstr_del(char *buf);
+void		srd_fonction(t_commande *cmd, t_shell *shell);
+void		srl_fonction(t_commande *cmd, t_shell *shell);
+void		drd_fonction(t_commande *cmd, t_shell *shell);
+void		drl_fonction(t_commande *cmd, t_shell *shell);
+char		*get_next_line(int fd);
 
 #endif
