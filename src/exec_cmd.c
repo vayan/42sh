@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 14 13:35:11 2011 maxime constantinian
+** Last update Sun May 15 17:15:49 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -55,48 +55,6 @@ void		pipe_fonction(t_commande *cmd, t_shell *shell)
     }
 }
 
-void		srd_fonction(t_commande *cmd, t_shell *shell)
-{
-  int		fd = -1;
-
-  if (cmd->next[1])
-    {
-      if (access(cmd->next[1]->cmd[0], F_OK) == -1)
-	fd = open(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
-		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-      else
-	fd = open(cmd->next[1]->cmd[0], O_WRONLY | O_TRUNC,
-		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    }
-  if (fd != -1)
-    {
-      xdup2(fd, 1);
-      if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
-      if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
-    }
-}
-
-void		srl_fonction(t_commande *cmd, t_shell *shell)
-{
-  int		fd = -1;
-
-  if (cmd->next[1])
-    {
-      if (access(cmd->next[1]->cmd[0], F_OK) != -1)
-	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
-    }
-  if (fd != -1)
-    {
-      xdup2(fd, 0);
-      if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
-      if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
-    }
-}
-
 void		exec_type_cmd(t_commande *cmd, t_shell *shell)
 {
   if (cmd->type == OP_PIP)
@@ -105,6 +63,10 @@ void		exec_type_cmd(t_commande *cmd, t_shell *shell)
     exec_fonction(cmd, shell);
   if (cmd->type == OP_SRR)
     srd_fonction(cmd, shell);
+  if (cmd->type == OP_DRR)
+    drd_fonction(cmd, shell);
+  if (cmd->type == OP_DRL)
+    drl_fonction(cmd, shell);
   if (cmd->type == OP_SRL)
     srl_fonction(cmd, shell);
 }
