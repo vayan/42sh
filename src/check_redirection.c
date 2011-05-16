@@ -5,11 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 10 21:34:38 2011 maxime constantinian
-** Last update Sat May 14 13:39:30 2011 maxime constantinian
+** Last update Mon May 16 18:57:54 2011 maxime constantinian
 */
 
-/* Cree la fonction create_cmd pour le maillon + faire boucler */
-
+#include	<string.h>
 #include	"shell.h"
 #include	"prototype.h"
 #include	"parseur.h"
@@ -40,6 +39,7 @@ int		return_type_red(char *str)
     return (3);
   else if (str[0] == '>')
     return (4);
+  return (0);
 }
 
 void		create_cmd(char **tab, t_commande *cmd)
@@ -93,12 +93,35 @@ t_commande	*create_maillon_red(int type, char **tab, t_commande *cmd)
   return (0);
 }
 
+void		check_red_suite(int i, char **tab, t_commande *cmd)
+{
+  while (tab[i])
+    {
+      if (cmd->next == 0)
+	cmd->next = xmalloc(sizeof(*(cmd->next)) * 3);
+      if (cmd->type != 0)
+	{
+	  cmd->next[1] = xmalloc(sizeof(**(cmd->next)));
+	  cmd = cmd->next[1];
+	}
+      if (cmd->next == 0)
+	cmd->next = xmalloc(sizeof(*(cmd->next)) * 3);
+      cmd = create_maillon_red(return_type_red(tab[i]), &tab[i], cmd);
+      i++;
+      while (tab[i] && !((strlen(tab[i]) == 2
+			  && (strncmp(tab[i], "<<", 2) == 0
+			      || strncmp(tab[i], ">>", 2) == 0))
+			 || (strlen(tab[i]) == 1
+			     && (tab[i][0] == '<' || tab[i][0] == '>'))))
+	i++;
+    }
+}
+
 void		check_redirection(char *str, t_commande *cmd)
 {
   char		**tab;
-  int		i;
+  int		i = 0;
 
-  i = 0;
   if (if_have_redirection(str))
     {
       tab = str_to_wordtab_red(str);
@@ -117,26 +140,7 @@ void		check_redirection(char *str, t_commande *cmd)
 					       || tab[i][0] == '>'))))
 	    i++;
 	}
-      while (tab[i])
-	{
-	  if (cmd->next == 0)
-	    cmd->next = xmalloc(sizeof(*(cmd->next)) * 3);
-	  if (cmd->type != 0)
-	    {
-	      cmd->next[1] = xmalloc(sizeof(**(cmd->next)));
-	      cmd = cmd->next[1];
-	    }
-	  if (cmd->next == 0)
-	    cmd->next = xmalloc(sizeof(*(cmd->next)) * 3);
-	  cmd = create_maillon_red(return_type_red(tab[i]), &tab[i], cmd);
-	  i++;
-	  while (tab[i] && !((strlen(tab[i]) == 2
-			      && (strncmp(tab[i], "<<", 2) == 0
-				  || strncmp(tab[i], ">>", 2) == 0))
-			     || (strlen(tab[i]) == 1
-				 && (tab[i][0] == '<' || tab[i][0] == '>'))))
-	    i++;
-	}
+      check_red_suite(i, tab, cmd);
     }
   else
     check_commande(str, cmd);

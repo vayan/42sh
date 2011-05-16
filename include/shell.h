@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr 20 13:13:56 2011 maxime constantinian
-** Last update Wed May  4 13:22:37 2011 maxime constantinian
+** Last update Mon May 16 14:26:33 2011 maxime constantinian
 */
 
 #ifndef		SHELL_H__
@@ -43,6 +43,7 @@ typedef struct		s_shell
 {
   t_hach_bin		*tab_hach;
   char			**env;
+  t_list_var		*alias;
   t_list_var		*variable;
   t_commande_root	*commande;
 }			t_shell;

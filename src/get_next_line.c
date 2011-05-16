@@ -5,11 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Nov 26 19:05:23 2010 maxime constantinian
-** Last update Sun May 15 17:25:54 2011 maxime constantinian
+** Last update Mon May 16 19:02:14 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
 #include	<unistd.h>
+#include	"shell.h"
+#include	"prototype.h"
 #include	"get_next_line.h"
 
 void		init_tab(char *str)

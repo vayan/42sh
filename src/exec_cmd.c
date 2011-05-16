@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sun May 15 17:15:49 2011 maxime constantinian
+** Last update Mon May 16 18:16:29 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -21,10 +21,10 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-void		exec_in_builtin(t_commande *cmd, t_shell *shell, char **env)
+void		exec_in_builtin(char **cmd, t_shell *shell, char **env)
 {
-  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]),
-  	     cmd->cmd, env) == -1)
+  if (execve(recup_hach(shell->tab_hach, cmd[0]),
+  	     cmd, env) == -1)
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 

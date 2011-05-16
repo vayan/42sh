@@ -5,14 +5,14 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Sat May 14 13:42:59 2011 maxime constantinian
+** Last update Mon May 16 19:00:09 2011 maxime constantinian
 */
 
 #include	<string.h>
 #include	"shell.h"
 #include	"prototype.h"
 
-void		move_red(char *str, int *i, int *count_w, int *have_space)
+void		move_red(char *str, int *i, int *have_space)
 {
   if (str[*i] == '<' || str[*i] == '>')
     {
@@ -22,7 +22,7 @@ void		move_red(char *str, int *i, int *count_w, int *have_space)
 	*i += 1;
     }
 }
-  
+
 int		count_word_red(char *str)
 {
   int		i = 0;
@@ -44,7 +44,7 @@ int		count_word_red(char *str)
 	      while (str[i] && str[i] != '"')
 		i++;
 	    }
-	  move_red(str, &i, &count_w, &have_space);
+	  move_red(str, &i, &have_space);
 	}
       if (str[i])
 	i++;
