@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 19 15:30:15 2011 yann vaillant
-** Last update Mon May 16 16:24:12 2011 timothee maurin
+** Last update Wed May 18 16:54:19 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -27,8 +27,6 @@
 
 int		init_termios(struct termios *term2)
 {
-  int		fd;
-
   tgetent(NULL, "xterm");
   if (tcgetattr(0, term2) == -1)
     {
