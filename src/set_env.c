@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Thu May  5 19:33:55 2011 timothee maurin
+** Last update Wed May 18 10:24:37 2011 Vaillant Yann
 */
 
 #include	<string.h>
@@ -14,6 +14,14 @@
 #include        "shell.h"
 #include        "graph.h"
 #include        "xmalloc.h"
+
+void	aff_env(char **env)
+{
+  int	x = 0;
+  
+  while (env[x])
+    printf("%s\n", env[x++]);
+}
 
 char *concet_env(char *add_to_env, char *name, char *value)
 {
@@ -26,13 +34,17 @@ char *concet_env(char *add_to_env, char *name, char *value)
 
 char	**my_setenv(char **value, char **env)
 {
-  int	x = go_end_env(env);
+  int	x;
   char	*add_to_env;
   char	*name_env;
   int	i = 0;
 
-  if (value == NULL || value[0] == NULL || value[1] == NULL)
-    return (0);
+  if (value || value[0] || value[1])
+    {
+      aff_env(env);
+      return (0);
+    }
+  x = go_end_env(env);
   add_to_env = concet_env(add_to_env, value[1], value[2]);
   while (env[i])
     {
