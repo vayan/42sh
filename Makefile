@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Tue May 17 17:44:58 2011 Vaillant Yann
+## Last update Wed May 18 18:00:08 2011 timothee maurin
 ##
 
 CC=     cc
@@ -57,13 +57,14 @@ SRC=    src/main.c \
 	src/cur_pos.c \
 	src/redirection.c \
 	src/get_next_line.c \
-	src/get_path_rc.c \
-	src/modif_var.c \
-	src/parse_rc.c \
-	src/test_param_rc.c \
-	src/wordtab_parse_rc.c \
-	src/xgetpwuid.c \
-	src/xopen.c 
+	src/put_in_buf.c \
+	src/completion.c \
+	src/xopendir.c \
+	src/my_list.c \
+	src/xlstat.c \
+	src/main_completion.c \
+	src/which_type.c \
+	src/is_dir.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
