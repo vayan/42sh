@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 13:09:38 2011 timothee maurin
-** Last update Thu May 19 14:05:37 2011 timothee maurin
+** Last update Thu May 19 18:26:43 2011 timothee maurin
 */
 
 #include <string.h>
@@ -106,10 +106,11 @@ void		traiter_list(t_completion *compl, char *buf, int *i, int *pos)
 {
   int		be;
 
-  be = *pos;
-  if (*pos != 0 || buf[*pos] != ';')
+  if ((be = *pos || 1) && *pos != 0 || buf[*pos] != ';')
     while (be > 0 && buf[be] !=  ' ' && buf[be] != 9 && buf[be] != ';')
       be--;
+  while (buf[be - 1] == '/')
+    be--;
   if (compl)
     {
       if (compl->next)

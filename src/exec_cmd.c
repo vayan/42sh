@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Thu May 19 18:53:03 2011 maxime constantinian
+** Last update Thu May 19 18:43:29 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -22,162 +22,75 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-/* void		exec_in_builtin(char **cmd, t_shell *shell, char **env) */
-/* { */
-/*   if (execve(recup_hach(shell->tab_hach, cmd[0]), */
-/*   	     cmd, env) == -1) */
-/*     exit(fprintf(stderr, "42sh: execve failed.\n")); */
-/* } */
-
-void		fils_fonction(t_commande *cmd, t_shell *shell,
-			       int *tab, char *str)
+void		exec_in_builtin(t_commande *cmd, t_shell *shell, char **env)
 {
-  if (tab && tab[1])
-    xdup2(tab[1], 1);
-  if (tab && tab[0])
-    xdup2(tab[0], 0);
-  if (execve(str, cmd->cmd, shell->env) == -1)
+  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]),
+  	     cmd->cmd, env) == -1)
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
-int		return_good_return_value(int stat_val)
+void		exec_fonction(t_commande *cmd, t_shell *shell)
 {
-  if (WIFEXITED(stat_val))
-    return (WEXITSTATUS(stat_val));
-  return (stat_val);
+  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]), cmd->cmd, shell->env) == -1)
+    exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
-int		exec_with_fork(t_commande *cmd, t_shell *shell,
-			       int *tab, char *str)
+void		pipe_fonction(t_commande *cmd, t_shell *shell)
 {
-  int		returnfork;
-  int		status = 0;
-  
-  if ((returnfork = xfork()))
+  pid_t		returnfork;
+  int		tab[2];
+
+  xpipe(tab);
+  if ((returnfork = xfork()) == 0)
     {
-      if (tab)
-	{
-	  if (tab[0] != 0)
-	    close(tab[0]);
-	  if (tab[1] != 0)
-	    close(tab[1]);
-	}
-      while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
-	usleep(100);
-      return (return_good_return_value(status));
-    }
-  else
-    fils_fonction(cmd, shell, tab, str);
-}
-
-int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
-{
-  int		type;
-  char		*str = 0;
-
-  type = check_type(cmd->cmd[0], shell);
-  if (type == 3)
-    str = recup_hach(shell->tab_hach, cmd->cmd[0]);
-  if (type == 4)
-    str = cmd->cmd[0];
-  if (type == 3 || type == 4)
-    return (exec_with_fork(cmd, shell, tab, str));
-  /*  if (type == 2)
-      exec_builtin(cmd, shell, tab);*/
-}
-
-void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)
-{
-  int		ret;
-
-  ret = exec_type_cmd(cmd->next[0], shell, tab);
-  if (ret == 0)
-    {
-      tab[0] = 0;
-      tab[1] = 0; 
-      exec_type_cmd(cmd->next[1], shell, tab);
-    }
-}
-
-void		or_fonction(t_commande *cmd, t_shell *shell, int *tab)
-{
-  int		ret;
-
-  ret = exec_type_cmd(cmd->next[0], shell, tab);
-  if (ret != 0)
-    {
-      tab[0] = 0;
-      tab[1] = 0;
-      exec_type_cmd(cmd->next[1], shell, tab);
-    }
-}
-
-int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
-{
-  int		tab_pipe[2];
-  int		tab_ret[2];
-  int		ret;
-
-  xpipe(tab_pipe);
-  if (tab && tab[1] == 0)
-    {
-      tab_ret[0] = tab[0];
-      tab_ret[1] = tab_pipe[1];
+      close(tab[0]);
+      xdup2(tab[1], 1);
+      exec_type_cmd(cmd->next[0], shell);
     }
   else
     {
-      tab_ret[0] = 0;
-      tab_ret[1] = tab_pipe[1];
+      close(tab[1]);
+      xdup2(tab[0], 0);
+      exec_type_cmd(cmd->next[1], shell);
     }
-  ret = exec_type_cmd(cmd->next[0], shell, tab_ret);
-  if (ret == 0);
-  {
-    tab_ret[0] = tab_pipe[0];
-    tab_ret[1] = 0;
-    return (exec_type_cmd(cmd->next[1], shell, tab_ret));
-  }
-  return (ret);
 }
 
-int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab)
+void		exec_type_cmd(t_commande *cmd, t_shell *shell)
 {
-  int		ret = 0;
-
   if (cmd->type == OP_PIP)
-    ret = pipe_fonction(cmd, shell, tab);
-  if (cmd->type == OP_AND)
-    and_fonction(cmd, shell, tab);
-  if (cmd->type == OP_OR)
-    or_fonction(cmd, shell, tab);
+    pipe_fonction(cmd, shell);
   if (cmd->type == CMD)
-    ret = exec_fonction(cmd, shell, tab);
+    exec_fonction(cmd, shell);
   if (cmd->type == OP_SRR)
-    srd_fonction(cmd, shell, tab);
+    srd_fonction(cmd, shell);
   if (cmd->type == OP_DRR)
-    drd_fonction(cmd, shell, tab);
+    drd_fonction(cmd, shell);
   if (cmd->type == OP_DRL)
-    drl_fonction(cmd, shell, tab);
+    drl_fonction(cmd, shell);
   if (cmd->type == OP_SRL)
-    srl_fonction(cmd, shell, tab);
-  return (ret);
+    srl_fonction(cmd, shell);
 }
 
 void		exec_cmd(t_shell *shell)
 {
-  int		i;
-  int		tab[2];
+  pid_t		returnfork;
+  int		status;
+  int		i = 0;
 
-  i = 0;
-  tab[0] = 0;
-  tab[1] = 0;
   if (shell->commande->cmd->type == OP_SEP)
-    {
-      while (shell->commande->cmd->next[i])
-	{
-	  exec_type_cmd(shell->commande->cmd->next[i], shell, tab);
-	  i++;
-	}
-    }
+    while (shell->commande->cmd->next[i])
+      {
+	if ((returnfork = xfork()))
+	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
+	    usleep(100);
+	else
+	  exec_type_cmd(shell->commande->cmd->next[i], shell);
+	i++;
+      }
   else
-    exec_type_cmd(shell->commande->cmd, shell, tab);
+    if ((returnfork = xfork()))
+      while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
+	usleep(100);
+    else
+      exec_type_cmd(shell->commande->cmd, shell);
 }
