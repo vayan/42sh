@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Wed May 18 10:24:37 2011 Vaillant Yann
+** Last update Thu May 19 13:05:34 2011 Vaillant Yann
 */
 
 #include	<string.h>
@@ -18,7 +18,7 @@
 void	aff_env(char **env)
 {
   int	x = 0;
-  
+
   while (env[x])
     printf("%s\n", env[x++]);
 }
@@ -32,6 +32,16 @@ char *concet_env(char *add_to_env, char *name, char *value)
   return (add_to_env);
 }
 
+int	check_if_no_arg(char **value);
+{
+  if (value || value[0] || value[1])
+    {
+      aff_env(env);
+      return (1);
+    }
+  return (0);
+}
+
 char	**my_setenv(char **value, char **env)
 {
   int	x;
@@ -39,11 +49,8 @@ char	**my_setenv(char **value, char **env)
   char	*name_env;
   int	i = 0;
 
-  if (value || value[0] || value[1])
-    {
-      aff_env(env);
-      return (0);
-    }
+  if (check_if_no_arg(value) == 1)
+    return (1);
   x = go_end_env(env);
   add_to_env = concet_env(add_to_env, value[1], value[2]);
   while (env[i])
@@ -61,6 +68,5 @@ char	**my_setenv(char **value, char **env)
     }
   env = realloc(env, (x + 2) * sizeof(*env));
   env[x] = add_to_env;
-  env[x + 1] = 0;
-  return (env);
+  return (env[x + 1] = 0);
 }
