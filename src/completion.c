@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 13:09:38 2011 timothee maurin
-** Last update Wed May 18 18:04:53 2011 timothee maurin
+** Last update Thu May 19 14:05:37 2011 timothee maurin
 */
 
 #include <string.h>
@@ -125,7 +125,7 @@ void		traiter_list(t_completion *compl, char *buf, int *i, int *pos)
       else
 	{
 	  if (compl->buf && *i + strlen(compl->buf) < 8192)
-	    put_in_buf(compl->buf, buf, be);
+	    put_in_buf(compl->buf, buf, *pos);
 	}
     }
 }
