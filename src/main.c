@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Mon May 16 18:00:43 2011 timothee maurin
+** Last update Wed May 18 19:17:28 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -36,7 +36,7 @@ void		main_bis(t_shell *shell)
 
 int		main(int ac, char **av, char **envp)
 {
-  t_shell *shell = xmalloc(sizeof(t_shell));
+  t_shell		*shell = xmalloc(sizeof(t_shell));
   struct termios	term2;
 
   ac = ac;

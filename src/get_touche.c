@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Apr 21 17:41:38 2011 yann vaillant
-** Last update Mon May 16 18:53:48 2011 maxime constantinian
+** Last update Wed May 18 20:19:25 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -25,9 +25,9 @@ char	*get_touche(struct termios *t)
 {
   char	*touche;
 
-  touche = xmalloc(11 * sizeof(*touche));
+  touche = xmalloc(4097 * sizeof(*touche));
   activate_ultra_secret_mode(t);
-  xread(0, touche, 10);
+  xread(0, touche, 4096);
   desactivate_ultra_secret_mode(t);
   return (touche);
 }

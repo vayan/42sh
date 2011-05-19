@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 14 16:43:10 2011 timothee maurin
-** Last update Sat May 14 16:44:00 2011 timothee maurin
+** Last update Wed May 18 20:15:00 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -24,9 +24,9 @@
 #include	"shell.h"
 #include	"xmalloc.h"
 
-int		verif_touche(char *cha)
+int		verif_touche(char *cha, int i)
 {
-  if (cha[0] < ' ' || cha[0] == 127)
+  if (cha[i] < ' ' || cha[i] == 127)
     return (1);
   else
     return (0);

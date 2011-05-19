@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Mon May 16 19:03:12 2011 maxime constantinian
+** Last update Wed May 18 20:16:08 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -40,7 +40,7 @@ void		exec_cmd(t_shell *shell);
 char		*concat(char *s1, char *s2);
 char		*my_pwd(char *pwd);
 int		xwrite(int fd, char *str, int len);
-int		verif_touche(char *cha);
+int		verif_touche(char *cha, int i);
 int		is_del(char *cha);
 int		nbr_column();
 void		place_cursor(int i, int pos, char *buf);
