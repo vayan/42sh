@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue May 17 16:17:00 2011 timothee maurin
-** Last update Thu May 19 14:12:03 2011 timothee maurin
+** Last update Thu May 19 17:20:14 2011 timothee maurin
 */
 
 #include <string.h>
@@ -14,12 +14,18 @@
 
 void	put_in_buf(char *buf, char *dest, int begin)
 {
+  int	tmp;
+  char	*tmp2;
+
+  tmp = begin;
   while (dest[begin] != '/' && begin > 0 && dest[begin] != ' '\
 	 && dest[begin] != ';')
     begin--;
   if (strncmp(buf, &(dest[begin + 1]), strlen(buf)) != 0)
     {
-      my_strcpy(&(dest[begin + strlen(buf) + 1]), &(dest[begin]));
+      tmp2 = strdup(&(dest[tmp]));
+      printf("%d %d %s\n", begin, strlen(buf), tmp2);
+      my_strcpy(&(dest[begin + strlen(buf) + 1]), tmp2);
       if (begin != 0)
 	my_strcpy(&(dest[begin + 1]), buf);
       else
