@@ -5,13 +5,13 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri Apr 29 15:47:45 2011 justin pugeat
-** Last update Fri Apr 29 16:28:59 2011 justin pugeat
+** Last update Thu May 19 19:19:27 2011 timothee maurin
 */
 
 #include <string.h>
 #include <stdio.h>
 
-int	my_echo(char **str, char **env)
+int	my_echo(char **str, char **env, int *tab)
 {
   int	i = 1;
   char	opt_n = 0;
@@ -23,13 +23,13 @@ int	my_echo(char **str, char **env)
 	opt_n = 1;
       else
 	{
-	  xwrite(1, str[i], strlen(str[i]));
+	  xwrite(tab[1], str[i], strlen(str[i]));
 	  if (str[i + 1] != '\0')
-	    xwrite(1, " ", 1);
+	    xwrite(tab[1], " ", 1);
 	}
       i++;
     }
   if (opt_n == 0)
-    xwrite(1, "\n", 1);
+    xwrite(tab[1], "\n", 1);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Thu May  5 19:34:36 2011 timothee maurin
+** Last update Thu May 19 19:28:27 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -101,7 +101,7 @@ int		exec_cd(char **av, char **env)
   tmp = xmalloc(2 * sizeof(*tmp));
   tmp[0] = '/';
   if (count_param(av) > 2)
-    return (fprintf(stderr, "cd: Too many arguments.\n"));
+    return (fprintf(stderr, "42sh: cd: Too many arguments.\n"));
   if (rempl_option(av, option) == -1)
     {
       fprintf(stderr, "Usage: cd [-pl][<dir>].\n");

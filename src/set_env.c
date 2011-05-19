@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Thu May 19 13:05:34 2011 Vaillant Yann
+** Last update Thu May 19 19:32:56 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -15,12 +15,12 @@
 #include        "graph.h"
 #include        "xmalloc.h"
 
-void	aff_env(char **env)
+void	aff_env(char **env, int *tab)
 {
   int	x = 0;
 
   while (env[x])
-    printf("%s\n", env[x++]);
+    fprintf(tab[1], "%s\n", env[x++]);
 }
 
 char *concet_env(char *add_to_env, char *name, char *value)
@@ -32,24 +32,24 @@ char *concet_env(char *add_to_env, char *name, char *value)
   return (add_to_env);
 }
 
-int	check_if_no_arg(char **value);
+int	check_if_no_arg(char **value, int *tab);
 {
   if (value || value[0] || value[1])
     {
-      aff_env(env);
+      aff_env(env, tab);
       return (1);
     }
   return (0);
 }
 
-char	**my_setenv(char **value, char **env)
+int	my_setenv(char **value, char **env, int *tab)
 {
   int	x;
   char	*add_to_env;
   char	*name_env;
   int	i = 0;
 
-  if (check_if_no_arg(value) == 1)
+  if (check_if_no_arg(value, tab) == 1)
     return (1);
   x = go_end_env(env);
   add_to_env = concet_env(add_to_env, value[1], value[2]);
@@ -61,7 +61,7 @@ char	**my_setenv(char **value, char **env)
 	  free(env[i]);
 	  env[i] = add_to_env;
 	  free(name_env);
-	  return (env);
+	  return (0);
 	}
       free(name_env);
       i++;
