@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Tue May 17 15:31:20 2011 maxime constantinian
+** Last update Thu May 19 19:58:15 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -16,7 +16,7 @@ int		check_if_builtin(char *name)
 {
   if (strcmp(name, "env") == 0 || strcmp(name, "setenv") == 0
       || strcmp(name, "unsetenv") == 0 || strcmp(name, "echo") == 0
-      || strcmp(name, "exit") == 0)
+      || strcmp(name, "exit") == 0 || strcmp(name, "cd") == 0)
     return (1);
   return (0);
 }

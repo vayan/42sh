@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri Apr 29 15:47:45 2011 justin pugeat
-** Last update Thu May 19 19:19:27 2011 timothee maurin
+** Last update Thu May 19 20:16:06 2011 maxime constantinian
 */
 
 #include <string.h>

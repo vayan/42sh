@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Thu May 19 18:39:12 2011 maxime constantinian
+## Last update Thu May 19 19:54:21 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -67,7 +67,17 @@ SRC=    src/main.c \
 	src/main_completion.c \
 	src/while_cha.c \
 	src/which_type.c \
-	src/is_dir.c
+	src/is_dir.c \
+	src/my_echo.c \
+	src/set_env.c \
+	src/exit_func.c \
+	src/func_cd.c \
+	src/func_cd_other.c \
+	src/utils_env.c \
+	src/my_getnbr.c \
+	src/concat.c \
+	src/my_pwd.c \
+	src/my_strcmp.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
