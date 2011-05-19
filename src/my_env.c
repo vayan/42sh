@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Tue May 17 19:11:20 2011 justin pugeat
+** Last update Thu May 19 19:22:17 2011 timothee maurin
 */
 
 #include <string.h>
@@ -14,17 +14,6 @@
 #include "shell.h"
 #include "graph.h"
 #include "xmalloc.h"
-
-void	aff_env(char **env)
-{
-  int	j = 0;
-
-  while (env[j])
-    {
-      printf("%s\n", env[j]);
-      j++;
-    }
-}
 
 int	check_equal(char *str)
 {
@@ -80,7 +69,7 @@ int	strlen_equal(char *av)
   return (0);
 }
 
-int	env_funct(char **av, char **env)
+int	env_funct(char **av, char **env, int *tab)
 {
   int		i = 0;
   int		j = 0;
@@ -94,7 +83,7 @@ int	env_funct(char **av, char **env)
     {
       if (strcmp(av[i], "env") == 0 && av[i + 1] == 0)
 	{
-	  aff_env(env);
+	  aff_env(env, tab);
 	  return (0);
 	}
       else if (strcmp(av[i], "-i") == 0 && av[i + 1] == 0)
