@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Mon May 16 19:00:52 2011 maxime constantinian
+** Last update Wed May 18 19:31:41 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -23,7 +23,7 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-void		srd_fonction(t_commande *cmd, t_shell *shell)
+void		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
@@ -38,15 +38,15 @@ void		srd_fonction(t_commande *cmd, t_shell *shell)
     }
   if (fd != -1)
     {
-      xdup2(fd, 1);
+      tab[1] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
+	exec_type_cmd(cmd->next[0], shell, tab);
     }
 }
 
-void		drd_fonction(t_commande *cmd, t_shell *shell)
+void		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
@@ -61,15 +61,15 @@ void		drd_fonction(t_commande *cmd, t_shell *shell)
     }
   if (fd != -1)
     {
-      xdup2(fd, 1);
+      tab[1] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
+	exec_type_cmd(cmd->next[0], shell, tab);
     }
 }
 
-void		srl_fonction(t_commande *cmd, t_shell *shell)
+void		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
@@ -78,16 +78,16 @@ void		srl_fonction(t_commande *cmd, t_shell *shell)
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
 	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
       else
-	exit(fprintf(stderr, "42sh: %s %s\n", cmd->next[1]->cmd[0],
-		     (char*)strerror(errno)));
+	fprintf(stderr, "42sh: %s %s\n", cmd->next[1]->cmd[0],
+		(char*)strerror(errno));
     }
   if (fd != -1)
     {
-      xdup2(fd, 0);
+      tab[0] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
+	exec_type_cmd(cmd->next[0], shell, tab);
     }
 }
 
@@ -113,7 +113,7 @@ int             fill_file_drl(t_commande *cmd, int fd)
   return (fd);
 }
 
-void		drl_fonction(t_commande *cmd, t_shell *shell)
+void		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
@@ -129,10 +129,10 @@ void		drl_fonction(t_commande *cmd, t_shell *shell)
     }
   if (fd != -1)
     {
-      xdup2(fd, 0);
+      tab[0] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell);
+	exec_type_cmd(cmd->next[0], shell, tab);
     }
 }

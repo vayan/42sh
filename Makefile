@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Wed May 18 20:14:10 2011 timothee maurin
+## Last update Thu May 19 18:39:12 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -55,7 +55,9 @@ SRC=    src/main.c \
 	src/check_redirection.c \
 	src/str_to_wordtab_redirection.c \
 	src/cur_pos.c \
+	src/get_next_line.c \
 	src/redirection.c \
+	src/check_type.c \
 	src/get_next_line.c \
 	src/put_in_buf.c \
 	src/completion.c \
