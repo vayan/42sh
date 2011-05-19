@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Thu May 19 18:53:03 2011 maxime constantinian
+** Last update Thu May 19 20:14:35 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -70,6 +70,32 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
     fils_fonction(cmd, shell, tab, str);
 }
 
+int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
+{
+  int		tab_built[2];
+  int		ret = 0;
+
+  tab_built[0] = 0;
+  if (tab[0] != 0)
+    tab_built[0] = tab[0];
+  tab_built[1] = 1;
+  if (tab[1] != 0)
+    tab_built[1] = tab[1];
+  if (strcmp(cmd->cmd[0], "cd") == 0)
+    ret = exec_cd(cmd->cmd, shell->env);
+  if (strcmp(cmd->cmd[0], "setenv") == 0)
+    ret = my_setenv(cmd->cmd, shell->env, tab_built);
+  if (strcmp(cmd->cmd[0], "echo") == 0)
+    ret = my_echo(cmd->cmd, shell->env, tab_built);
+  if (strcmp(cmd->cmd[0], "exit") == 0)
+    ret = exit_func(cmd->cmd, shell->env);
+  if (tab[0] != 0)
+    close(tab[0]);
+  if (tab[1] != 0)
+    close(tab[1]);
+  return (ret);
+}
+
 int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		type;
@@ -82,8 +108,8 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
     str = cmd->cmd[0];
   if (type == 3 || type == 4)
     return (exec_with_fork(cmd, shell, tab, str));
-  /*  if (type == 2)
-      exec_builtin(cmd, shell, tab);*/
+  if (type == 2)
+    return (exec_builtin(cmd, shell, tab));
 }
 
 void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)
