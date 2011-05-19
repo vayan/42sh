@@ -5,11 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-<<<<<<< local
-** Last update Thu May 19 18:30:05 2011 maxime constantinian
-=======
-** Last update Tue May 17 16:34:49 2011 justin pugeat
->>>>>>> other
+** Last update Thu May 19 18:53:03 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -26,7 +22,6 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-<<<<<<< local
 /* void		exec_in_builtin(char **cmd, t_shell *shell, char **env) */
 /* { */
 /*   if (execve(recup_hach(shell->tab_hach, cmd[0]), */
@@ -36,33 +31,20 @@
 
 void		fils_fonction(t_commande *cmd, t_shell *shell,
 			       int *tab, char *str)
-=======
-void		exec_in_builtin(t_commande *cmd, t_shell *shell, char **env)
->>>>>>> other
 {
-<<<<<<< local
   if (tab && tab[1])
     xdup2(tab[1], 1);
   if (tab && tab[0])
     xdup2(tab[0], 0);
   if (execve(str, cmd->cmd, shell->env) == -1)
-=======
-  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]),
-  	     cmd->cmd, env) == -1)
->>>>>>> other
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
 int		return_good_return_value(int stat_val)
 {
-<<<<<<< local
   if (WIFEXITED(stat_val))
     return (WEXITSTATUS(stat_val));
   return (stat_val);
-=======
-  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]), cmd->cmd, shell->env) == -1)
-    exit(fprintf(stderr, "42sh: execve failed.\n"));
->>>>>>> other
 }
 
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
@@ -100,8 +82,8 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
     str = cmd->cmd[0];
   if (type == 3 || type == 4)
     return (exec_with_fork(cmd, shell, tab, str));
-  if (type == 2)
-    exec_builtin(cmd, shell, tab);
+  /*  if (type == 2)
+      exec_builtin(cmd, shell, tab);*/
 }
 
 void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)
