@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Wed May 18 18:00:08 2011 timothee maurin
+## Last update Wed May 18 20:14:10 2011 timothee maurin
 ##
 
 CC=     cc
@@ -63,6 +63,7 @@ SRC=    src/main.c \
 	src/my_list.c \
 	src/xlstat.c \
 	src/main_completion.c \
+	src/while_cha.c \
 	src/which_type.c \
 	src/is_dir.c
 

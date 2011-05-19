@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Wed May 18 18:09:05 2011 timothee maurin
+** Last update Wed May 18 20:15:39 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -127,20 +127,19 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
   init_new_cmd(shell);
   recup_com(shell, 0);
   cha = xmalloc(2 * sizeof(*cha));
-  while (cha[0] != '\n' && ((cha = get_touche(cha)) || 1))
+  while (cha[0] != '\n')
     {
-      cha = get_touche(term2);
-      if (verif_touche(cha))
+      free(cha);
+      if (((cha = get_touche(term2)) || 1) && verif_touche(cha, 0))
 	func_special(cha, &i, &pos, &(shell->commande->buffer));
       else
-	shell->commande->buffer = other_cha(cha[0],
+	shell->commande->buffer = while_cha(cha,
 					    shell->commande->buffer, &pos, &i);
       if (nbr_column() && i == pos
 	  && cur_pos(shell->commande->buffer, i) % nbr_column() == 0
-	  && (!(verif_touche(cha)) || (cha[0] == 27 && cha[1] == 91
+	  && (!(verif_touche(cha, 0)) || (cha[0] == 27 && cha[1] == 91
 				       && cha[2] == 90)) && nbr_column())
 	xwrite(0, "\n", 1);
-      free(cha);
     }
   place_cursor_del(i, pos, shell->commande->buffer, 2);
   free_buf(shell->commande->buffer, 1);
