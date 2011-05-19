@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Mon May 16 18:16:29 2011 maxime constantinian
+** Last update Tue May 17 16:34:49 2011 justin pugeat
 */
 
 #include	<unistd.h>
@@ -17,21 +17,21 @@
 #include	<stdlib.h>
 #include	<sys/stat.h>
 #include	<fcntl.h>
+#include	<errno.h>
 #include	"shell.h"
 #include	"parseur.h"
 #include	"prototype.h"
 
-void		exec_in_builtin(char **cmd, t_shell *shell, char **env)
+void		exec_in_builtin(t_commande *cmd, t_shell *shell, char **env)
 {
-  if (execve(recup_hach(shell->tab_hach, cmd[0]),
-  	     cmd, env) == -1)
+  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]),
+  	     cmd->cmd, env) == -1)
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
 void		exec_fonction(t_commande *cmd, t_shell *shell)
 {
-  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]),
-  	     cmd->cmd, shell->env) == -1)
+  if (execve(recup_hach(shell->tab_hach, cmd->cmd[0]), cmd->cmd, shell->env) == -1)
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
