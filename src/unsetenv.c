@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 15:39:52 2011 yann vaillant
-** Last update Thu May 19 19:25:24 2011 timothee maurin
+** Last update Fri May 20 15:21:19 2011 Vaillant Yann
 */
 
 #include        <string.h>
@@ -15,31 +15,44 @@
 #include        "graph.h"
 #include        "xmalloc.h"
 
-int     my_unsetenv(char *value, char **env)
+int	remove_env(char ***value, char ***env, int *x, int *z)
+{
+  char  *name;
+
+  name = get_name_env((*env)[(*x)]);
+  if (strcmp((*value)[(*z)], (name)) == 0)
+    {
+      free((*env)[(*x)]);
+      while ((*env)[(*x)])
+	{
+	  (*env)[(*x)] = (*env)[(*x) + 1];
+	  if ((*env)[(*x)])
+	    (*x)++;
+	}
+      free(name);
+    }
+  else
+    free(name);
+}
+
+int     my_unsetenv(char **value, char **env)
 {
   int   x = 0;
+  int	z = 1;
   int   max = go_end_env(env);
-  char  *name;
 
   if (value == NULL)
     return (-1);
-  while (env[x])
+  while (value[z])
     {
-      name = get_name_env(env[x]);
-      if (strcmp(value, name) == 0)
-        {
-          free(env[x]);
-          while (env[x])
-            {
-              env[x] = env[x + 1];
-              if (env[x])
-                x++;
-            }
-          free(name);
-          return (0);
+      max = go_end_env(env);
+      x = 0;
+      while (env[x])
+	{
+	  remove_env(&(value), &(env), &x, &z);
+	  x++;
 	}
-      free(name);
-      x++;
+      z++;
     }
   return (0);
 }
