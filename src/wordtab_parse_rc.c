@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 **
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Tue May 17 17:36:41 2011 Vaillant Yann
+** Last update Fri May 20 11:20:34 2011 Vaillant Yann
 */
 
 #include	"shell.h"
@@ -14,7 +14,8 @@ void		str_to_wordtab_alloc(char *str, int *i, int *j, char **ret)
 {
   if (str[*i] && str[*i] != ' ' && str[*i] != '\t')
     {
-      ret[*j] = my_strcopynalloc_gen(&str[*i], my_strlen_createtab(&str[*i]));
+      ret[*j] = my_strcopynalloc_gen(&str[*i],
+				     my_strlen_createtab_rc(&str[*i]));
       (*j)++;
       while (str[*i] && str[*i] != ' ' && str[*i] != '\t')
 	(*i)++;
