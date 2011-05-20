@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Fri May 20 02:45:29 2011 maxime constantinian
+** Last update Fri May 20 17:30:03 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -103,6 +103,8 @@ int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
     ret = exec_cd(cmd->cmd, shell->env);
   if (strcmp(cmd->cmd[0], "setenv") == 0)
     ret = my_setenv(cmd->cmd, shell->env, tab_built);
+  if (strcmp(cmd->cmd[0], "env") == 0)
+    ret = env_funct(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "echo") == 0)
     ret = my_echo(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "exit") == 0)
