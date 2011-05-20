@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Fri May 20 10:55:45 2011 Vaillant Yann
+** Last update Fri May 20 16:22:48 2011 timothee maurin
 */
 
 #include <string.h>
@@ -74,12 +74,12 @@ char	*parse_prompt(char *prompt)
   return (format_prompt);
 }
 
-char	*get_prompt(t_shell *shell)
+char		*get_prompt(t_shell *shell)
 {
-  t_list_var *var = shell->variable;
-  char	*prompt;
+  t_list_var	*var = shell->variable;
+  char		*prompt;
 
-  while (var->next)
+  while (var && var->next)
     {
       if (strcmp(var->name, "PROMPT") == 0)
 	{
