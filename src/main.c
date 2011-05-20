@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Thu May 19 18:40:53 2011 maxime constantinian
+** Last update Fri May 20 15:57:17 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -47,9 +47,12 @@ int		main(int ac, char **av, char **envp)
   if (init_termios(&term2))
     main_bis(shell);
   desactivate_mode_raw(&term2);
+  parse_rc(shell);
   while (42)
     {
       signal(SIGINT, &funct_noexit);
+      aff_prompt(0);
+      cur_pos(0, 0, 0);
       mode_raw(&term2);
       get_next_comm(shell, &term2);
       desactivate_mode_raw(&term2);

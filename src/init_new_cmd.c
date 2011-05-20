@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 19:02:04 2011 maxime constantinian
-** Last update Sat May 14 16:35:21 2011 timothee maurin
+** Last update Fri May 20 15:51:49 2011 timothee maurin
 */
 
 #include	"shell.h"
@@ -13,7 +13,7 @@
 
 void		init_new_cmd(t_shell *shell)
 {
-  xwrite(0, "$>", 2);
+  aff_prompt(2);
   if (shell->commande == 0)
     shell->commande = xmalloc(sizeof(*(shell->commande)));
   else

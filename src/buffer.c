@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Wed May 18 20:15:39 2011 timothee maurin
+** Last update Fri May 20 16:07:05 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -43,9 +43,10 @@ void	func_remove(char *cha, int *i, int *pos, char *buf)
 	}
     }
   place_cursor_del((*i), *pos, buf, 0);
-  xwrite(0, "$>", 2);
+  aff_prompt(2);
   my_putstr_del(buf);
-  if (nbr_column() && (cur_pos(buf, *i) % nbr_column()) == 0 && cha[1] != 127)
+  if (nbr_column() && (cur_pos(buf, *i, 1) % nbr_column()) == 0
+      && cha[1] != 127)
     xwrite(0, " \b", 2);
   if (*i != *pos)
     place_cursor(*i, *pos, buf);
@@ -85,21 +86,22 @@ void	func_fleche(char *cha, int *i, int *pos, char **buf)
   if (cha[2] == 68 && *pos > 0)
     {
       (*pos)--;
-      if (nbr_column() && !((cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
-	     - cur_pos(*buf, *pos)) % nbr_column())
-	  && (cur_pos(*buf, *pos) + cur_pos(*buf, (*pos) + 1)
-	      - cur_pos(*buf, *pos)) / nbr_column())
+      if (nbr_column() && !((cur_pos(*buf, *pos, 1)
+			     + cur_pos(*buf, (*pos) + 1, 1)
+			     - cur_pos(*buf, *pos, 1)) % nbr_column())
+	  && (cur_pos(*buf, *pos, 1) + cur_pos(*buf, (*pos) + 1, 1)
+	      - cur_pos(*buf, *pos, 1)) / nbr_column())
 	exec_str("up");
       if (nbr_column())
-	exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
+	exec_parm("ch", (cur_pos(*buf, *pos, 1)) % (nbr_column()));
     }
   if (cha[2] == 67 && *pos < *i)
     {
       (*pos)++;
-      if (nbr_column() && !((cur_pos(*buf, *pos)) % nbr_column()))
+      if (nbr_column() && !((cur_pos(*buf, *pos, 1)) % nbr_column()))
         exec_str("do");
       if (nbr_column())
-	exec_parm("ch", (cur_pos(*buf, *pos)) % (nbr_column()));
+	exec_parm("ch", (cur_pos(*buf, *pos, 1)) % (nbr_column()));
     }
   if (cha[2] == 65 || cha[2] == 66)
     funct_histo(cha, i, pos, buf);
@@ -136,7 +138,7 @@ void			get_next_comm(t_shell *shell, struct termios *term2)
 	shell->commande->buffer = while_cha(cha,
 					    shell->commande->buffer, &pos, &i);
       if (nbr_column() && i == pos
-	  && cur_pos(shell->commande->buffer, i) % nbr_column() == 0
+	  && cur_pos(shell->commande->buffer, i, 1) % nbr_column() == 0
 	  && (!(verif_touche(cha, 0)) || (cha[0] == 27 && cha[1] == 91
 				       && cha[2] == 90)) && nbr_column())
 	xwrite(0, "\n", 1);
