@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Tue May 17 17:48:51 2011 Vaillant Yann
+** Last update Fri May 20 17:28:05 2011 maxime constantinian
 */
 
 #include <unistd.h>
@@ -38,9 +38,9 @@ void	init_list_var(t_list_var **list_var, t_list_var **buffer,
   (*shell)->alias = xmalloc(sizeof(t_list_var));
   *list_var = (*shell)->variable;
   *buffer = (*shell)->variable;
-  (*list_var)->next = NULL;
+  (*list_var)->next = 0;
   *alias = (*shell)->alias;
-  (*alias)->next = NULL;
+  (*alias)->next = 0;
 }
 
 int	parse_ligne(int fd, t_shell *shell)
@@ -74,8 +74,11 @@ int	parse_rc(t_shell *shell)
 
   if ((path = path_file()) == NULL)
     return (1);
-  fd = xopen(path, O_RDONLY);
-  parse_ligne(fd, shell);
-  close(fd);
+  fd = open(path, O_RDONLY);
+  if (fd != -1)
+    {
+      parse_ligne(fd, shell);
+      close(fd);
+    }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Fri May 20 15:03:24 2011 timothee maurin
+** Last update Fri May 20 17:42:30 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -23,12 +23,12 @@ int		check_if_builtin(char *name)
 
 int		check_if_alias(char *name, t_list_var *variable)
 {
-  /* while (variable) */
-  /*   { */
-  /*     if (strcmp(name, variable->name) == 0) */
-  /* 	return (1); */
-  /*     variable = variable->next; */
-  /*   } */
+  while (variable && variable->name)
+    {
+      if (strcmp(name, variable->name) == 0)
+  	return (1);
+      variable = variable->next;
+    }
   return (0);
 }
 
