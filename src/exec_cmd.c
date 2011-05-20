@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Thu May 19 20:14:35 2011 maxime constantinian
+** Last update Fri May 20 02:45:29 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -40,8 +40,26 @@ void		fils_fonction(t_commande *cmd, t_shell *shell,
     exit(fprintf(stderr, "42sh: execve failed.\n"));
 }
 
+void		aff_warning(int stat_val)
+{
+  if (stat_val == SIGSEGV)
+    fprintf(stderr, "Segmentation fault!\n");
+  if (stat_val == SIGFPE)
+    fprintf(stderr, "Floating exception!\n");
+  if (stat_val == SIGUSR1)
+    fprintf(stderr, "User signal 1!\n");
+  if (stat_val == SIGUSR2)
+    fprintf(stderr, "User signal 2!\n");
+  if (stat_val == SIGSTKFLT)
+    fprintf(stderr, "Stack fault!\n");
+  if (stat_val == SIGPIPE)
+    fprintf(stderr, "Broken pipe!\n");
+}
+
 int		return_good_return_value(int stat_val)
 {
+  if (WIFSIGNALED(stat_val))
+    aff_warning(WTERMSIG(stat_val));
   if (WIFEXITED(stat_val))
     return (WEXITSTATUS(stat_val));
   return (stat_val);
@@ -156,7 +174,7 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
       tab_ret[1] = tab_pipe[1];
     }
   ret = exec_type_cmd(cmd->next[0], shell, tab_ret);
-  if (ret == 0);
+  if (ret == 0)
   {
     tab_ret[0] = tab_pipe[0];
     tab_ret[1] = 0;
