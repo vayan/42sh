@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Fri May 20 17:30:03 2011 timothee maurin
+** Last update Fri May 20 17:51:23 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -22,12 +22,23 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-/* void		exec_in_builtin(char **cmd, t_shell *shell, char **env) */
-/* { */
-/*   if (execve(recup_hach(shell->tab_hach, cmd[0]), */
-/*   	     cmd, env) == -1) */
-/*     exit(fprintf(stderr, "42sh: execve failed.\n")); */
-/* } */
+int		exec_in_builtin(t_commande *cmd, t_shell *shell, int *tab)
+{
+  int		type;
+  char		*str = 0;
+
+  if (tab[1] == 1)
+    tab[0] = 0;
+  type = check_type(cmd->cmd[0], shell);
+  if (type == 3)
+    str = recup_hach(shell->tab_hach, cmd->cmd[0]);
+  if (type == 4)
+    str = cmd->cmd[0];
+  if (type == 3 || type == 4)
+    return (exec_with_fork(cmd, shell, tab, str));
+  if (type == 2)
+    return (exec_builtin(cmd, shell, tab));
+}
 
 void		fils_fonction(t_commande *cmd, t_shell *shell,
 			       int *tab, char *str)

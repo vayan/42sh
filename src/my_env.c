@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Fri May 20 17:33:38 2011 timothee maurin
+** Last update Fri May 20 17:56:12 2011 maxime constantinian
 */
 
 #include <string.h>
@@ -88,7 +88,7 @@ int	env_funct(char **av, char **env, int *tab)
     if (check_equal(av[i + 1]) == 0)
       {
 	len = size_env(new_env);
-	new_env = xrealloc(new_env, sizeof(*new_env) * (len + 2));
+	new_env = realloc(new_env, sizeof(*new_env) * (len + 2));
 	new_env[len] = strdup(av[i + 1]);
 	new_env[len + 1] = 0;
       }
