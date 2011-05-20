@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Thu May 19 20:02:21 2011 maxime constantinian
+** Last update Fri May 20 17:26:57 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -15,7 +15,7 @@
 #include        "graph.h"
 #include        "xmalloc.h"
 
-void	aff_env(char **env, int *tab)
+int	aff_env(char **env, int *tab)
 {
   int	x = 0;
 
@@ -25,6 +25,7 @@ void	aff_env(char **env, int *tab)
       xwrite(tab[1], "\n", 1);
       x++;
     }
+  return (0);
 }
 
 char *concet_env(char *add_to_env, char *name, char *value)

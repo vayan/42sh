@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Thu May 19 19:22:17 2011 timothee maurin
+** Last update Fri May 20 17:33:38 2011 timothee maurin
 */
 
 #include <string.h>
@@ -75,51 +75,24 @@ int	env_funct(char **av, char **env, int *tab)
   int		j = 0;
   int		len = 0;
   char		**new_env;
-  char		*len;
-  char		**value;
 
-  new_env = copy(env, new_env);
-  while (av[i])
-    {
-      if (strcmp(av[i], "env") == 0 && av[i + 1] == 0)
-	{
-	  aff_env(env, tab);
-	  return (0);
-	}
-      else if (strcmp(av[i], "-i") == 0 && av[i + 1] == 0)
-	return (0);
-      else if (strcmp(av[i], "-i") == 0 && check_equal(av[i + 1]) == 0)
-	{
-	  len = size_env(new_env);
-	  new_env = xrealloc(new_env, sizeof(*new_env) * (len + 2));
-	  new_env[len] = av[i + 1];
-	  new_env[len + 1] = 0;
-	}
-      while (strcmp(av[1], "-i") == 0 && av[i])
-	{
-	  if (check_equal(av[i]) == 0)
-	    i++;
-	  else
-	    exec_in_builtin(&av[i], recup_shell(0), new_env);
-	  i++;
-	}
-      while (strcmp(av[1], "env") == 0 && av[i])
-	{
-	  if (check_equal(av[i]) == 0)
-	    {
-	      new_env = copy(env, new_env);
-	      len = strlen_equal(av[i]);
-	      
-	    }
-	  exec_in_builtin(av[i], recup_shell(0), 0);
-	  i++;
-	}
-      i++;
-      return (0);
-    }
-}
-
-int	main(int ac, char **av, char **env)
-{
-  env_funct(&av[1], env);
+  if (av[i] == 0)
+    return (aff_env(env, tab));
+  if (strcmp(av[i], "-i") != 0)
+    new_env = copy(env, new_env);
+  else if (strcmp(av[i], "-i") == 0 && av[i + 1] == 0)
+    return (0);
+  else
+    new_env = xmalloc(1 * sizeof(*new_env));
+  while (av[++i])
+    if (check_equal(av[i + 1]) == 0)
+      {
+	len = size_env(new_env);
+	new_env = xrealloc(new_env, sizeof(*new_env) * (len + 2));
+	new_env[len] = strdup(av[i + 1]);
+	new_env[len + 1] = 0;
+      }
+    else
+      return (exec_in_builtin(av[i], recup_shell(0), new_env, tab));
+  return (aff_env(new_env, tab));
 }
