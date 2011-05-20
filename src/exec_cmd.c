@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Fri May 20 17:51:23 2011 maxime constantinian
+** Last update Fri May 20 18:44:06 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -22,26 +22,36 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-int		exec_in_builtin(t_commande *cmd, t_shell *shell, int *tab)
+int		exec_in_builtin(char **cmdeuh, t_shell *shell,
+				char **env, int *tab)
 {
   int		type;
+  int		ret = 0;
   char		*str = 0;
+  char		**env_sauve;
+  t_commande	cmd;
 
+  cmd.next = 0;
+  cmd.cmd = cmdeuh;
   if (tab[1] == 1)
-    tab[0] = 0;
-  type = check_type(cmd->cmd[0], shell);
+    tab[1] = 0;
+  type = check_type(cmd.cmd[0], shell);
   if (type == 3)
-    str = recup_hach(shell->tab_hach, cmd->cmd[0]);
+    str = recup_hach(shell->tab_hach, cmd.cmd[0]);
   if (type == 4)
-    str = cmd->cmd[0];
+    str = cmd.cmd[0];
+  env_sauve = shell->env;
+  shell->env = env;
   if (type == 3 || type == 4)
-    return (exec_with_fork(cmd, shell, tab, str));
+    ret = exec_with_fork(&cmd, shell, tab, str);
   if (type == 2)
-    return (exec_builtin(cmd, shell, tab));
+    ret = exec_builtin(&cmd, shell, tab);
+  shell->env = env_sauve;
+  return (ret);
 }
 
 void		fils_fonction(t_commande *cmd, t_shell *shell,
-			       int *tab, char *str)
+			      int *tab, char *str)
 {
   if (tab && tab[1])
     xdup2(tab[1], 1);
@@ -97,6 +107,7 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
     }
   else
     fils_fonction(cmd, shell, tab, str);
+  return (1);
 }
 
 int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
@@ -120,9 +131,9 @@ int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
     ret = my_echo(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "exit") == 0)
     ret = exit_func(cmd->cmd, shell->env);
-  if (tab[0] != 0)
+  if (tab[0] != 0 && tab[0] != 1)
     close(tab[0]);
-  if (tab[1] != 0)
+  if (tab[1] != 1 && tab[1] != 0)
     close(tab[1]);
   return (ret);
 }
@@ -141,6 +152,7 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
     return (exec_with_fork(cmd, shell, tab, str));
   if (type == 2)
     return (exec_builtin(cmd, shell, tab));
+  return (1);
 }
 
 void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)

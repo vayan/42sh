@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Fri May 20 15:57:17 2011 timothee maurin
+** Last update Fri May 20 18:45:45 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -31,7 +31,7 @@ void		main_bis(t_shell *shell)
   parser(shell->commande->buffer, shell);
   exec_cmd(shell);
   free(shell->commande->buffer);
-  exit(42);
+  exit(0);
 }
 
 int		main(int ac, char **av, char **envp)

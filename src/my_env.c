@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Fri May 20 17:56:12 2011 maxime constantinian
+** Last update Fri May 20 18:41:54 2011 timothee maurin
 */
 
 #include <string.h>
@@ -19,7 +19,7 @@ int	check_equal(char *str)
 {
   int	i = 0;
 
-  while (str[i])
+  while (str && str[i])
     {
       if (str[i] == '=')
 	return (0);
@@ -76,23 +76,23 @@ int	env_funct(char **av, char **env, int *tab)
   int		len = 0;
   char		**new_env;
 
-  if (av[i] == 0)
+  if (av[1] == 0)
     return (aff_env(env, tab));
-  if (strcmp(av[i], "-i") != 0)
+  if (strcmp(av[1], "-i") != 0)
     new_env = copy(env, new_env);
-  else if (strcmp(av[i], "-i") == 0 && av[i + 1] == 0)
+  else if (strcmp(av[1], "-i") == 0 && av[2] == 0)
     return (0);
   else
     new_env = xmalloc(1 * sizeof(*new_env));
   while (av[++i])
-    if (check_equal(av[i + 1]) == 0)
+    if (check_equal(av[i]) == 0)
       {
 	len = size_env(new_env);
 	new_env = realloc(new_env, sizeof(*new_env) * (len + 2));
-	new_env[len] = strdup(av[i + 1]);
+	new_env[len] = strdup(av[i]);
 	new_env[len + 1] = 0;
       }
-    else
-      return (exec_in_builtin(av[i], recup_shell(0), new_env, tab));
+    else if (strcmp(av[i], "-i") != 0)
+      return (exec_in_builtin(&(av[i]), recup_shell(0), new_env, tab));
   return (aff_env(new_env, tab));
 }

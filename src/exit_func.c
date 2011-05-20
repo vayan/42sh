@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Fri May 20 16:41:43 2011 maxime constantinian
+** Last update Fri May 20 19:37:52 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -14,6 +14,19 @@
 #include        "shell.h"
 #include        "graph.h"
 #include        "xmalloc.h"
+
+void		exit_buf(char *buf, char *cha)
+{
+  char		*av[] = {"exit", "0", 0};
+  t_shell	*shell;
+
+  shell = recup_shell(0);
+  free_buf(shell->commande->buffer, 1);
+  free(shell->commande->buffer);
+  free(cha);
+  xwrite(0, "\n", 1);
+  exit_func(av, shell->env);
+}
 
 int		exit_func(char **av, char **env)
 {
