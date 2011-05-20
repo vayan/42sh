@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Fri May 20 15:59:35 2011 timothee maurin
+** Last update Fri May 20 19:47:00 2011 timothee maurin
 */
 
 #include <string.h>
@@ -23,12 +23,12 @@ void	my_putstr_del(char *buf)
   while (buf[i] != '\0')
     {
       if (nbr_column() && ((cur_pos(buf, i, 1)) % nbr_column()) == 0 && i != 0)
-	write(0, "\n", 1);
-      write(0, &(buf[i]), 1);
+	xwrite(0, "\n", 1);
+      xwrite(0, &(buf[i]), 1);
       i++;
     }
   if (nbr_column() && ((cur_pos(buf, i, 1)) % nbr_column()) == 0 && i != 0)
-    write(0, "\n", 1);
+    xwrite(0, "\n", 1);
 }
 
 int	xwrite(int fd, char *str, int len)

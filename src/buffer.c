@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Apr 26 15:59:13 2011 timothee maurin
-** Last update Fri May 20 16:07:05 2011 timothee maurin
+** Last update Fri May 20 19:54:54 2011 timothee maurin
 */
 
 #include        <unistd.h>
@@ -118,6 +118,10 @@ void		func_special(char *cha, int *i, int *pos, char **buf)
     other_cha(9, *buf, pos, i);
   else if (cha[0] == 9)
     completion(i, pos, *buf);
+  else if (cha[0] == 4)
+    exit_buf(*buf, cha);
+  else if (cha[0] == 12)
+    clr_screen(*buf, *i, *pos);
 }
 
 void			get_next_comm(t_shell *shell, struct termios *term2)
