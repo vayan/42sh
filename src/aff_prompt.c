@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Fri May 20 15:37:43 2011 timothee maurin
-** Last update Fri May 20 16:10:04 2011 timothee maurin
+** Last update Fri May 20 16:24:56 2011 timothee maurin
 */
 
 #include		<string.h>
@@ -24,6 +24,7 @@ void			aff_prompt(int test)
     {
       if (prompt != 0)
 	free(prompt);
+      prompt = 0;
       prompt = get_prompt(shell);
       size = strlen(prompt);
     }

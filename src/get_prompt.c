@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Fri May 20 16:22:48 2011 timothee maurin
+** Last update Fri May 20 16:27:28 2011 timothee maurin
 */
 
 #include <string.h>
@@ -91,5 +91,8 @@ char		*get_prompt(t_shell *shell)
 	}
       var = var->next;
     }
-  return ("$>");
+  prompt = xmalloc(3 * sizeof(*prompt));
+  prompt[0] = '$';
+  prompt[1] = '>';
+  return (prompt);
 }
