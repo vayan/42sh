@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Thu May 19 19:54:21 2011 maxime constantinian
+## Last update Fri May 20 16:09:45 2011 timothee maurin
 ##
 
 CC=     cc
@@ -77,7 +77,19 @@ SRC=    src/main.c \
 	src/my_getnbr.c \
 	src/concat.c \
 	src/my_pwd.c \
-	src/my_strcmp.c
+	src/my_strcmp.c \
+	src/balise_misc_rc.c \
+	src/balise_time_rc.c \
+	src/balise_user_rc.c \
+	src/get_path_rc.c \
+	src/parse_rc.c \
+	src/xopen.c \
+	src/xgetpwuid.c \
+	src/wordtab_parse_rc.c \
+	src/test_param_rc.c \
+	src/modif_var.c \
+	src/get_prompt.c \
+	src/aff_prompt.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
