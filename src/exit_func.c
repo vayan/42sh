@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Thu May 19 20:01:17 2011 maxime constantinian
+** Last update Fri May 20 16:41:43 2011 maxime constantinian
 */
 
 #include        <string.h>
@@ -15,12 +15,16 @@
 #include        "graph.h"
 #include        "xmalloc.h"
 
-int	exit_func(char **av, char **env)
+int		exit_func(char **av, char **env)
 {
-  char *last_exit;
-  int	end_av;
+  char		*last_exit;
+  int		end_av;
+  t_shell	*shell;
 
   end_av = go_end_env(av);
+  shell = recup_shell(0);
+  if (shell->tab_hach)
+    free_graph(shell->tab_hach);
   if (end_av == 1)
     {
       last_exit = my_get_env("?", env);

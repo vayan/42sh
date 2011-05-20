@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Fri May 20 16:09:45 2011 timothee maurin
+## Last update Fri May 20 16:38:41 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -89,7 +89,8 @@ SRC=    src/main.c \
 	src/test_param_rc.c \
 	src/modif_var.c \
 	src/get_prompt.c \
-	src/aff_prompt.c
+	src/aff_prompt.c \
+	src/free_graph.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
