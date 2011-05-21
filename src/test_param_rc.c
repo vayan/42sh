@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:24:58 2011 Vaillant Yann
-** Last update Sun May 22 01:41:16 2011 timothee maurin
+** Last update Sun May 22 01:48:08 2011 timothee maurin
 */
 
 #include <string.h>
@@ -23,7 +23,7 @@ void    test_set(char **name_var, t_list_var **buffer, t_list_var **list_var)
 }
 
 void    test_alias(char **name_var, t_list_var **alias_buf,
-                   t_list_var **alias)
+		   t_list_var **alias)
 {
   if (strcmp(name_var[0], "alias") == 0 &&
       check_if_exist_in_list(name_var[1], *alias_buf) == 0)
