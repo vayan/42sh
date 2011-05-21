@@ -9,7 +9,6 @@
 // %d      Répertoire de travail courant                //
 // %~      Répertoire de travail courant, relatif à ~   //
 // %M      Nom d'hôte de l'ordinateur                   //
-// %l      Terminal courant                             //
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
