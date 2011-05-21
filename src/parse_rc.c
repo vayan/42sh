@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sat May 21 18:50:17 2011 timothee maurin
+** Last update Sat May 21 22:11:17 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -63,7 +63,8 @@ int	parse_ligne(int fd, t_shell *shell)
 	  test_alias(name_var, &alias_buf, &alias);
 	  test_unset(name_var, &buffer);
 	}
-      free(name_var);
+      free(toparse);
+      free_tab(name_var);
     }
 }
 
@@ -80,5 +81,6 @@ int	parse_rc(t_shell *shell)
       parse_ligne(fd, shell);
       close(fd);
     }
+  free(path);
   return (0);
 }

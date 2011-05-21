@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:58:22 2011 timothee maurin
-** Last update Sat May 21 16:28:56 2011 timothee maurin
+** Last update Sat May 21 22:27:45 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -25,6 +25,7 @@ void			completion(int *i, int *pos, char *buf)
   type = which_type(buf, *pos, &begin);
   compl = find_completion(type, buf, *pos, begin);
   traiter_list(compl, buf, i, pos);
+  free_list(compl);
   aff_prompt(2);
   *i = strlen(buf);
   *pos += (*i) - tmp;

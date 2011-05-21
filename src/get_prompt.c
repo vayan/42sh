@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Fri May 20 16:27:28 2011 timothee maurin
+** Last update Sat May 21 21:24:47 2011 timothee maurin
 */
 
 #include <string.h>
@@ -71,6 +71,7 @@ char	*parse_prompt(char *prompt)
 	}
       i++;
     }
+  free(prompt);
   return (format_prompt);
 }
 
