@@ -5,11 +5,13 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:18:58 2011 Vaillant Yann
-** Last update Sat May 21 19:59:43 2011 timothee maurin
+** Last update Sun May 22 01:40:50 2011 timothee maurin
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include "shell.h"
+#include "prototype.h"
 
 t_list_var      *update_var_in_list(char **name_var, t_list_var *list_var)
 {
