@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Wed May 18 12:11:08 2011 Vaillant Yann
+** Last update Sat May 21 20:01:45 2011 Vaillant Yann
 */
 
 #include <sys/types.h>
@@ -19,7 +19,7 @@
 #include "xmalloc.h"
 #include "get_next_line.h"
 
-int	test_balise(char *str, char *balise)
+int	test_balise_motd(char *str, char *balise)
 {
   if (strcmp(str, balise) == 0)
     return (1);
@@ -46,7 +46,7 @@ int	aff_ascii(int fd)
 
   while ((ascii = get_next_line(fd)) != 0)
     {
-      if (test_balise(ascii, "[/ascii]") == 1)
+      if (test_balise_motd(ascii, "[/ascii]") == 1)
 	return (1);
       printf("%s\n", ascii);
     }
@@ -56,11 +56,12 @@ int	aff_ascii(int fd)
 int	aff_message(int fd)
 {
   char *message;
-
+  
   while ((message = get_next_line(fd)) != 0)
     {
-      if (test_balise(message, "[/message]") == 1)
+      if (test_balise_motd(message, "[/message]") == 1)
 	return (0);
+      message = parse_prompt(message);
       printf("%s\n", message);
     }
   return (0);
@@ -75,9 +76,9 @@ int	read_motd()
     return (1);
   while ((buf = get_next_line(fd)) != 0)
     {
-      if (test_balise(buf, "[ascii]") == 1)
+      if (test_balise_motd(buf, "[ascii]") == 1)
 	aff_ascii(fd);
-      if (test_balise(buf, "[message]") == 1)
+      if (test_balise_motd(buf, "[message]") == 1)
 	aff_message(fd);
     }
   close(fd);
