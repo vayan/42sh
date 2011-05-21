@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sat May 21 22:07:56 2011 timothee maurin
+## Last update Sun May 22 01:40:53 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -94,6 +94,8 @@ SRC=    src/main.c \
 	src/my_env.c \
 	src/clear_screen.c \
 	src/my_set.c \
+	src/exec_fonction.c \
+	src/exec_fork.c \
 	src/free_tab.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
