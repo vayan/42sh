@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Fri May 20 17:42:30 2011 maxime constantinian
+** Last update Sat May 21 17:49:05 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -34,13 +34,16 @@ int		check_if_alias(char *name, t_list_var *variable)
 
 int		check_type(char *name, t_shell *shell)
 {
-  if (check_if_alias(name, shell->alias))
-    return (1);
-  if (check_if_builtin(name))
-    return (2);
-  if (recup_hach(shell->tab_hach, name))
-    return (3);
-  if (access(name, F_OK) != -1)
-    return (4);
+  if (name)
+    {
+      if (check_if_alias(name, shell->alias))
+	return (1);
+      if (check_if_builtin(name))
+	return (2);
+      if (recup_hach(shell->tab_hach, name))
+	return (3);
+      if (access(name, F_OK) != -1)
+	return (4);
+    }
   return (0);
 }
