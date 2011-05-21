@@ -5,13 +5,16 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Fri May 20 19:45:18 2011 timothee maurin
-** Last update Fri May 20 19:54:07 2011 timothee maurin
+** Last update Sun May 22 01:29:11 2011 timothee maurin
 */
+
+#include "shell.h"
+#include "prototype.h"
 
 void	clr_screen(char *buf, int i, int pos)
 {
   exec_str("cl");
-  aff_prompt();
+  aff_prompt(2);
   my_putstr_del(buf);
   place_cursor(i, pos, buf);
 }

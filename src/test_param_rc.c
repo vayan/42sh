@@ -5,11 +5,12 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:24:58 2011 Vaillant Yann
-** Last update Tue May 17 17:25:38 2011 Vaillant Yann
+** Last update Sun May 22 01:41:16 2011 timothee maurin
 */
 
 #include <string.h>
 #include "shell.h"
+#include "prototype.h"
 
 void    test_set(char **name_var, t_list_var **buffer, t_list_var **list_var)
 {
