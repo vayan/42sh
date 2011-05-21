@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:58:22 2011 timothee maurin
-** Last update Fri May 20 15:52:35 2011 timothee maurin
+** Last update Sat May 21 16:28:56 2011 timothee maurin
 */
 
 #include	<string.h>

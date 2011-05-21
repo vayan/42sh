@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Thu May  5 19:29:07 2011 timothee maurin
+** Last update Sat May 21 17:22:24 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -30,7 +30,7 @@ int	count_param(char **av)
   return (i);
 }
 
-void	change_env(char **env)
+void	change_env(char **env, int *tab)
 {
   char	*pwd[3];
 
@@ -50,13 +50,13 @@ void	change_env(char **env)
   pwd[1][2] = 'D';
   pwd[1][3] = '\0';
   pwd[2] = my_pwd(pwd[2]);
-  env = my_setenv(pwd, env);
+  env = my_setenv(pwd, env, taB);
   free(pwd[0]);
   free(pwd[1]);
   free(pwd[2]);
 }
 
-void	change_env_last(char **env)
+void	change_env_last(char **env, int *tab)
 {
   char	*pwd[3];
 
@@ -79,14 +79,14 @@ void	change_env_last(char **env)
   pwd[1][5] = 'D';
   pwd[1][6] = '\0';
   pwd[2] = my_pwd(pwd[2]);
-  env = my_setenv(pwd, env);
+  env = my_setenv(pwd, env, tab);
   free(pwd[0]);
   free(pwd[1]);
   free(pwd[2]);
 }
 
-void	change_dir(char **av, char **env)
+void	change_dir(char **av, char **env, int *tab)
 {
   chdir(av[1]);
-  change_env(env);
+  change_env(env, tab);
 }

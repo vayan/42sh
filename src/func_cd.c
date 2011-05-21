@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Thu May 19 19:28:27 2011 timothee maurin
+** Last update Sat May 21 17:23:24 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -15,7 +15,7 @@
 #include	"prototype.h"
 
 int		funct_cd_move(char **av, char **env,
-			      int *option)
+			      int *option, int *tab)
 {
   char		*home;
 
@@ -29,8 +29,8 @@ int		funct_cd_move(char **av, char **env,
     av[1] = concat(home, av[1]);
   if (!(access(av[1], F_OK)))
     {
-      change_env_last(env);
-      change_dir(av, env);
+      change_env_last(env, tab);
+      change_dir(av, env, tab);
     }
   else
     {
@@ -40,7 +40,7 @@ int		funct_cd_move(char **av, char **env,
   return (0);
 }
 
-int		move_home(char **av, char **env, int *option)
+int		move_home(char **av, char **env, int *option, int *tab)
 {
   char		*home;
   char		*tmp;
@@ -55,9 +55,9 @@ int		move_home(char **av, char **env, int *option)
       pwd[0] = '/';
       if (!(access(home, F_OK)))
 	{
-	  change_env_last(env);
+	  change_env_last(env, tab);
 	  chdir(home);
-	  change_env(env);
+	  change_env(env, tab);
 	}
       else
 	return (write_error("%s: No such file or directory.\n", home));
@@ -89,7 +89,7 @@ int		rempl_option(char **av, int *option)
   return (0);
 }
 
-int		exec_cd(char **av, char **env)
+int		exec_cd(char **av, char **env, int *tab)
 {
   int		*option;
   char		*pwd;
@@ -108,8 +108,8 @@ int		exec_cd(char **av, char **env)
       return (1);
     }
   else if (count_param(av) == 1)
-    return (move_home(av, env, option));
+    return (move_home(av, env, option, tab));
   else
-    return (funct_cd_move(av, env, option));
+    return (funct_cd_move(av, env, option, tab));
   return (1);
 }
