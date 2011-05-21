@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Dec 27 14:18:01 2010 maxime constantinian
-** Last update Sat May 21 20:29:36 2011 maxime constantinian
+** Last update Sat May 21 21:40:02 2011 Vaillant Yann
 */
 
 int		count_star(char *str)
@@ -61,7 +61,7 @@ int		my_strcmp_star(char *s1, char *s2)
 
   if (count_star(s1) == 0)
     {
-      if (my_strcmp(s1, s2) == 0)
+      if (strcmp(s1, s2) == 0)
 	return (0);
       else
 	return (1);
@@ -70,11 +70,11 @@ int		my_strcmp_star(char *s1, char *s2)
   star_end = 0;
   if (s1[0] == '*')
     star_start = 1;
-  if (s1[my_strlen(s1) - 1] == '*')
+  if (s1[strlen(s1) - 1] == '*')
     star_end = 1;
   tab = my_str_to_wordtab_star(s1);
   tmp = cmp_str_s(tab, s2, star_start, star_end);
-  freetab(tab);
+  //  freetab(tab);
   if (tmp == 0)
     return (1);
   return (0);

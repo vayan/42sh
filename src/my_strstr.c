@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Oct 11 18:36:37 2010 maxime constantinian
-** Last update Sat May 21 20:40:12 2011 maxime constantinian
+** Last update Sat May 21 21:19:57 2011 Vaillant Yann
 */
 
 char		*my_strstr(char *str, char *to_find)
@@ -27,7 +27,7 @@ char		*my_strstr(char *str, char *to_find)
 	  ultralisk = 0;
 	}
       if (to_find[ultralisk] == '\0')
-	return (str + cafard + my_strlen(to_find));
+	return (str + cafard + strlen(to_find));
       zergling = zergling + 1;
     }
   return (0);
