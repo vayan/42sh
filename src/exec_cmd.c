@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 18:31:56 2011 maxime constantinian
+** Last update Sat May 21 20:27:00 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -135,7 +135,9 @@ int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
   if (strcmp(cmd->cmd[0], "exit") == 0)
     ret = exit_func(cmd->cmd, shell->env);
   if (strcmp(cmd->cmd[0], "set") == 0)
-    ret = my_set(cmd->cmd, shell->env, tab_built);
+    ret = my_set(cmd->cmd, tab_built);
+  if (strcmp(cmd->cmd[0], "unset") == 0)
+    ret = my_unset(cmd->cmd);
   if (tab[0] != 0 && tab[0] != 1)
     close(tab[0]);
   if (tab[1] != 1 && tab[1] != 0)

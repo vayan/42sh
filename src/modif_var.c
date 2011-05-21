@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:18:58 2011 Vaillant Yann
-** Last update Fri May 20 17:40:14 2011 maxime constantinian
+** Last update Sat May 21 19:59:43 2011 timothee maurin
 */
 
 #include <string.h>
@@ -19,7 +19,8 @@ t_list_var      *update_var_in_list(char **name_var, t_list_var *list_var)
     {
       if (strcmp(name_var[1], temp->name) == 0)
         {
-          temp->var = name_var[2];
+	  free(temp->var);
+          temp->var = strdup(name_var[2]);
           return (temp);
         }
       temp = temp->next;
@@ -31,10 +32,11 @@ t_list_var      *add_var_to_list(char **name_var, t_list_var *list_var)
 {
   t_list_var *new;
 
-  if (name_var[1] != NULL && name_var[2] != NULL)
+  if (name_var[1] != NULL)
     {
-      list_var->name = name_var[1];
-      list_var->var = name_var[2];
+      list_var->name = strdup(name_var[1]);
+      if (name_var[2])
+	list_var->var = strdup(name_var[2]);
       new = xmalloc(sizeof(t_list_var));
       list_var->next = new;
       new->next = 0;

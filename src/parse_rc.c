@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Fri May 20 17:28:05 2011 maxime constantinian
+** Last update Sat May 21 18:50:17 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -22,7 +22,7 @@ int	check_if_exist_in_list(char *name_var, t_list_var *list_var)
 {
   t_list_var *temp = list_var;
 
-  while (temp->next != NULL && name_var && temp)
+  while (temp && temp->next != NULL && name_var)
     {
       if (strcmp(name_var, temp->name) == 0)
 	return (1);
