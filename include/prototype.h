@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Fri May 20 16:08:48 2011 timothee maurin
+** Last update Sat May 21 17:30:15 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
@@ -68,10 +68,10 @@ int		nbr_column();
 int		cur_pos(char *buf, int i, int test);
 void		place_cursor_del(int i, int pos, char *buf, int test);
 void		my_putstr_del(char *buf);
-void		srd_fonction(t_commande *cmd, t_shell *shell, int *tab1);
-void		srl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
-void		drd_fonction(t_commande *cmd, t_shell *shell, int *tab1);
-void		drl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
+int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab1);
+int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
+int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab1);
+int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
 char		*get_next_line(int fd);
 
 #endif

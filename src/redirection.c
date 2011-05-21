@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Wed May 18 19:31:41 2011 maxime constantinian
+** Last update Sat May 21 17:25:18 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -23,10 +23,12 @@
 #include	"parseur.h"
 #include	"prototype.h"
 
-void		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
+int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
+  if (tab[1] != 0)
+    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
@@ -46,10 +48,12 @@ void		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
     }
 }
 
-void		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
+int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
+  if (tab[1] != 0)
+    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
@@ -67,12 +71,15 @@ void		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
       if (cmd->next[0])
 	exec_type_cmd(cmd->next[0], shell, tab);
     }
+  return (0);
 }
 
-void		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
+int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
+  if (tab[0] != 0)
+    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
@@ -89,6 +96,7 @@ void		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
       if (cmd->next[0])
 	exec_type_cmd(cmd->next[0], shell, tab);
     }
+  return (0);
 }
 
 int             fill_file_drl(t_commande *cmd, int fd)
@@ -113,10 +121,12 @@ int             fill_file_drl(t_commande *cmd, int fd)
   return (fd);
 }
 
-void		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
+int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		fd = -1;
 
+  if (tab[0] != 0)
+    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access("/tmp/azorox", F_OK) == -1)
@@ -135,4 +145,5 @@ void		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
       if (cmd->next[0])
 	exec_type_cmd(cmd->next[0], shell, tab);
     }
+  return (0);
 }
