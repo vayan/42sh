@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Wed May  4 15:42:43 2011 yann vaillant
-** Last update Wed May  4 15:43:12 2011 yann vaillant
+** Last update Sat May 21 18:19:07 2011 Vaillant Yann
 */
 
 #include        <string.h>
@@ -31,8 +31,9 @@ char    *get_name_env(char *value)
 int     go_end_env(char **env)
 {
   int   x = 0;
-
-  while (env[x])
-    x++;
+  
+  if (env)
+    while (env[x])
+      x++;
   return (x);
 }
