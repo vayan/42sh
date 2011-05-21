@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Fri May 20 17:26:57 2011 timothee maurin
+** Last update Sat May 21 18:24:40 2011 Vaillant Yann
 */
 
 #include	<string.h>
@@ -47,17 +47,27 @@ int	check_if_no_arg(char **value, char **env, int *tab)
   return (0);
 }
 
+char	*if_not_value(char **value, char *add_to_env)
+{
+  if (value[2])
+    add_to_env = concet_env(add_to_env, value[1], value[2]);
+  else
+    add_to_env = concet_env(add_to_env, value[1], "");
+  return (add_to_env);
+}
+
 int	my_setenv(char **value, char **env, int *tab)
 {
   int	x;
   char	*add_to_env;
   char	*name_env;
   int	i = 0;
-
+  t_shell *shell;
+  
   if (check_if_no_arg(value, env, tab) == 1)
     return (0);
   x = go_end_env(env);
-  add_to_env = concet_env(add_to_env, value[1], value[2]);
+  add_to_env = if_not_value(value, add_to_env);
   while (env[i])
     {
       name_env = get_name_env(env[i]);
@@ -71,7 +81,10 @@ int	my_setenv(char **value, char **env, int *tab)
       free(name_env);
       i++;
     }
+  shell = recup_shell(0);
   env = realloc(env, (x + 2) * sizeof(*env));
   env[x] = add_to_env;
-  return (env[x + 1] = 0);
+  env[x + 1] = 0;
+  shell->env = env;
+  return (0);
 }
