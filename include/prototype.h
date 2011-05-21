@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 01:46:02 2011 timothee maurin
+** Last update Sun May 22 01:48:46 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -97,10 +97,11 @@ int		my_strlen_quote(char *str);
 int		my_strlen_createtab_rc(char *str);
 int		count_word(char *str);
 char		*path_file();
-void		free_tab(char **tab);
+void		free_tab(char **tb);
 void		test_set(char **name_var, t_list_var **buffer,
 			 t_list_var **list_var);
 void		test_alias(char **name_var, t_list_var **alias_buf,
-                   t_list_var **alias);
+			   t_list_var **alias);
+void		test_unset(char **name_var, t_list_var **buffer);
 
 #endif
