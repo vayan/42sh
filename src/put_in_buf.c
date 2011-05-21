@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue May 17 16:17:00 2011 timothee maurin
-** Last update Fri May 20 16:38:15 2011 timothee maurin
+** Last update Sat May 21 22:33:46 2011 timothee maurin
 */
 
 #include <string.h>
@@ -29,5 +29,6 @@ void	put_in_buf(char *buf, char *dest, int begin)
 	my_strcpy(&(dest[begin + 1]), buf);
       else
 	my_strcpy(&(dest[begin]), buf);
+      free(tmp2);
     }
 }

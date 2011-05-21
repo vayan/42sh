@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jan  3 15:50:32 2011 timothee maurin
-** Last update Wed May 18 16:59:21 2011 timothee maurin
+** Last update Sat May 21 22:32:19 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -44,9 +44,11 @@ int			my_put_in_list(char *buf, t_completion **list)
 
 struct s_list	*free_list(t_completion *list)
 {
-  if (list->next != 0)
+  if (list)
     {
-      free_list(list->next);
+      if (list->next != 0)
+	free_list(list->next);
+      free(list->buf);
       free(list);
     }
   return (0);
