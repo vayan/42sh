@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 18:28:05 2011 maxime constantinian
+** Last update Sat May 21 18:31:56 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -61,7 +61,7 @@ void		fils_fonction(t_commande *cmd, t_shell *shell,
   if (tab && tab[0])
     xdup2(tab[0], 0);
   if (execve(str, cmd->cmd, shell->env) == -1)
-    exit(fprintf(stderr, "42sh: execve failed : %s.\n", strerror(errno));
+    exit(fprintf(stderr, "42sh: execve failed : %s.\n", strerror(errno)));
 }
 
 void		aff_warning(int stat_val)
