@@ -1,0 +1,18 @@
+//////////////////////////////////////////////////////////
+///////////////////Flag pour prompt///////////////////////
+//////////////////////////////////////////////////////////
+// %T      Heure système (HH:MM)                        //
+// %*      Heure système (HH:MM:SS)                     //
+// %D      Date système (YY-MM-DD)                      //
+// %n      Nom d'utilisateur                            //
+// %N      Nom Reel                                     //
+// %d      Répertoire de travail courant                //
+// %~      Répertoire de travail courant, relatif à ~   //
+// %M      Nom d'hôte de l'ordinateur                   //
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+il faut set le prompt dans le .42shrc dans ton ~/
+
+set PROMPT "[mon_prompt_qui_dechire]$"
+
