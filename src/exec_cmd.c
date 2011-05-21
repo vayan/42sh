@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 17:34:53 2011 maxime constantinian
+** Last update Sat May 21 18:28:05 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -36,10 +36,8 @@ int		exec_in_builtin(char **cmdeuh, t_shell *shell,
   if (tab[1] == 1)
     tab[1] = 0;
   if (cmd.cmd && (type = check_type(cmd.cmd[0], shell)) == 0)
-    if (cmd.cmd == 0)
-      return (fprintf(stderr, "42sh: command not found.\n") * 0 + 127);
-    else
-      return (fprintf(stderr, "42sh: %s command not found.\n",
+    if (cmd.cmd[0] != 0)
+      return (fprintf(stderr, "42sh: %s: command not found.\n",
 		      cmd.cmd[0]) * 0 + 127);
   if (type == 3)
     str = recup_hach(shell->tab_hach, cmd.cmd[0]);
@@ -63,7 +61,7 @@ void		fils_fonction(t_commande *cmd, t_shell *shell,
   if (tab && tab[0])
     xdup2(tab[0], 0);
   if (execve(str, cmd->cmd, shell->env) == -1)
-    exit(fprintf(stderr, "42sh: execve failed.\n"));
+    exit(fprintf(stderr, "42sh: execve failed : %s.\n", strerror(errno));
 }
 
 void		aff_warning(int stat_val)
@@ -136,6 +134,8 @@ int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
     ret = my_echo(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "exit") == 0)
     ret = exit_func(cmd->cmd, shell->env);
+  if (strcmp(cmd->cmd[0], "set") == 0)
+    ret = my_set(cmd->cmd, shell->env, tab_built);
   if (tab[0] != 0 && tab[0] != 1)
     close(tab[0]);
   if (tab[1] != 1 && tab[1] != 0)
@@ -149,10 +149,8 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
   char		*str = 0;
 
   if (cmd->cmd && (type = check_type(cmd->cmd[0], shell)) == 0)
-    if (cmd->cmd == 0)
-      return (fprintf(stderr, "42sh: command not found.\n") * 0 + 127);
-    else
-      return (fprintf(stderr, "42sh: %s command not found.\n",
+    if (cmd->cmd[0] != 0)
+      return (fprintf(stderr, "42sh: %s: command not found.\n",
 		      cmd->cmd[0]) * 0 + 127);
   if (type == 3)
     str = recup_hach(shell->tab_hach, cmd->cmd[0]);
@@ -206,20 +204,16 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
     {
       close(tab_pipe[1]);
       close(tab_pipe[2]);
-      fprintf(stderr, "42sh: Ambiguous output redirect.\n");
+      fprintf(stderr, "42sh: Ambiguous redirect.\n");
     }
   ret = exec_type_cmd(cmd->next[0], shell, tab_ret);
   if (ret == 0)
     {
       tab_ret[0] = tab_pipe[0];
       tab_ret[1] = 0;
+      return (exec_type_cmd(cmd->next[1], shell, tab_ret));
     }
-  else
-    {
-      tab_ret[0] = 0;
-      tab_ret[1] = 0;
-    }
-  return (exec_type_cmd(cmd->next[1], shell, tab_ret));
+  return (ret);
 }
 
 int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab)

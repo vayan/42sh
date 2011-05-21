@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 17:25:18 2011 maxime constantinian
+** Last update Sat May 21 18:27:08 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -79,13 +79,13 @@ int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
   int		fd = -1;
 
   if (tab[0] != 0)
-    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
+    return (fprintf(stderr, "42sh: Ambiguous input redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
 	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
       else
-	fprintf(stderr, "42sh: %s %s\n", cmd->next[1]->cmd[0],
+	fprintf(stderr, "42sh: %s: %s\n", cmd->next[1]->cmd[0],
 		(char*)strerror(errno));
     }
   if (fd != -1)
@@ -126,7 +126,7 @@ int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
   int		fd = -1;
 
   if (tab[0] != 0)
-    return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
+    return (fprintf(stderr, "42sh: Ambiguous input redirect.\n") * 0 + 127);
   if (cmd->next[1])
     {
       if (access("/tmp/azorox", F_OK) == -1)
