@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sat May 21 17:30:15 2011 maxime constantinian
+** Last update Sun May 22 01:46:02 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -73,5 +73,34 @@ int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
 int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab1);
 int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
 char		*get_next_line(int fd);
+int		check_equal(char *str);
+int		strlen_equal(char *av);
+t_list_var	*remove_var_in_list(char *name_var, t_list_var *list_var);
+t_list_var	*update_var_in_list(char **name_var, t_list_var *list_var);
+int		check_if_exist_in_list(char *name_var, t_list_var *list_var);
+t_list_var	*add_var_to_list(char **name_var, t_list_var *list_var);
+void		aff_prompt(int test);
+int		aff_env(char **env, int *tb);
+int		exec_in_builtin(char **cmdeuh, t_shell *shell,
+				char **env, int *tb);
+char		*get_prompt(t_shell *shell);
+char		*current_folder();
+char		*folder_to_home();
+char		*current_shell();
+char		*time_system();
+char		*time_system_sec();
+char		*date_system();
+char		*pseudo_user();
+char		*real_name();
+char		*name_host_pc();
+int		my_strlen_quote(char *str);
+int		my_strlen_createtab_rc(char *str);
+int		count_word(char *str);
+char		*path_file();
+void		free_tab(char **tab);
+void		test_set(char **name_var, t_list_var **buffer,
+			 t_list_var **list_var);
+void		test_alias(char **name_var, t_list_var **alias_buf,
+                   t_list_var **alias);
 
 #endif

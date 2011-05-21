@@ -5,10 +5,11 @@
 ** Login   <consta_m@epitech.net>
 **
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Fri May 20 11:20:34 2011 Vaillant Yann
+** Last update Sun May 22 01:42:23 2011 timothee maurin
 */
 
 #include	"shell.h"
+#include	"prototype.h"
 
 void		str_to_wordtab_alloc(char *str, int *i, int *j, char **ret)
 {

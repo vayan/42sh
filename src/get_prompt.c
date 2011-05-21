@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Sat May 21 21:24:47 2011 timothee maurin
+** Last update Sun May 22 01:39:23 2011 timothee maurin
 */
 
 #include <string.h>
@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "shell.h"
 #include "xmalloc.h"
+#include "prototype.h"
 
 char	*test_balise(char *prompt, int i)
 {

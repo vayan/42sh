@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sat May 21 22:11:17 2011 timothee maurin
+** Last update Sun May 22 01:43:58 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -43,7 +43,7 @@ void	init_list_var(t_list_var **list_var, t_list_var **buffer,
   (*alias)->next = 0;
 }
 
-int	parse_ligne(int fd, t_shell *shell)
+void	parse_ligne(int fd, t_shell *shell)
 {
   char	     **name_var;
   char	     *toparse;
