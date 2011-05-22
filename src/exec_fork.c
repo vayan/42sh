@@ -5,26 +5,64 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 16:53:26 2011 maxime constantinian
+** Last update Sun May 22 18:10:52 2011 maxime constantinian
 */
 
+#include	<stdlib.h>
+#include	<stdio.h>
 #include	<string.h>
 #include	<unistd.h>
 #include	<sys/wait.h>
 #include	"shell.h"
 #include	"prototype.h"
 
-/* void		modif_cmd(t_commande *cmd, t_shell *shell) */
-/* { */
-/*   int		i; */
-/*   int		j; */
+char		*traitement_var(char *str, int *j, t_shell *shell)
+{
+  char		*bef = my_strcopynalloc_gen(str, *j);
+  char		*af ;
+  int		i = *j;
+  char		*buf;
+  char		*tmp;
 
-/*   i = 1; */
-/*   while (cmd->cmd[i]) */
-/*     { */
-/*       i++; */
-/*     } */
-/* } */
+  while (str[i] && str[i] != ' ' && str[i] != '\n')
+    i++;
+  af = my_strcopynalloc_gen(&str[i], strlen(&str[i]));
+  tmp = my_strcopynalloc_gen(&str[*j + 1], i - *j - 1);
+  if ((buf = my_get_env(tmp, shell->env)) == 0)
+    if ((buf = my_get_var(tmp, shell->variable)) == 0)
+      {
+	free(tmp);
+	free(af);
+	free(bef);
+	return (str);
+      }
+  
+  tmp = realloc(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1);
+  snprintf(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1,
+	   "%s%s%s", bef, buf,af);
+  *j = strlen(bef) + strlen(buf);
+  free(str);
+  return (tmp);
+}
+
+void		modif_cmd(t_commande *cmd, t_shell *shell)
+{
+  int		i;
+  int		j = 0;
+
+  i = 1;
+  while (cmd->cmd[i])
+    {
+      while (cmd->cmd[i][j])
+	{
+	  while (cmd->cmd[i][j] && cmd->cmd[i][j] != '$')
+	    j++;
+	  if (cmd->cmd[i][j] == '$')
+	    cmd->cmd[i] = traitement_var(cmd->cmd[i], &j, shell);
+	}
+      i++;
+    }
+}
 
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
                                int *tab, char *str)
@@ -32,7 +70,7 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
   int		returnfork;
   int		status = 0;
 
-  //modif_cmd(cmd, shell);
+  modif_cmd(cmd, shell);
   if ((returnfork = xfork()))
     {
       if (tab)
@@ -55,6 +93,7 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
 {
   int		ret = 0;
 
+  modif_cmd(cmd, shell);
   if (strcmp(cmd->cmd[0], "cd") == 0)
     ret = exec_cd(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "setenv") == 0)
