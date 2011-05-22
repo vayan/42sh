@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:18:58 2011 Vaillant Yann
-** Last update Sun May 22 01:40:50 2011 timothee maurin
+** Last update Sun May 22 17:36:02 2011 timothee maurin
 */
 
 #include <stdlib.h>
@@ -47,23 +47,40 @@ t_list_var      *add_var_to_list(char **name_var, t_list_var *list_var)
   return (list_var);
 }
 
+void		free_maillon_var(t_list_var *tmp)
+{
+  if (tmp)
+    {
+      if (tmp->name)
+	free(tmp->name);
+      if (tmp->var)
+	free(tmp->var);
+      free(tmp);
+    }
+}
+
 t_list_var      *remove_var_in_list(char *name_var, t_list_var *list_var)
 {
-  t_list_var *temp = list_var;
+  t_list_var	*tmp;
+  t_list_var	*temp = list_var;
 
   if (strcmp(temp->name, name_var) == 0)
-    return (temp->next);
+    {
+      free_maillon_var(temp);
+      return (temp->next);
+    }
   while (temp->next->next)
     {
       if (temp->next->next == NULL &&
           (strcmp(temp->next->name, name_var) == 0))
         {
-          temp->next = NULL;
-          return (temp->next);
+	  free_maillon_var(temp->next);
+          return ((temp->next =  NULL));
         }
-      if (strcmp(temp->next->name, name_var) == 0)
+      if (strcmp(temp->next->name, name_var) == 0 && ((tmp = temp->next) || 1))
         {
-          temp->next = temp->next->next;
+	  temp->next = temp->next->next;
+	  free_maillon_var(tmp);
           return (temp->next);
         }
       temp = temp->next;

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sun May 22 15:49:22 2011 timothee maurin
+** Last update Sun May 22 18:19:25 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -31,9 +31,10 @@ int		funct_cd_move(char **av, char **env,
       else if (av[1][1] == '/')
 	av[1] = concat(home, &(av[1][2]));
     }
+  free(home);
   if (av[1] && !(access(av[1], F_OK)))
     {
-      func_old_pwd(1);
+      free(func_old_pwd(1));
       change_dir(av, env, tab);
     }
   else
@@ -78,8 +79,10 @@ int		rempl_option(char **av, int *option)
 	{
 	  if (av[i][n] == 'p')
 	    option[0] = 1;
-	  if (av[i][n] == 'l')
+	  else if (av[i][n] == 'l')
 	    option[1] = 1;
+	  else
+	    return (-1);
 	  n++;
 	}
       i++;
@@ -89,23 +92,9 @@ int		rempl_option(char **av, int *option)
 
 int		exec_cd(char **av, char **env, int *tab)
 {
-  int		*option;
-  char		*pwd;
-  char		*tmp;
-
-  option = xmalloc(2 * sizeof(*option));
-  pwd = xmalloc(2 * sizeof(*pwd));
-  pwd[0] = '/';
-  tmp = xmalloc(2 * sizeof(*tmp));
-  tmp[0] = '/';
   if (count_param(av) > 2)
     return (fprintf(stderr, "42sh: cd: Too many arguments.\n"));
-  if (rempl_option(av, option) == -1)
-    {
-      fprintf(stderr, "Usage: cd [-pl][<dir>].\n");
-      return (1);
-    }
-  else if (count_param(av) == 1)
+  if (count_param(av) == 1)
     return (move_home(env, tab));
   else
     return (funct_cd_move(av, env, tab));
