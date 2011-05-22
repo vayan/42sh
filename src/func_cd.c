@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sun May 22 02:11:09 2011 timothee maurin
+** Last update Sun May 22 14:45:13 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -23,13 +23,16 @@ int		funct_cd_move(char **av, char **env,
   if (av[1][0] == '-' && av[1][1] == '\0')
     {
       free(av[1]);
-      av[1] = my_get_env("OLDPWD", env);
+      av[1] = func_old_pwd(0);
     }
-  if (av[1][0] == '~' && home != 0)
-    av[1] = concat(home, av[1]);
-  if (!(access(av[1], F_OK)))
+  if (av[1] && av[1][0] == '~' && home != 0)
+    if (av[1][1] == 0)
+      av[1] = concat(home, &(av[1][1]));
+    else if (av[1][1] == '/')
+      av[1] = concat(home, &(av[1][2]));
+  if (av[1] && !(access(av[1], F_OK)))
     {
-      change_env_last(env, tab);
+      func_old_pwd(1);
       change_dir(av, env, tab);
     }
   else
@@ -43,19 +46,13 @@ int		funct_cd_move(char **av, char **env,
 int		move_home(char **env, int *tab)
 {
   char		*home;
-  char		*tmp;
-  char		*pwd;
 
   home = my_get_env("HOME", env);
   if (home != 0)
     {
-      tmp = xmalloc(2 * sizeof(*tmp));
-      tmp[0] = '/';
-      pwd = xmalloc(2 * sizeof(*pwd));
-      pwd[0] = '/';
       if (!(access(home, F_OK)))
 	{
-	  change_env_last(env, tab);
+	  func_old_pwd(1);
 	  chdir(home);
 	  change_env(env, tab);
 	}

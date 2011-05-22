@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Wed May  4 15:42:43 2011 yann vaillant
-** Last update Sat May 21 18:19:07 2011 Vaillant Yann
+** Last update Sun May 22 14:04:07 2011 timothee maurin
 */
 
 #include        <string.h>

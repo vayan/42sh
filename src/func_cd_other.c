@@ -5,9 +5,10 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Sun May 22 03:07:25 2011 timothee maurin
+** Last update Sun May 22 14:42:02 2011 timothee maurin
 */
 
+#include	<string.h>
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<unistd.h>
@@ -59,33 +60,27 @@ void	change_env(char **env, int *tab)
   free(pwd);
 }
 
-void	change_env_last(char **env, int *tab)
+char		*func_old_pwd(int test)
 {
-  char	**pwd = xmalloc(4 * sizeof(*pwd));
+  static char	*pwd;
 
-  pwd[0] = xmalloc(7 * sizeof(**pwd));
-  pwd[1] = xmalloc(7 * sizeof(**pwd));
-  pwd[2] = xmalloc(2 * sizeof(**pwd));
-  pwd[2][0] = '/';
-  pwd[0][0] = 's';
-  pwd[0][1] = 'e';
-  pwd[0][2] = 't';
-  pwd[0][3] = 'e';
-  pwd[0][4] = 'n';
-  pwd[0][5] = 'v';
-  pwd[0][6] = '\0';
-  pwd[1][0] = 'O';
-  pwd[1][1] = 'L';
-  pwd[1][2] = 'D';
-  pwd[1][3] = 'P';
-  pwd[1][4] = 'W';
-  pwd[1][5] = 'D';
-  pwd[1][6] = '\0';
-  pwd[2] = my_pwd(pwd[2]);
-  my_setenv(pwd, env, tab);
-  free(pwd[0]);
-  free(pwd[1]);
-  free(pwd[2]);
+  if (test == 1)
+    {
+      if (pwd)
+	free(pwd);
+      pwd = xmalloc(2 * sizeof(*pwd));
+      pwd[0] = '/';
+      pwd = my_pwd(pwd);
+    }
+  if (test == 2 && pwd)
+    {
+      free(pwd);
+      pwd = 0;
+    }
+  if (pwd)
+    return (strdup(pwd));
+  else
+    return (0);
 }
 
 void	change_dir(char **av, char **env, int *tab)
