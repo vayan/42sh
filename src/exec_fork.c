@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 18:30:51 2011 maxime constantinian
+** Last update Sun May 22 19:59:57 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -53,11 +53,12 @@ void		modif_cmd(t_commande *cmd, t_shell *shell)
   i = 1;
   while (cmd->cmd[i])
     {
+      j = 0;
       while (cmd->cmd[i][j])
 	{
 	  while (cmd->cmd[i][j] && cmd->cmd[i][j] != '$')
 	    j++;
-	  if (cmd->cmd[i][j] == '$')
+	  if (cmd->cmd[i][j] && cmd->cmd[i][j] == '$')
 	    cmd->cmd[i] = traitement_var(cmd->cmd[i], &j, shell);
 	}
       i++;

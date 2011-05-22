@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sun May 22 17:57:01 2011 maxime constantinian
+## Last update Sun May 22 19:45:25 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -110,7 +110,8 @@ SRC=    src/main.c \
 	src/my_str_to_wordtab_star.c \
 	src/my_strlen_star.c \
 	src/update_var_with_ret.c \
-	src/my_get_var.c
+	src/my_get_var.c \
+	src/xfree.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
