@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 15:56:26 2011 maxime constantinian
+** Last update Sun May 22 16:53:26 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -14,12 +14,25 @@
 #include	"shell.h"
 #include	"prototype.h"
 
+/* void		modif_cmd(t_commande *cmd, t_shell *shell) */
+/* { */
+/*   int		i; */
+/*   int		j; */
+
+/*   i = 1; */
+/*   while (cmd->cmd[i]) */
+/*     { */
+/*       i++; */
+/*     } */
+/* } */
+
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
                                int *tab, char *str)
 {
   int		returnfork;
   int		status = 0;
 
+  //modif_cmd(cmd, shell);
   if ((returnfork = xfork()))
     {
       if (tab)
