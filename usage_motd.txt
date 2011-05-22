@@ -1,0 +1,21 @@
+//////////////////////////////////////////////////////////
+///////////////////Flag pour le motd//////////////////////
+//////////////////////////////////////////////////////////
+// %T      Heure système (HH:MM)                        //
+// %*      Heure système (HH:MM:SS)                     //
+// %D      Date système (YY-MM-DD)                      //
+// %n      Nom d'utilisateur                            //
+// %N      Nom Reel                                     //
+// %d      Répertoire de travail courant                //
+// %~      Répertoire de travail courant, relatif à ~   //
+// %M      Nom d'hôte de l'ordinateur                   //
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+Cree un fichier .42motd dans ton ~/
+
+Balise :  [message] [/message]
+entre ces balise les flag %machin vont s'appliquer
+
+Balise : [ascii] [/ascii]
+entre ces balise aucun flag sera ajouter donc tu peux faire kikoo logo
