@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sun May 22 02:38:06 2011 timothee maurin
+** Last update Sun May 22 20:45:42 2011 Vaillant Yann
 */
 
 #include	<string.h>
@@ -32,10 +32,10 @@ int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
-	fd = open(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
+	fd = xopen(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
       else
-	fd = open(cmd->next[1]->cmd[0], O_WRONLY | O_TRUNC,
+	fd = xopen(cmd->next[1]->cmd[0], O_WRONLY | O_TRUNC,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     }
   if (fd != -1)
@@ -58,10 +58,10 @@ int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
-	fd = open(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
+	fd = xopen(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
       else
-	fd = open(cmd->next[1]->cmd[0], O_WRONLY | O_APPEND,
+	fd = xopen(cmd->next[1]->cmd[0], O_WRONLY | O_APPEND,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     }
   if (fd != -1)
@@ -84,7 +84,7 @@ int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
   if (cmd->next[1])
     {
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
-	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
+	fd = xopen(cmd->next[1]->cmd[0], O_RDONLY);
       else
 	fprintf(stderr, "42sh: %s: %s\n", cmd->next[1]->cmd[0],
 		(char*)strerror(errno));
@@ -116,8 +116,8 @@ int             fill_file_drl(t_commande *cmd, int fd)
 	  xwrite(0, "?", 1);
           free(tmp);
         }
-      close (fd);
-      fd = open("/tmp/azorox", O_RDONLY);
+      xclose (fd);
+      fd = xopen("/tmp/azorox", O_RDONLY);
     }
   return (fd);
 }
@@ -131,10 +131,10 @@ int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
   if (cmd->next[1])
     {
       if (access("/tmp/azorox", F_OK) == -1)
-	fd = open("/tmp/azorox", O_CREAT | O_WRONLY,
+	fd = xopen("/tmp/azorox", O_CREAT | O_WRONLY,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
       else
-	fd = open("/tmp/azorox", O_TRUNC | O_WRONLY,
+	fd = xopen("/tmp/azorox", O_TRUNC | O_WRONLY,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
       fd = fill_file_drl(cmd, fd);
     }
