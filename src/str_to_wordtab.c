@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Sun May 22 22:12:42 2011 maxime constantinian
+** Last update Sun May 22 22:35:22 2011 maxime constantinian
 */
 
 #include	<glob.h>
@@ -67,19 +67,19 @@ char		**clean_word(char **ret, int *j, int nb_word)
 {
   glob_t	paths;
   int		globresult;
-  static int	nb_total;
+  static int	nb_t;
   char		**ret2;
   int		i = -1;
 
-  if (nb_word != 0)
-    return ((char **)(nb_total = nb_word));
+  if (nb_word != 0 && ret == 0 && j == 0)
+    return ((char **)(nb_t = nb_word));
+  if (ret == 0)
+    return (ret);
   if (strcmp(ret[0], "unsetenv") == 0)
     return (ret);
-  globresult = glob(ret[*j], 0, NULL, &paths);
-  if (globresult == 0)
+  if ((globresult = glob(ret[*j], 0, NULL, &paths)) == 0)
     {
-      ret2 = xmalloc(sizeof(*ret2) * (go_end_env(paths.gl_pathv)
-				      + nb_total + 1));
+      ret2 = xmalloc(sizeof(*ret2) * (go_end_env(paths.gl_pathv) + nb_t + 1));
       while (++i < *j)
 	ret2[i] = ret[i];
       i = xfree(ret[i]) + xfree(ret) - 1;
@@ -106,10 +106,9 @@ void		str_to_wordtab_not_quote(char *str, int *i,
       (*j)++;
       while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
 	     && strncmp(&str[*i], "&&", 2) != 0
-	     && strncmp(&str[*i], "||", 2) != 0
-	     && str[*i] != '|' && strncmp(&str[*i], "<<", 2) != 0
-	     && str[*i] != '<' && strncmp(&str[*i], ">>", 2) != 0
-	     && str[*i] != '>')
+	     && strncmp(&str[*i], "||", 2) != 0 && str[*i] != '|'
+	     && strncmp(&str[*i], "<<", 2) != 0 && str[*i] != '<'
+	     && strncmp(&str[*i], ">>", 2) != 0 && str[*i] != '>')
 	{
 	  if (str[*i] == '"')
 	    {
@@ -125,12 +124,11 @@ void		str_to_wordtab_not_quote(char *str, int *i,
 
 char		**str_to_wordtab(char *str)
 {
+  int		nb_word = count_word(str);
   int		i = 0;
   int		j = 0;
-  char		**ret;
-  int		nb_word = count_word(str);
+  char		**ret = clean_word(0, 0, nb_word);
 
-  clean_word(0, 0, nb_word);
   ret = xmalloc(sizeof(*ret) * (nb_word + 1));
   while (str[i] && str[i] != ';' && strncmp(&str[i], "&&", 2) != 0
 	 && strncmp(&str[i], "||", 2) != 0 && str[i] != '|'
