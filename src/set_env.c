@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Sun May 22 14:03:20 2011 timothee maurin
+** Last update Sun May 22 15:11:05 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -62,16 +62,15 @@ int	my_setenv(char **value, char **env, int *tab)
   int	x;
   char	*add_to_env;
   char	*name_env;
-  int	i = 0;
-  t_shell *shell;
+  int	i = -1;
+  t_shell *shell = recup_shell(0);
   
   if (check_if_no_arg(value, env, tab) == 1)
     return (0);
   x = go_end_env(env);
   add_to_env = if_not_value(value, add_to_env);
-  while (env[i])
+  while (env[++i] && ((name_env = get_name_env(env[i])) || 1))
     {
-      name_env = get_name_env(env[i]);
       if (strcmp(name_env, value[1]) == 0)
 	{
 	  free(env[i]);
@@ -80,12 +79,9 @@ int	my_setenv(char **value, char **env, int *tab)
 	  return (0);
 	}
       free(name_env);
-      i++;
     }
-  shell = recup_shell(0);
   env = realloc(env, (x + 2) * sizeof(*env));
-  env[x] = add_to_env;
-  env[x + 1] = 0;
+  env[x] = add_to_env + 0 * *(env[x + 1] = 0);
   shell->env = env;
   return (0);
 }
