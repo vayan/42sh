@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Sun May 22 15:33:40 2011 timothee maurin
+** Last update Sun May 22 20:21:00 2011 Vaillant Yann
 */
 
 #include <sys/types.h>
@@ -87,7 +87,7 @@ int	read_motd()
 	aff_message(fd);
       free (buf);
     }
-  close(fd);
+  xclose(fd);
   return (0);
 }
 
