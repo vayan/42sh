@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Mon May 16 18:18:16 2011 maxime constantinian
+** Last update Sun May 22 19:03:09 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -38,6 +38,30 @@ int		count_word(char	*str)
   return (count_w);
 }
 
+char		*clean_word(char *str)
+{
+  int		i;
+  int		j;
+
+  i = 0;
+  while (str && str[i])
+    {
+      if (str[i] == '"')
+	{
+	  j = i;
+	  while (str[j])
+	    {
+	      str[j] = str[j + 1];
+	      if (str[j])
+		j++;
+	    }
+	}
+      if (str[i])
+	i++;
+    }
+  return (str);
+}
+
 void		str_to_wordtab_not_quote(char *str, int *i, int *j, char **ret)
 {
   if (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
@@ -46,6 +70,7 @@ void		str_to_wordtab_not_quote(char *str, int *i, int *j, char **ret)
       && strncmp(&str[*i], ">>", 2) != 0 && str[*i] != '>')
     {
       ret[*j] = my_strcopynalloc_gen(&str[*i], my_strlen_createtab(&str[*i]));
+      clean_word(ret[*j]);
       (*j)++;
       while (str[*i] && str[*i] != ' ' && str[*i] != '\t' && str[*i] != ';'
 	     && strncmp(&str[*i], "&&", 2) != 0
@@ -53,7 +78,16 @@ void		str_to_wordtab_not_quote(char *str, int *i, int *j, char **ret)
 	     && str[*i] != '|' && strncmp(&str[*i], "<<", 2) != 0
 	     && str[*i] != '<' && strncmp(&str[*i], ">>", 2) != 0
 	     && str[*i] != '>')
-	(*i)++;
+	{
+	  if (str[*i] == '"')
+	    {
+	      (*i)++;
+	      while (str[*i] && str[*i] != '"')
+		(*i)++;
+	    }
+	  if (str[*i])
+	    (*i)++;
+	}
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 15:37:02 2011 maxime constantinian
-** Last update Thu May 19 18:16:39 2011 Vaillant Yann
+** Last update Sun May 22 18:49:03 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -27,7 +27,16 @@ int		my_strlen_createtab(char *str)
 	 && strncmp(&str[i], "&&", 2) != 0  && strncmp(&str[i], "||", 2) != 0
 	 && str[i] != '|' && strncmp(&str[i], "<<", 2) != 0 && str[i] != '<'
 	 && strncmp(&str[i], ">>", 2) != 0 && str[i] != '>')
-    i++;
+    {
+      if (str[i] == '"')
+	{
+	  i++;
+	  while (str[i] && str[i] != '"')
+	    i++;
+	}
+      if (str[i])
+	i++;
+    }
   return (i);
 }
 
