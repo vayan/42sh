@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Sun May 22 01:39:23 2011 timothee maurin
+** Last update Sun May 22 13:40:59 2011 Vaillant Yann
 */
 
 #include <string.h>
@@ -42,8 +42,8 @@ int	add_to_prompt(char **format_prompt, char **temp, int *z, int *i)
 {
   *z = strlen(*format_prompt) + 2;
   *format_prompt = realloc(*format_prompt,
-			   (*z + strlen(*temp) * sizeof(char)));
-  (*format_prompt)[(*z) + 1] = '\0';
+			   ((*z + strlen(*temp)) * sizeof(char)));
+
   strcat(*format_prompt, *temp);
   free(*temp);
   (*i)++;
