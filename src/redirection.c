@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 18:27:08 2011 maxime constantinian
+** Last update Sun May 22 02:38:06 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -46,6 +46,7 @@ int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
       if (cmd->next[0])
 	exec_type_cmd(cmd->next[0], shell, tab);
     }
+  return (0);
 }
 
 int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)

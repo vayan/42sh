@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri May 20 11:08:34 2011 Vaillant Yann
-** Last update Fri May 20 11:12:30 2011 Vaillant Yann
+** Last update Sun May 22 02:03:10 2011 timothee maurin
 */
 
 #include <time.h>
@@ -16,6 +16,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "xmalloc.h"
+#include "shell.h"
+#include "prototype.h"
 
 char    *pseudo_user()
 {

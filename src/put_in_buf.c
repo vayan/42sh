@@ -5,9 +5,10 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue May 17 16:17:00 2011 timothee maurin
-** Last update Sat May 21 22:33:46 2011 timothee maurin
+** Last update Sun May 22 02:35:19 2011 timothee maurin
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include "shell.h"
 #include "prototype.h"

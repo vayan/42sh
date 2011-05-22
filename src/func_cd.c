@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sat May 21 17:23:24 2011 timothee maurin
+** Last update Sun May 22 02:11:09 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -15,7 +15,7 @@
 #include	"prototype.h"
 
 int		funct_cd_move(char **av, char **env,
-			      int *option, int *tab)
+			      int *tab)
 {
   char		*home;
 
@@ -40,7 +40,7 @@ int		funct_cd_move(char **av, char **env,
   return (0);
 }
 
-int		move_home(char **av, char **env, int *option, int *tab)
+int		move_home(char **env, int *tab)
 {
   char		*home;
   char		*tmp;
@@ -108,8 +108,8 @@ int		exec_cd(char **av, char **env, int *tab)
       return (1);
     }
   else if (count_param(av) == 1)
-    return (move_home(av, env, option, tab));
+    return (move_home(env, tab));
   else
-    return (funct_cd_move(av, env, option, tab));
+    return (funct_cd_move(av, env, tab));
   return (1);
 }

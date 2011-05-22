@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Sat May 21 17:37:23 2011 timothee maurin
+** Last update Sun May 22 02:15:25 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -50,7 +50,7 @@ void	change_env(char **env, int *tab)
   pwd[1][2] = 'D';
   pwd[1][3] = '\0';
   pwd[2] = my_pwd(pwd[2]);
-  env = my_setenv(pwd, env, tab);
+  my_setenv(pwd, env, tab);
   free(pwd[0]);
   free(pwd[1]);
   free(pwd[2]);
@@ -79,7 +79,7 @@ void	change_env_last(char **env, int *tab)
   pwd[1][5] = 'D';
   pwd[1][6] = '\0';
   pwd[2] = my_pwd(pwd[2]);
-  env = my_setenv(pwd, env, tab);
+  my_setenv(pwd, env, tab);
   free(pwd[0]);
   free(pwd[1]);
   free(pwd[2]);

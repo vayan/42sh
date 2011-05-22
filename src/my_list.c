@@ -5,11 +5,13 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jan  3 15:50:32 2011 timothee maurin
-** Last update Sat May 21 22:32:19 2011 timothee maurin
+** Last update Sun May 22 02:34:00 2011 timothee maurin
 */
 
 #include	<string.h>
 #include	<stdlib.h>
+#include	<sys/types.h>
+#include	<dirent.h>
 #include	"completion.h"
 #include	"shell.h"
 #include	"prototype.h"
@@ -42,7 +44,7 @@ int			my_put_in_list(char *buf, t_completion **list)
   return (0);
 }
 
-struct s_list	*free_list(t_completion *list)
+t_completion	*free_list(t_completion *list)
 {
   if (list)
     {

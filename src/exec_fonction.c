@@ -5,9 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Sun May 22 01:33:20 2011 maxime constantinian
+** Last update Sun May 22 02:01:11 2011 timothee maurin
 */
 
+#include	<unistd.h>
 #include	<sys/wait.h>
 #include	<stdio.h>
 #include	"shell.h"
@@ -16,7 +17,7 @@
 
 int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
-  int		type;
+  int		type = 0;
   char		*str = 0;
 
   if (cmd->cmd && (type = check_type(cmd->cmd[0], shell)) == 0)

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue May 17 17:26:56 2011 Vaillant Yann
-** Last update Tue May 17 17:48:12 2011 Vaillant Yann
+** Last update Sun May 22 02:04:19 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -13,6 +13,8 @@
 #include <pwd.h>
 #include <string.h>
 #include "xmalloc.h"
+#include "shell.h"
+#include "prototype.h"
 
 char    *path_file()
 {

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 01:48:46 2011 timothee maurin
+** Last update Sun May 22 02:40:14 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -103,5 +103,43 @@ void		test_set(char **name_var, t_list_var **buffer,
 void		test_alias(char **name_var, t_list_var **alias_buf,
 			   t_list_var **alias);
 void		test_unset(char **name_var, t_list_var **buffer);
+int		my_unsetenv(char **value, char **env);
+int		my_set(char **av, int *tb);
+int		my_echo(char **str, char **env, int *tb);
+int		env_funct(char **av, char **env, int *tb);
+int		my_setenv(char **value, char **env, int *tb);
+int		exec_cd(char **av, char **env, int *tb);
+int		my_unset(char **av);
+int		return_good_return_value(int stat_val);
+void		fils_fonction(t_commande *cmd, t_shell *shell,
+                              int *tb, char *str);
+int		exit_func(char **av, char **env);
+int		check_type(char *name, t_shell *shell);
+int             exec_with_fork(t_commande *cmd, t_shell *shell,
+                               int *tb, char *str);
+int		exec_builtin(t_commande *cmd, t_shell *shell, int *tb);
+char		**str_to_wordtab_parse_rc(char *str);
+struct passwd	*xgetpwuid(int uid);
+char		*real_name();
+int		my_strcmp(char *s1, char *s2);
+void		change_env(char **env, int *tb);
+void		change_env_last(char **env, int *tb);
+int		count_param(char **av);
+void		change_dir(char **av, char **env, int *tb);
+int		write_error(char *to_write, char *param);
+int		my_setenv(char **value, char **env, int *tb);
+int		my_getnbr(char *str);
+char		*my_get_env(char *to_find, char **env);
+void		free_graph(t_hach_bin *tb);
+int		go_end_env(char **env);
+char		*get_name_env(char *value);
+int		which_type(char *buf, int pos, int *begin);
+int		is_dir(char *buf, char *buf2, int pos, int begin);
+void		put_in_buf(char *buf, char *dest, int begin);
+void		completion(int *i, int *pos, char *buf);
+void            exit_buf(char *buf, char *cha);
+void		clr_screen(char *buf, int i, int pos);
+char		*while_cha(char *cha, char *str, int *pos, int *i);
+int		parse_rc(t_shell *shell);
 
 #endif
