@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Sun May 22 18:53:22 2011 timothee maurin
+** Last update Sun May 22 19:05:25 2011 timothee maurin
 */
 
 #include <string.h>
@@ -43,7 +43,7 @@ char	**copy(char **env, char **new_env)
   int	x = get_nbr_ligne(env);
 
   new_env = xmalloc((x + 1) * sizeof(*(new_env)));
-  while (x--)
+  while (--x)
     new_env[x] = my_strcopynalloc(env[x]);
   return (new_env);
 }
