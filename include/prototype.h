@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 20:14:41 2011 timothee maurin
+** Last update Sun May 22 22:00:32 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -161,5 +161,7 @@ void            update_var_with_ret(int ret);
 char		*my_get_var(char *to_find, t_list_var *variable);
 int		aff_motd(t_shell *shell);
 int             xfree(void *ptr);
+int		xclose(int fd);
+int		xopen(char *pathname, int flags);
 
 #endif

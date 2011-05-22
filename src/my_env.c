@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Sun May 22 19:07:02 2011 timothee maurin
+** Last update Sun May 22 22:07:18 2011 timothee maurin
 */
 
 #include <string.h>
@@ -46,19 +46,6 @@ char	**copy(char **env, char **new_env)
   while (x--)
     new_env[x] = my_strcopynalloc(env[x]);
   return (new_env);
-}
-
-int	strlen_equal(char *av)
-{
-  int	i = 0;
-
-  while (av[i])
-    {
-      if (av[i] == '=')
-	return (i);
-      i++;
-    }
-  return (0);
 }
 
 int	aff_free_env(char **new_env, int *tab)

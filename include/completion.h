@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 14 17:50:25 2011 timothee maurin
-** Last update Sun May 22 15:46:08 2011 timothee maurin
+** Last update Sun May 22 22:03:02 2011 timothee maurin
 */
 
 #ifndef __COMPLETION_H__
@@ -26,5 +26,6 @@ DIR		*xopendir(char *dir);
 t_completion	*find_commande(char *buf, int pos,
 			       int begin, t_hach_bin *hach);
 t_completion	*find_in_folder(char *buf, int pos, int begin);
+int		xclosedir(DIR *dirp);
 
 #endif

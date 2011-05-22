@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sun May 22 18:19:25 2011 timothee maurin
+** Last update Sun May 22 22:06:07 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -38,10 +38,7 @@ int		funct_cd_move(char **av, char **env,
       change_dir(av, env, tab);
     }
   else
-    {
-      fprintf(stderr, "%s: No such file or directory.\n", av[1]);
-      return (1);
-    }
+    return (fprintf(stderr, "%s: No such file or directory.\n", av[1]));
   return (0);
 }
 
