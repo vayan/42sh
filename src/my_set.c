@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Sun May 22 01:23:30 2011 timothee maurin
+** Last update Sun May 22 18:10:11 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -63,6 +63,26 @@ int             my_unset(char **av)
   return (0);
 }
 
+int		free_tmp_set(char **tmp, int test)
+{
+  if (tmp)
+    {
+      if (tmp[1])
+	{
+	  free(tmp[1]);
+	  tmp[1] = 0;
+	}
+      if (tmp[2])
+	{
+	  free(tmp[2]);
+	  tmp[2] = 0;
+	}
+      if (test == 0)
+	free(tmp);
+    }
+  return (1);
+}
+
 int		my_set(char **av, int *tab)
 {
   int		tmp_nb;
@@ -72,7 +92,7 @@ int		my_set(char **av, int *tab)
 
   if (!(shell->variable))
     shell->variable = xmalloc(sizeof(t_list_var));
-  if (av[1] == 0)
+  if (av[1] == 0 && free_tmp_set(tmp, 0))
     return (aff_var(shell->variable, tab));
   while (av[++i])
     {
@@ -85,9 +105,8 @@ int		my_set(char **av, int *tab)
 	  tmp[2] = strdup(&(av[i][tmp_nb + 1]));
 	}
       add_to_set_list(tmp, shell->variable);
-      free(tmp[1]);
-      if (tmp[2])
-	free(tmp[2]);
+      free_tmp_set(tmp, 1);
     }
+  free_tmp_set(tmp, 0);
   return (0);
 }
