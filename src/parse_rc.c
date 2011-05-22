@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sun May 22 20:43:30 2011 Vaillant Yann
+** Last update Sun May 22 21:57:21 2011 Vaillant Yann
 */
 
 #include <unistd.h>
@@ -76,7 +76,7 @@ int	parse_rc(t_shell *shell)
 
   if ((path = path_file()) == NULL)
     return (1);
-  fd = xopen(path, O_RDONLY);
+  fd = open(path, O_RDONLY);
   if (fd != -1)
     {
       parse_ligne(fd, shell);
