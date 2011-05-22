@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Dec 18 12:20:22 2010 timothee maurin
-** Last update Wed May 18 16:55:49 2011 timothee maurin
+** Last update Sun May 22 16:15:44 2011 Vaillant Yann
 */
 
 #include <stdio.h>
@@ -14,6 +14,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 DIR		*xopendir(char *dir)
 {
@@ -23,7 +25,7 @@ DIR		*xopendir(char *dir)
   if (dirp == 0)
     {
       printf("%s\n", dir);
-    fprintf(stderr, "xopendir failed\n");
+      fprintf(stderr, "42sh : Opendir : %s\n", strerror(errno));
     }
   return (dirp);
 }
