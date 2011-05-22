@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Sun May 22 02:15:25 2011 timothee maurin
+** Last update Sun May 22 03:07:25 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -32,8 +32,9 @@ int	count_param(char **av)
 
 void	change_env(char **env, int *tab)
 {
-  char	*pwd[3];
+  char	**pwd;
 
+  pwd = xmalloc(4 * sizeof(*pwd));
   pwd[0] = xmalloc(7 * sizeof(**pwd));
   pwd[1] = xmalloc(4 * sizeof(**pwd));
   pwd[2] = xmalloc(2 * sizeof(**pwd));
@@ -50,15 +51,17 @@ void	change_env(char **env, int *tab)
   pwd[1][2] = 'D';
   pwd[1][3] = '\0';
   pwd[2] = my_pwd(pwd[2]);
+  pwd[3] = 0;
   my_setenv(pwd, env, tab);
   free(pwd[0]);
   free(pwd[1]);
   free(pwd[2]);
+  free(pwd);
 }
 
 void	change_env_last(char **env, int *tab)
 {
-  char	*pwd[3];
+  char	**pwd = xmalloc(4 * sizeof(*pwd));
 
   pwd[0] = xmalloc(7 * sizeof(**pwd));
   pwd[1] = xmalloc(7 * sizeof(**pwd));

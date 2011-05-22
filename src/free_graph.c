@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Apr 11 14:47:49 2011 maxime constantinian
-** Last update Tue Apr 26 19:08:51 2011 maxime constantinian
+** Last update Sun May 22 03:56:57 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -28,7 +28,10 @@ void		free_graph(t_hach_bin *tab)
 	  i++;
 	}
       if (tab->path)
-	free(tab->path);
+	{
+	  free(tab->path);
+	  tab->path = 0;
+	}
       if (tab->next)
 	free(tab->next);
       free(tab);
