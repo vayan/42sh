@@ -5,8 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Oct 11 18:36:37 2010 maxime constantinian
-** Last update Sat May 21 21:19:57 2011 Vaillant Yann
+** Last update Sun May 22 16:08:26 2011 timothee maurin
 */
+
+#include	<string.h>
 
 char		*my_strstr(char *str, char *to_find)
 {

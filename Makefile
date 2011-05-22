@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sun May 22 04:23:13 2011 maxime constantinian
+## Last update Sun May 22 16:17:12 2011 timothee maurin
 ##
 
 CC=     cc
@@ -97,7 +97,18 @@ SRC=    src/main.c \
 	src/exec_fonction.c \
 	src/exec_fork.c \
 	src/free_tab.c \
-	src/free_graph_parseur.c
+	src/free_graph_parseur.c \
+	src/find_completion.c \
+	src/size_env.c \
+	src/return_type_red.c \
+	src/aff_motd.c \
+	src/unsetenv.c \
+	src/strcmp_star.c \
+	src/my_strstr.c \
+	src/cmp_star.c \
+	src/check_motd.c \
+	src/my_str_to_wordtab_star.c \
+	src/my_strlen_star.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 13:09:38 2011 timothee maurin
-** Last update Sun May 22 15:26:23 2011 timothee maurin
+** Last update Sun May 22 15:40:06 2011 timothee maurin
 */
 
 #include <string.h>
@@ -98,17 +98,6 @@ t_completion	*find_in_folder(char *buf, int pos, int begin)
       my_put_in_list(entry->d_name, &completion);
   closedir(dirp);
   return (completion);
-}
-
-t_completion	*find_completion(int type, char *buf, int pos, int begin)
-{
-  t_shell	*tmp;
-
-  tmp = recup_shell(0);
-  if (type)
-    return (find_commande(buf, pos, begin - 1, tmp->tab_hach));
-  else
-    return (find_in_folder(buf, pos, begin));
 }
 
 void		traiter_list(t_completion *compl, char *buf, int *i, int *pos)

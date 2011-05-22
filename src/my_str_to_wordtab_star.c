@@ -5,8 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Dec 27 11:39:11 2010 maxime constantinian
-** Last update Sat May 21 20:30:15 2011 maxime constantinian
+** Last update Sun May 22 16:17:51 2011 timothee maurin
 */
+
+#include	"shell.h"
+#include	"prototype.h"
 
 int		countword_star(char *s)
 {

@@ -5,16 +5,16 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jan  3 15:50:32 2011 timothee maurin
-** Last update Sun May 22 02:34:00 2011 timothee maurin
+** Last update Sun May 22 15:46:45 2011 timothee maurin
 */
 
 #include	<string.h>
 #include	<stdlib.h>
 #include	<sys/types.h>
 #include	<dirent.h>
-#include	"completion.h"
 #include	"shell.h"
 #include	"prototype.h"
+#include	"completion.h"
 
 int			my_put_in_list(char *buf, t_completion **list)
 {

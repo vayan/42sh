@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:56:30 2011 timothee maurin
-** Last update Sun May 22 02:34:56 2011 timothee maurin
+** Last update Sun May 22 15:59:13 2011 timothee maurin
 */
 
 #include	<sys/types.h>
@@ -16,9 +16,6 @@
 
 int		which_type(char *buf, int pos, int *begin)
 {
-  int		save_pos;
-
-  save_pos = pos;
   *begin = pos;
   if (pos == 0 || buf[pos] == ';')
     return (0);

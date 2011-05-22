@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 10 21:34:38 2011 maxime constantinian
-** Last update Mon May 16 18:57:54 2011 maxime constantinian
+** Last update Sun May 22 15:53:08 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -27,19 +27,6 @@ int		if_have_redirection(char *str)
       i++;
     }
   return (ret);
-}
-
-int		return_type_red(char *str)
-{
-  if (strncmp(str, "<<", 2) == 0)
-    return (1);
-  else if (strncmp(str, ">>", 2) == 0)
-    return (2);
-  else if (str[0] == '<')
-    return (3);
-  else if (str[0] == '>')
-    return (4);
-  return (0);
 }
 
 void		create_cmd(char **tab, t_commande *cmd)

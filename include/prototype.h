@@ -5,12 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 02:40:14 2011 timothee maurin
+** Last update Sun May 22 16:18:19 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
 # define	PROTYPE_H__
 
+int             return_type_red(char *str);
 char		*my_strcopynalloc(char *str);
 char		*my_strcopynalloc_gen(char *str, int len);
 int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tabs);
@@ -141,5 +142,20 @@ void            exit_buf(char *buf, char *cha);
 void		clr_screen(char *buf, int i, int pos);
 char		*while_cha(char *cha, char *str, int *pos, int *i);
 int		parse_rc(t_shell *shell);
+int		size_env(char **av);
+void		free_graph_parseur(t_commande *cmd);
+char            *func_old_pwd(int test);
+char		*my_strstr(char *str, char *to_find);
+int		test_balise_motd(char *str, char *balise);
+char		*parse_prompt(char *prompt);
+int		open_motd();
+int		my_strcmp_star(char *s1, char *s2);
+char		*get_name_env(char *value);
+int		my_strcmp_star(char *s1, char *s2);
+char		*cmp_star(char *s1, char *s2, int pos);
+char		**my_str_to_wordtab_star(char *s);
+char		*path_motd();
+int		check_good_balise(int fd);
+int		my_strlen_star(char *str);
 
 #endif

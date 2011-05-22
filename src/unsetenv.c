@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 15:39:52 2011 yann vaillant
-** Last update Sat May 21 22:10:21 2011 Vaillant Yann
+** Last update Sun May 22 16:11:53 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -14,6 +14,7 @@
 #include        "shell.h"
 #include        "graph.h"
 #include        "xmalloc.h"
+#include	"prototype.h"
 
 int	remove_env(char ***value, char ***env, int x, int *z)
 {

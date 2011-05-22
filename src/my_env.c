@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Sun May 22 01:28:33 2011 timothee maurin
+** Last update Sun May 22 15:58:19 2011 timothee maurin
 */
 
 #include <string.h>
@@ -27,15 +27,6 @@ int	check_equal(char *str)
       i++;
     }
   return (1);
-}
-
-int	size_env(char **av)
-{
-  int	i = 0;
-
-  while (av[i])
-    i++;
-  return (i);
 }
 
 int	get_nbr_ligne(char **env)
@@ -74,7 +65,7 @@ int	env_funct(char **av, char **env, int *tab)
 {
   int		i = 0;
   int		len = 0;
-  char		**new_env;
+  char		**new_env = 0;
 
   if (av[1] == 0)
     return (aff_env(env, tab));
