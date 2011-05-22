@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 13:09:38 2011 timothee maurin
-** Last update Sun May 22 15:40:06 2011 timothee maurin
+** Last update Sun May 22 20:28:06 2011 Vaillant Yann
 */
 
 #include <string.h>
@@ -96,7 +96,7 @@ t_completion	*find_in_folder(char *buf, int pos, int begin)
     if (!(strncmp(&(buf[begin]), entry->d_name, pos - begin))
 	&& (entry->d_name[0] != '.' || buf[begin] == '.'))
       my_put_in_list(entry->d_name, &completion);
-  closedir(dirp);
+  xclosedir(dirp);
   return (completion);
 }
 

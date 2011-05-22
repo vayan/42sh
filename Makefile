@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sun May 22 19:45:25 2011 maxime constantinian
+## Last update Sun May 22 20:30:14 2011 Vaillant Yann
 ##
 
 CC=     cc
@@ -111,7 +111,9 @@ SRC=    src/main.c \
 	src/my_strlen_star.c \
 	src/update_var_with_ret.c \
 	src/my_get_var.c \
-	src/xfree.c
+	src/xfree.c \
+	src/xclosedir.c \
+	src/xclose.c  
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
