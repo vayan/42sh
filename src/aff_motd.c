@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Sun May 22 13:04:06 2011 Vaillant Yann
+** Last update Sun May 22 15:33:40 2011 timothee maurin
 */
 
 #include <sys/types.h>
@@ -26,7 +26,7 @@ char    *path_motd()
 {
   struct passwd *home;
   char *path;
-  
+
   if ((home = xgetpwuid(getuid())) == NULL)
     return (NULL);
   path = xmalloc((strlen(home->pw_dir)
@@ -39,7 +39,7 @@ char    *path_motd()
 int	aff_ascii(int fd)
 {
   char *ascii;
-  
+
   while ((ascii = get_next_line(fd)) != 0)
     {
       if (test_balise_motd(ascii, "[/ascii]") == 1)
@@ -56,7 +56,7 @@ int	aff_ascii(int fd)
 int	aff_message(int fd)
 {
   char *message;
-  
+
   while ((message = get_next_line(fd)) != 0)
     {
       if (test_balise_motd(message, "[/message]") == 1)
@@ -76,7 +76,7 @@ int	read_motd()
 {
   int	fd;
   char	*buf;
-  
+
   if ((fd = open_motd()) == -1)
     return (1);
   while ((buf = get_next_line(fd)) != 0)
@@ -94,7 +94,7 @@ int	read_motd()
 int	aff_motd(t_shell *shell)
 {
   t_list_var    *var = shell->variable;
-  
+
   while (var && var->next)
     {
       if (strcmp(var->name, "MOTD") == 0 && strcmp(var->var, "1") == 0)

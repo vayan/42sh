@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Sun May 22 15:11:05 2011 timothee maurin
+** Last update Sun May 22 15:30:08 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -64,7 +64,7 @@ int	my_setenv(char **value, char **env, int *tab)
   char	*name_env;
   int	i = -1;
   t_shell *shell = recup_shell(0);
-  
+
   if (check_if_no_arg(value, env, tab) == 1)
     return (0);
   x = go_end_env(env);

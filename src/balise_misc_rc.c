@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:00:01 2011 yann vaillant
-** Last update Sun May 22 13:40:39 2011 Vaillant Yann
+** Last update Sun May 22 15:33:53 2011 timothee maurin
 */
 
 #include <time.h>
@@ -25,7 +25,7 @@ char	*current_folder()
   char *current = xmalloc(80 * sizeof(*current));
   int	i = 0;
   int	x;
-  
+
   if (getcwd(path, 80) == NULL)
     return (NULL);
   if (strcmp(path, "/") == 0)
