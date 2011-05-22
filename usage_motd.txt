@@ -14,6 +14,9 @@
 
 Cree un fichier .42motd dans ton ~/
 
+apres il faut rajouter la ligne "SET MOTD 1" (sans les "") au fichier ~/.42shrc
+si tu veux l'afficher au demmarage du 42sh
+
 Balise :  [message] [/message]
 entre ces balise les flag %machin vont s'appliquer
 

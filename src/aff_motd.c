@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Sun May 22 12:04:02 2011 Vaillant Yann
+** Last update Sun May 22 12:20:04 2011 Vaillant Yann
 */
 
 #include <sys/types.h>
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include "xmalloc.h"
 #include "get_next_line.h"
+#include "shell.h"
 
 int	test_balise_motd(char *str, char *balise)
 {
@@ -113,5 +114,23 @@ int	read_motd()
 	aff_message(fd);
     }
   close(fd);
+  return (0);
+}
+
+int	aff_motd(t_shell *shell)
+{
+  t_list_var    *var = shell->variable;
+  
+  while (var && var->next)
+    {
+      if (strcmp(var->name, "MOTD") == 0 && strcmp(var->var, "1") == 0)
+	{
+	  if (read_motd() == 1)
+	    return (1);
+	  else
+	    return (0);
+	}
+      var = var->next;
+    }
   return (0);
 }
