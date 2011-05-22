@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 18:10:52 2011 maxime constantinian
+** Last update Sun May 22 18:30:51 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -34,7 +34,7 @@ char		*traitement_var(char *str, int *j, t_shell *shell)
 	free(tmp);
 	free(af);
 	free(bef);
-	return (str);
+	return (str + (*j = i) * 0);
       }
   
   tmp = realloc(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1);
@@ -108,6 +108,8 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
     ret = my_set(cmd->cmd, tab_built);
   if (strcmp(cmd->cmd[0], "unset") == 0)
     ret = my_unset(cmd->cmd);
+  if (strcmp(cmd->cmd[0], "unsetenv") == 0)
+    ret = my_unsetenv(cmd->cmd, shell->env);
   update_var_with_ret(ret);
   return (ret);
 }
