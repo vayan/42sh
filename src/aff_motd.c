@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Sun May 22 12:50:19 2011 Vaillant Yann
+** Last update Sun May 22 13:04:06 2011 Vaillant Yann
 */
 
 #include <sys/types.h>
@@ -64,7 +64,8 @@ int	aff_message(int fd)
 	  free (message);
 	  return (0);
 	}
-      message = parse_prompt(message);
+      if (message[0])
+	message = parse_prompt(message);
       printf("%s\n", message);
       free (message);
     }
