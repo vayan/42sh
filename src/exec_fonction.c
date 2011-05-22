@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Sun May 22 02:01:11 2011 timothee maurin
+** Last update Sun May 22 04:01:30 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -74,8 +74,8 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
     tab_ret[1] = tab_pipe[1];
   else
     {
+      close(tab_pipe[0]);
       close(tab_pipe[1]);
-      close(tab_pipe[2]);
       fprintf(stderr, "42sh: Ambiguous redirect.\n");
     }
   ret = exec_type_cmd(cmd->next[0], shell, tab_ret);
