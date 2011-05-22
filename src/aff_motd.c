@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 11:21:27 2011 Vaillant Yann
-** Last update Sat May 21 20:01:45 2011 Vaillant Yann
+** Last update Sun May 22 12:04:02 2011 Vaillant Yann
 */
 
 #include <sys/types.h>
@@ -30,7 +30,7 @@ char    *path_motd()
 {
   struct passwd *home;
   char *path;
-
+  
   if ((home = xgetpwuid(getuid())) == NULL)
     return (NULL);
   path = xmalloc((strlen(home->pw_dir)
@@ -43,7 +43,7 @@ char    *path_motd()
 int	aff_ascii(int fd)
 {
   char *ascii;
-
+  
   while ((ascii = get_next_line(fd)) != 0)
     {
       if (test_balise_motd(ascii, "[/ascii]") == 1)
@@ -67,11 +67,42 @@ int	aff_message(int fd)
   return (0);
 }
 
+int	check_good_balise(int fd)
+{
+  char *buf;
+  int	open_asc = 0;
+  int	close_asc = 0;
+  int	open_msg = 0;
+  int	close_msg = 0;
+  
+  while ((buf = get_next_line(fd)) != 0)
+    {
+      if (test_balise_motd(buf, "[ascii]") == 1)
+	open_asc++;
+      if (test_balise_motd(buf, "[/ascii]") == 1)
+	close_asc++;
+      if (test_balise_motd(buf, "[message]") == 1)
+	open_msg++;
+      if (test_balise_motd(buf, "[/message]") == 1)
+	close_msg++;
+    }
+  if ((open_asc == close_asc) && (open_msg == close_msg))
+    return (0);
+  else
+    return (-1);
+}
+
 int	read_motd()
 {
   int	fd;
+  int	fd_verif;
   char	*buf;
-
+  
+  if ((fd_verif = open(path_motd(), O_RDONLY)) == -1)
+    return (1);
+  if (check_good_balise(fd_verif) == -1)
+    return (1);
+  close(fd_verif);
   if ((fd = open(path_motd(), O_RDONLY)) == -1)
     return (1);
   while ((buf = get_next_line(fd)) != 0)
