@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:14:49 2011 Vaillant Yann
-** Last update Sun May 22 16:12:48 2011 Vaillant Yann
+** Last update Sun May 22 22:04:35 2011 timothee maurin
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 struct passwd  *xgetpwuid(int uid)
 {
   struct passwd *get;
-  
+
   if ((get = getpwuid(uid)) == NULL)
     return (NULL);
   return (get);

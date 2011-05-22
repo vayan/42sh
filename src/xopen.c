@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu May  5 13:48:43 2011 yann vaillant
-** Last update Sun May 22 16:08:49 2011 Vaillant Yann
+** Last update Sun May 22 22:04:45 2011 timothee maurin
 */
 
 #include <sys/types.h>
@@ -20,7 +20,7 @@
 int	xopen(char *pathname, int flags)
 {
   int	fd = 0;
-  
+
   if ((fd = open(pathname, flags)) == -1)
     {
       fprintf(stderr, "42sh : Open : %s\n", strerror(errno));

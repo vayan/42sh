@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 20:34:11 2011 Vaillant Yann
+** Last update Sun May 22 22:04:01 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -36,10 +36,9 @@ char		*traitement_var(char *str, int *j, t_shell *shell)
 	free(bef);
 	return (str + (*j = i) * 0);
       }
-  
   tmp = realloc(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1);
   snprintf(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1,
-	   "%s%s%s", bef, buf,af);
+	   "%s%s%s", bef, buf, af);
   *j = strlen(bef) + strlen(buf);
   free(str);
   return (tmp);

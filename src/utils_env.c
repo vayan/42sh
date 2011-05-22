@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Wed May  4 15:42:43 2011 yann vaillant
-** Last update Sun May 22 14:53:57 2011 timothee maurin
+** Last update Sun May 22 22:07:08 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -14,6 +14,19 @@
 #include        "shell.h"
 #include        "graph.h"
 #include        "xmalloc.h"
+
+int     strlen_equal(char *av)
+{
+  int   i = 0;
+
+  while (av[i])
+    {
+      if (av[i] == '=')
+        return (i);
+      i++;
+    }
+  return (0);
+}
 
 char    *get_name_env(char *value)
 {
