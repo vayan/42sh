@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 12:29:25 2011 maxime constantinian
-** Last update Sun May 22 03:49:59 2011 timothee maurin
+** Last update Sun May 22 04:35:45 2011 timothee maurin
 */
 
 #include	<sys/types.h>
@@ -46,9 +46,7 @@ t_hach_bin	*create_hach_tab(struct dirent *read_d, t_hach_bin *tmp)
       if (tmp->next == NULL)
 	tmp->next = xmalloc(94 * sizeof(*(tmp->next)));
       if (tmp->next[read_d->d_name[i] - 32] == NULL)
-	{
-	  tmp->next[read_d->d_name[i] - 32] = xmalloc(sizeof(*tmp));
-	}
+	tmp->next[read_d->d_name[i] - 32] = xmalloc(sizeof(*tmp));
       tmp = tmp->next[read_d->d_name[i] - 32];
       i++;
     }
@@ -74,6 +72,8 @@ void		create_hach(char *path, t_hach_bin *tab)
 	{
 	  tmp = tab;
 	  tmp = create_hach_tab(read_d, tmp);
+	  if (tmp->path != 0)
+	    free(tmp->path);
 	  tmp->path = tmp_path;
 	}
       else
