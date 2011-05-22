@@ -5,12 +5,12 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 22:06:36 2011 timothee maurin
-** Last update Sun May 22 01:22:14 2011 timothee maurin
+** Last update Sun May 22 21:23:00 2011 maxime constantinian
 */
 
 #include <stdlib.h>
 
-void	free_tab(char **tab)
+int	free_tab(char **tab)
 {
   int	i;
 
@@ -21,4 +21,5 @@ void	free_tab(char **tab)
       i++;
     }
   free(tab);
+  return (0);
 }
