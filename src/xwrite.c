@@ -5,13 +5,14 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Sun Feb 27 13:26:35 2011 justin pugeat
-** Last update Fri May 20 19:47:00 2011 timothee maurin
+** Last update Sun May 22 16:11:06 2011 Vaillant Yann
 */
 
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "shell.h"
 #include "prototype.h"
 
@@ -35,7 +36,7 @@ int	xwrite(int fd, char *str, int len)
 {
   if (write(fd, str, len) == -1)
     {
-      fprintf(stderr, "Error on write\n");
+      fprintf(stderr, "42sh : Write : %s\n", strerror(errno));
       return (1);
     }
   return (0);
