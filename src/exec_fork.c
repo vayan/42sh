@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 01:56:44 2011 timothee maurin
+** Last update Sun May 22 15:56:26 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -56,6 +56,7 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
     ret = my_set(cmd->cmd, tab_built);
   if (strcmp(cmd->cmd[0], "unset") == 0)
     ret = my_unset(cmd->cmd);
+  update_var_with_ret(ret);
   return (ret);
 }
 

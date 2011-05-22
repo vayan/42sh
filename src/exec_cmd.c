@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sun May 22 13:41:27 2011 timothee maurin
+** Last update Sun May 22 16:30:44 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -82,11 +82,16 @@ void		aff_warning(int stat_val)
 
 int		return_good_return_value(int stat_val)
 {
+  int		ret = -1;
+
   if (WIFSIGNALED(stat_val))
     aff_warning(WTERMSIG(stat_val));
   if (WIFEXITED(stat_val))
-    return (WEXITSTATUS(stat_val));
-  return (stat_val);
+    ret = WEXITSTATUS(stat_val);
+  if (ret == -1)
+    ret = stat_val;
+  update_var_with_ret(ret);
+  return (ret);
 }
 
 void		exec_cmd(t_shell *shell)
