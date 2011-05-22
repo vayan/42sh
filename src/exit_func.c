@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Sun May 22 02:16:50 2011 timothee maurin
+** Last update Sun May 22 03:47:09 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -37,7 +37,6 @@ int		exit_func(char **av, char **env)
   int		end_av;
   t_shell	*shell;
 
-  aff_prompt(1);
   end_av = go_end_env(av);
   shell = recup_shell(0);
   if (shell->tab_hach)
@@ -49,6 +48,7 @@ int		exit_func(char **av, char **env)
 	exit(my_getnbr(last_exit));
       exit(0);
     }
+  aff_prompt(1);
   if (end_av > 1)
     exit(my_getnbr(av[1]));
   return (0);
