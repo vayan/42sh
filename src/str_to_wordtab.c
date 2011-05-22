@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Sun May 22 22:05:39 2011 maxime constantinian
+** Last update Sun May 22 22:12:42 2011 maxime constantinian
 */
 
 #include	<glob.h>
@@ -72,7 +72,7 @@ char		**clean_word(char **ret, int *j, int nb_word)
   int		i = -1;
 
   if (nb_word != 0)
-    return ((nb_total = nb_word) * 0);
+    return ((char **)(nb_total = nb_word));
   if (strcmp(ret[0], "unsetenv") == 0)
     return (ret);
   globresult = glob(ret[*j], 0, NULL, &paths);
