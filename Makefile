@@ -5,14 +5,14 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sun May 22 16:17:12 2011 timothee maurin
+## Last update Sun May 22 16:21:27 2011 maxime constantinian
 ##
 
 CC=     cc
 
 NAME=   42sh
 
-CFLAGS= -I./include -W -Wall -O3 -g
+CFLAGS= -I./include -W -Wall -g
 
 LDFLAGS= -lcurses
 
@@ -108,7 +108,8 @@ SRC=    src/main.c \
 	src/cmp_star.c \
 	src/check_motd.c \
 	src/my_str_to_wordtab_star.c \
-	src/my_strlen_star.c
+	src/my_strlen_star.c \
+	src/update_var_with_ret.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

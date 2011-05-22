@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 16:18:19 2011 timothee maurin
+** Last update Sun May 22 16:28:30 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
@@ -157,5 +157,6 @@ char		**my_str_to_wordtab_star(char *s);
 char		*path_motd();
 int		check_good_balise(int fd);
 int		my_strlen_star(char *str);
+void            update_var_with_ret(int ret);
 
 #endif
