@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Sun May 22 16:59:03 2011 Vaillant Yann
+** Last update Sun May 22 20:13:46 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -31,6 +31,7 @@ void		main_bis(t_shell *shell)
   parser(shell->commande->buffer, shell);
   exec_cmd(shell);
   free(shell->commande->buffer);
+  free(shell->commande);
   exit(0);
 }
 

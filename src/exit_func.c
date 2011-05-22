@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Sun May 22 19:45:11 2011 maxime constantinian
+** Last update Sun May 22 20:09:21 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -69,6 +69,11 @@ void			free_shell(t_shell *shell)
 {
   t_commande_root	*tmp;
 
+  if (shell->commande)
+    {
+      tmp = shell->commande;
+      free_commande(tmp);
+    }
   if (shell->tab_hach)
     free_graph(shell->tab_hach);
   if (shell->env)
@@ -77,11 +82,6 @@ void			free_shell(t_shell *shell)
     free_var(shell->alias);
   if (shell->variable)
     free_var(shell->variable);
-  if (shell->commande)
-    {
-      tmp = shell->commande;
-      free_commande(tmp);
-    }
   free(shell);
 }
 
@@ -89,7 +89,7 @@ int		exit_func(char **av, char **env)
 {
   char		*last_exit;
   int		end_av;
-  int		ret;
+  int		ret = env[0][0] * 0;
   t_shell	*shell = recup_shell(0);
 
   end_av = go_end_env(av);

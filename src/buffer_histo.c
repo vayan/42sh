@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon May  9 18:47:47 2011 timothee maurin
-** Last update Wed May 18 20:25:16 2011 timothee maurin
+** Last update Sun May 22 21:21:26 2011 timothee maurin
 */
 
 #include			<string.h>
@@ -52,28 +52,29 @@ void				reaf(int *i, int *pos, char *buf)
 void				funct_histo(char *cha, int *i,
 					    int *pos, char **buf)
 {
-  char				*tmp;
   t_commande_root		*com;
 
   com = recup_com(0, 3);
   if (cha[2] == 66 && com->next_histo != 0)
     {
-      if (com->next_histo->next_histo == 0 && (tmp = free_buf(0, 2)))
-	{
-	  *buf = tmp;
-	  com = recup_com(0, 1);
-	}
+      free(*buf);
+      *buf = xmalloc(8193 * sizeof(**buf));
+      if (com->next_histo->next_histo == 0 && (*buf = free_buf(0, 2)))
+	com = recup_com(0, 1);
       else if (com->next_histo->next_histo != 0)
 	{
 	  com = recup_com(0, 1);
-	  *buf = com->buffer;
+	  strcpy(*buf, com->buffer);
 	}
       reaf(i, pos, *buf);
     }
   if (cha[2] == 65 && com->before_histo != 0)
     {
+      if (com->next_histo != 0)
+	free(*buf);
       com = recup_com(0, 2);
-      *buf = com->buffer;
+      *buf = xmalloc(8193 * sizeof(**buf));
+      strcpy(*buf, com->buffer);
       reaf(i, pos, *buf);
     }
 }
