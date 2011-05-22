@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Sun May 22 02:35:45 2011 timothee maurin
+** Last update Sun May 22 22:49:10 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -23,23 +23,10 @@ int		check_if_builtin(char *name)
   return (0);
 }
 
-int		check_if_alias(char *name, t_list_var *variable)
-{
-  while (variable && variable->name)
-    {
-      if (strcmp(name, variable->name) == 0)
-  	return (1);
-      variable = variable->next;
-    }
-  return (0);
-}
-
 int		check_type(char *name, t_shell *shell)
 {
   if (name)
     {
-      if (check_if_alias(name, shell->alias))
-	return (1);
       if (check_if_builtin(name))
 	return (2);
       if (recup_hach(shell->tab_hach, name))
