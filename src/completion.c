@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Thu May 12 13:09:38 2011 timothee maurin
-** Last update Sun May 22 02:31:22 2011 timothee maurin
+** Last update Sun May 22 15:26:23 2011 timothee maurin
 */
 
 #include <string.h>
@@ -58,38 +58,44 @@ t_completion	*find_commande(char *buf, int pos, int begin, t_hach_bin *hach)
   return (completion);
 }
 
+DIR		*open_completion(int begin, int tmp2, char *buf)
+{
+  DIR           *dirp;
+  char		*tmp;
+
+  if (begin < tmp2)
+    {
+      tmp = xmalloc((tmp2 - begin + 2) * sizeof(*tmp));
+      strncpy(tmp, &(buf[begin]), tmp2 - begin + 1);
+      tmp[tmp2 - begin + 1] = '\0';
+      dirp = xopendir(tmp);
+      free(tmp);
+    }
+  else
+    dirp = xopendir(".");
+  return (dirp);
+}
+
 t_completion	*find_in_folder(char *buf, int pos, int begin)
 {
-  int		tmp2;
-  char		*tmp = 0;
+  int		tmp2 = pos;
   DIR           *dirp;
   struct dirent *entry;
   t_completion	*completion = 0;
 
-  tmp2 = pos;
   while (buf[tmp2] != '/' && tmp2 > begin && (tmp2-- || 1));
   if ((tmp2 == begin || begin == 0) && buf[tmp2] != '/')
     dirp = xopendir(".");
   else
     {
-      while(buf[begin] == 9)
-	begin++;
-      if (begin < tmp2)
-	{
-	  tmp = xmalloc((tmp2 - begin + 2) * sizeof(*tmp));
-	  strncpy(tmp, &(buf[begin]), tmp2 - begin + 1);
-	  tmp[tmp2 - begin + 1] = '\0';
-	  dirp = xopendir(tmp);
-	}
-      else
-	dirp = xopendir(".");	
-      begin =  tmp2 + 1;
+      while (buf[begin] == 9 && (begin++ || 1));
+      dirp = open_completion(begin, tmp2, buf);
+      begin = tmp2 + 1;
     }
-  if (dirp != 0)
-    while ((entry = readdir(dirp)) != 0)
-      if (!(strncmp(&(buf[begin]), entry->d_name, pos - begin))
-	  && (entry->d_name[0] != '.' || buf[begin] == '.'))
-	my_put_in_list(entry->d_name, &completion);
+  while (dirp != 0 && (entry = readdir(dirp)) != 0)
+    if (!(strncmp(&(buf[begin]), entry->d_name, pos - begin))
+	&& (entry->d_name[0] != '.' || buf[begin] == '.'))
+      my_put_in_list(entry->d_name, &completion);
   closedir(dirp);
   return (completion);
 }
