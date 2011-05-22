@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Wed May  4 15:42:43 2011 yann vaillant
-** Last update Sun May 22 14:04:07 2011 timothee maurin
+** Last update Sun May 22 14:53:57 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -31,7 +31,7 @@ char    *get_name_env(char *value)
 int     go_end_env(char **env)
 {
   int   x = 0;
-  
+
   if (env)
     while (env[x])
       x++;
