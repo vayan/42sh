@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 19:59:57 2011 maxime constantinian
+** Last update Sun May 22 20:34:11 2011 Vaillant Yann
 */
 
 #include	<stdlib.h>
@@ -77,9 +77,9 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
       if (tab)
         {
           if (tab[0] != 0)
-            close(tab[0]);
+            xclose(tab[0]);
           if (tab[1] != 0)
-            close(tab[1]);
+            xclose(tab[1]);
         }
       while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
         usleep(100);
@@ -128,8 +128,8 @@ int		exec_builtin(t_commande *cmd, t_shell *shell, int *tab)
     tab_built[1] = tab[1];
   ret = re_builtin(cmd, shell, tab_built);
   if (tab[0] != 0 && tab[0] != 1)
-    close(tab[0]);
+    xclose(tab[0]);
   if (tab[1] != 1 && tab[1] != 0)
-    close(tab[1]);
+    xclose(tab[1]);
   return (ret);
 }
