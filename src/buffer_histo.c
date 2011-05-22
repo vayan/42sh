@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon May  9 18:47:47 2011 timothee maurin
-** Last update Sun May 22 21:21:26 2011 timothee maurin
+** Last update Sun May 22 21:31:01 2011 timothee maurin
 */
 
 #include			<string.h>
@@ -58,11 +58,11 @@ void				funct_histo(char *cha, int *i,
   if (cha[2] == 66 && com->next_histo != 0)
     {
       free(*buf);
-      *buf = xmalloc(8193 * sizeof(**buf));
       if (com->next_histo->next_histo == 0 && (*buf = free_buf(0, 2)))
 	com = recup_com(0, 1);
       else if (com->next_histo->next_histo != 0)
 	{
+	  *buf = xmalloc(8193 * sizeof(**buf));
 	  com = recup_com(0, 1);
 	  strcpy(*buf, com->buffer);
 	}
