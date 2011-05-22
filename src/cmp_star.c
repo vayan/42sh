@@ -5,8 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Dec 28 12:44:42 2010 maxime constantinian
-** Last update Sat May 21 21:20:17 2011 Vaillant Yann
+** Last update Sun May 22 16:08:00 2011 timothee maurin
 */
+
+#include	<string.h>
 
 char		*cmp_star(char *s1, char *s2, int pos)
 {

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 12:29:25 2011 maxime constantinian
-** Last update Sun May 22 04:35:45 2011 timothee maurin
+** Last update Sun May 22 15:36:21 2011 timothee maurin
 */
 
 #include	<sys/types.h>
@@ -57,10 +57,9 @@ void		create_hach(char *path, t_hach_bin *tab)
 {
   char		*tmp_path;
   t_hach_bin	*tmp;
-  DIR		*dir;
+  DIR		*dir = opendir(path);
   struct dirent	*read_d;
 
-  dir = opendir(path);
   if (dir == NULL)
     return ;
   while ((read_d = readdir(dir)) != NULL)

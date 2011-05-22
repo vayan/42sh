@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sun May 22 14:45:13 2011 timothee maurin
+** Last update Sun May 22 15:49:22 2011 timothee maurin
 */
 
 #include	<stdio.h>
@@ -17,19 +17,20 @@
 int		funct_cd_move(char **av, char **env,
 			      int *tab)
 {
-  char		*home;
+  char		*home = my_get_env("HOME", env);
 
-  home = my_get_env("HOME", env);
   if (av[1][0] == '-' && av[1][1] == '\0')
     {
       free(av[1]);
       av[1] = func_old_pwd(0);
     }
   if (av[1] && av[1][0] == '~' && home != 0)
-    if (av[1][1] == 0)
-      av[1] = concat(home, &(av[1][1]));
-    else if (av[1][1] == '/')
-      av[1] = concat(home, &(av[1][2]));
+    {
+      if (av[1][1] == 0)
+	av[1] = concat(home, &(av[1][1]));
+      else if (av[1][1] == '/')
+	av[1] = concat(home, &(av[1][2]));
+    }
   if (av[1] && !(access(av[1], F_OK)))
     {
       func_old_pwd(1);

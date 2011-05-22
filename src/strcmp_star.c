@@ -5,8 +5,12 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Mon Dec 27 14:18:01 2010 maxime constantinian
-** Last update Sun May 22 15:31:39 2011 timothee maurin
+** Last update Sun May 22 16:05:27 2011 timothee maurin
 */
+
+#include	<string.h>
+#include	"shell.h"
+#include	"prototype.h"
 
 int		count_star(char *str)
 {
