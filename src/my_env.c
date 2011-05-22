@@ -5,7 +5,7 @@
 ** Login   <pugeat_j@epitech.net>
 ** 
 ** Started on  Fri May  6 14:44:35 2011 justin pugeat
-** Last update Sun May 22 15:58:19 2011 timothee maurin
+** Last update Sun May 22 18:53:22 2011 timothee maurin
 */
 
 #include <string.h>
@@ -61,6 +61,13 @@ int	strlen_equal(char *av)
   return (0);
 }
 
+int	aff_free_env(char **new_env, int *tab)
+{
+  aff_env(new_env, tab);
+  free_tab(new_env);
+  return (0);
+}
+
 int	env_funct(char **av, char **env, int *tab)
 {
   int		i = 0;
@@ -85,5 +92,5 @@ int	env_funct(char **av, char **env, int *tab)
       }
     else if (strcmp(av[i], "-i") != 0)
       return (exec_in_builtin(&(av[i]), recup_shell(0), new_env, tab));
-  return (aff_env(new_env, tab));
+  return (aff_free_env(new_env, tab));
 }
