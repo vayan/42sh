@@ -22,3 +22,26 @@ entre ces balise les flag %machin vont s'appliquer
 
 Balise : [ascii] [/ascii]
 entre ces balise aucun flag sera ajouter donc tu peux faire kikoo logo
+
+Exemple ascii kikoo : 
+
+	        .,-:;//;:=,
+           . :H@@@MM@M#H/.,+%;,
+        ,/X+ +M@@M@MM%=,-%HMMM@X/,
+       -+@MM; $M@@MH+-,;XMMMM@MMMM@+-
+     ;@M@@M- XM@X;. -+XXXXXHHH@M@M#@/.
+   ,%MM@@MH ,@%=             .---=-=:=,.
+   =@#@@@MX.,                -%HX$$%%%:;
+  =-./@M@M$                   .;@MMMM@MM:
+  X@/ -$MM/                    . +MM@@@M$
+ ,@M@H: :@:       42SH          . =X#@@@@-
+ ,@@@MMX, .                    /H- ;@M@M=
+ .H@@@@M@+,                    %MM+..%#$.
+  /MMMM@MMH/.                  XM@MH; =;
+   /%+%$XHH@$=              , .H@@@@MX,
+    .=--------.           -%H.,@@@@@MX,
+    .%MM@@@HHHXX$$$%+- .:$MMX =M@@MM%.
+      =XMMM@MM@MM#H;,-+HMM@M+ /MMMX=
+        =%@M@M#@$-.=$@MM@@@M; %M%=
+          ,:+$+-,/H#MMMMMMM@= =,
+                =++%%%%+/:-.
