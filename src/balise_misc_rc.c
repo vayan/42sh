@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:00:01 2011 yann vaillant
-** Last update Fri May 20 11:09:19 2011 Vaillant Yann
+** Last update Sun May 22 02:04:49 2011 timothee maurin
 */
 
 #include <time.h>
@@ -16,6 +16,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "xmalloc.h"
+#include "shell.h"
+#include "prototype.h"
 
 char	*current_folder()
 {

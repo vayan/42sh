@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Sat May 21 18:24:40 2011 Vaillant Yann
+** Last update Sun May 22 02:17:32 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -14,6 +14,7 @@
 #include        "shell.h"
 #include        "graph.h"
 #include        "xmalloc.h"
+#include	"prototype.h"
 
 int	aff_env(char **env, int *tab)
 {

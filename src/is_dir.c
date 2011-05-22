@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:54:30 2011 timothee maurin
-** Last update Wed May 18 18:03:35 2011 timothee maurin
+** Last update Sun May 22 02:21:30 2011 timothee maurin
 */
 
 #include <string.h>
@@ -17,6 +17,7 @@
 #include <dirent.h>
 #include "shell.h"
 #include "prototype.h"
+#include "xlstat.h"
 
 int		is_dir(char *buf, char *buf2, int pos, int begin)
 {

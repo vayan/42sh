@@ -5,10 +5,12 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:58:22 2011 timothee maurin
-** Last update Sat May 21 22:27:45 2011 timothee maurin
+** Last update Sun May 22 02:34:34 2011 timothee maurin
 */
 
 #include	<string.h>
+#include	<sys/types.h>
+#include	<dirent.h>
 #include	"shell.h"
 #include	"prototype.h"
 #include	"completion.h"

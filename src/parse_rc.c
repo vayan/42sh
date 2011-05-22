@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sun May 22 01:43:58 2011 timothee maurin
+** Last update Sun May 22 02:01:31 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -17,6 +17,7 @@
 #include <pwd.h>
 #include "shell.h"
 #include "get_next_line.h"
+#include "prototype.h"
 
 int	check_if_exist_in_list(char *name_var, t_list_var *list_var)
 {

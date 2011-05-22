@@ -5,10 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat May 21 23:29:19 2011 maxime constantinian
+** Last update Sun May 22 02:37:42 2011 timothee maurin
 */
 
 #include	<unistd.h>
+#include	<string.h>
 #include	<stdio.h>
 #include	<sys/types.h>
 #include	<sys/time.h>

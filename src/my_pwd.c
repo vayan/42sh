@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sun Jan  2 19:38:21 2011 timothee maurin
-** Last update Wed May  4 18:03:24 2011 timothee maurin
+** Last update Sun May 22 02:07:09 2011 timothee maurin
 */
 
 #include	<dirent.h>
@@ -16,6 +16,7 @@
 #include	"shell.h"
 #include	"prototype.h"
 #include	"xopendir.h"
+#include	"xlstat.h"
 
 void		funct_eco(DIR *dirp, char *pwd)
 {
