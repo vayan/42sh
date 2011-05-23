@@ -5,9 +5,10 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Sun May 22 14:42:02 2011 timothee maurin
+** Last update Mon May 23 11:26:52 2011 timothee maurin
 */
 
+#include	<errno.h>
 #include	<string.h>
 #include	<stdio.h>
 #include	<stdlib.h>
@@ -85,6 +86,7 @@ char		*func_old_pwd(int test)
 
 void	change_dir(char **av, char **env, int *tab)
 {
-  chdir(av[1]);
+  if (chdir(av[1]) == -1)
+    fprintf(stderr, "42sh: Cd : %s\n", strerror(errno));
   change_env(env, tab);
 }
