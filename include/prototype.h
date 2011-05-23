@@ -5,11 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-<<<<<<< local
-** Last update Sun May 22 21:24:36 2011 maxime constantinian
-=======
-** Last update Sun May 22 22:00:32 2011 timothee maurin
->>>>>>> other
+** Last update Sun May 22 23:02:07 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__

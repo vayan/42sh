@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Sun May 22 20:33:33 2011 Vaillant Yann
+** Last update Mon May 23 11:45:30 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -24,6 +24,9 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
     if (cmd->cmd[0] != 0)
       return (fprintf(stderr, "42sh: %s: command not found.\n",
                       cmd->cmd[0]) * 0 + 127);
+    else
+      return (fprintf(stderr, "42sh: Invalid null commande.\n") * 0 - 1);
+      
   if (type == 3)
     str = recup_hach(shell->tab_hach, cmd->cmd[0]);
   if (type == 4)
@@ -79,7 +82,7 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
       fprintf(stderr, "42sh: Ambiguous redirect.\n");
     }
   ret = exec_type_cmd(cmd->next[0], shell, tab_ret);
-  if (ret == 0)
+  if (ret != -1)
     {
       tab_ret[0] = tab_pipe[0];
       tab_ret[1] = 0;
