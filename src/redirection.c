@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sun May 22 22:01:29 2011 timothee maurin
+** Last update Mon May 23 11:08:06 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -109,7 +109,8 @@ int             fill_file_drl(t_commande *cmd, int fd)
   else
     {
       xwrite(0, "?", 1);
-      while (strcmp((tmp = get_next_line(0)), cmd->next[1]->cmd[0]) != 0)
+      while ((tmp = get_next_line(0))
+	     && strcmp(tmp, cmd->next[1]->cmd[0]) != 0)
         {
           xwrite(fd, tmp, strlen(tmp));
 	  xwrite(fd, "\n", 1);
