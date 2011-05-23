@@ -5,9 +5,11 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Sun May 22 22:06:07 2011 timothee maurin
+** Last update Mon May 23 11:25:46 2011 timothee maurin
 */
 
+#include	<string.h>
+#include	<errno.h>
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<unistd.h>
@@ -38,7 +40,7 @@ int		funct_cd_move(char **av, char **env,
       change_dir(av, env, tab);
     }
   else
-    return (fprintf(stderr, "%s: No such file or directory.\n", av[1]));
+    return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
   return (0);
 }
 
@@ -56,11 +58,11 @@ int		move_home(char **env, int *tab)
 	  change_env(env, tab);
 	}
       else
-	return (write_error("%s: No such file or directory.\n", home));
+	return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
       return (0);
     }
   else
-    return (write_error(": No such file or directory.\n", 0));
+    return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
 }
 
 int		rempl_option(char **av, int *option)
