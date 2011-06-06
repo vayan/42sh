@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Apr 30 18:08:51 2011 timothee maurin
-** Last update Mon May 23 11:25:46 2011 timothee maurin
+** Last update Mon May 23 12:01:36 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -35,10 +35,7 @@ int		funct_cd_move(char **av, char **env,
     }
   free(home);
   if (av[1] && !(access(av[1], F_OK)))
-    {
-      free(func_old_pwd(1));
-      change_dir(av, env, tab);
-    }
+    return (change_dir(av, env, tab));
   else
     return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
   return (0);

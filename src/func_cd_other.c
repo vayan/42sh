@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Mon May 23 11:26:52 2011 timothee maurin
+** Last update Mon May 23 11:59:29 2011 timothee maurin
 */
 
 #include	<errno.h>
@@ -84,9 +84,10 @@ char		*func_old_pwd(int test)
     return (0);
 }
 
-void	change_dir(char **av, char **env, int *tab)
+int	change_dir(char **av, char **env, int *tab)
 {
   if (chdir(av[1]) == -1)
-    fprintf(stderr, "42sh: Cd : %s\n", strerror(errno));
+    return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
   change_env(env, tab);
+  return (0);
 }
