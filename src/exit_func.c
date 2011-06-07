@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Sun May 22 20:09:21 2011 timothee maurin
+** Last update Mon Jun  6 17:33:11 2011 timothee maurin
 */
 
 #include        <string.h>
