@@ -5,13 +5,14 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Mon Jun  6 18:11:21 2011 timothee maurin
+** Last update Tue Jun  7 17:49:51 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
 # define	PROTYPE_H__
 
-int             return_type_red(char *str);
+char		*funct_alias(char *cmd, t_shell *sh);
+int		return_type_red(char *str);
 char		*my_strcopynalloc(char *str);
 char		*my_strcopynalloc_gen(char *str, int len);
 int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tabs);
@@ -113,11 +114,11 @@ int		exec_cd(char **av, char **env, int *tb);
 int		my_unset(char **av);
 int		return_good_return_value(int stat_val);
 void		fils_fonction(t_commande *cmd, t_shell *shell,
-                              int *tb, char *str);
+			      int *tb, char *str);
 int		exit_func(char **av, char **env);
 int		check_type(char *name, t_shell *shell);
-int             exec_with_fork(t_commande *cmd, t_shell *shell,
-                               int *tb, char *str);
+int		exec_with_fork(t_commande *cmd, t_shell *shell,
+			       int *tb, char *str);
 int		exec_builtin(t_commande *cmd, t_shell *shell, int *tb);
 char		**str_to_wordtab_parse_rc(char *str);
 struct passwd	*xgetpwuid(int uid);
@@ -138,13 +139,13 @@ int		which_type(char *buf, int pos, int *begin);
 int		is_dir(char *buf, char *buf2, int pos, int begin);
 void		put_in_buf(char *buf, char *dest, int begin);
 void		completion(int *i, int *pos, char *buf);
-void            exit_buf(char *buf, char *cha);
+void		exit_buf(char *buf, char *cha);
 void		clr_screen(char *buf, int i, int pos);
 char		*while_cha(char *cha, char *str, int *pos, int *i);
 int		parse_rc(t_shell *shell);
 int		size_env(char **av);
 void		free_graph_parseur(t_commande *cmd);
-char            *func_old_pwd(int test);
+char		*func_old_pwd(int test);
 char		*my_strstr(char *str, char *to_find);
 int		test_balise_motd(char *str, char *balise);
 char		*parse_prompt(char *prompt);
@@ -157,11 +158,13 @@ char		**my_str_to_wordtab_star(char *s);
 char		*path_motd();
 int		check_good_balise(int fd);
 int		my_strlen_star(char *str);
-void            update_var_with_ret(int ret);
+void		update_var_with_ret(int ret);
 char		*my_get_var(char *to_find, t_list_var *variable);
 int		aff_motd(t_shell *shell);
-int             xfree(void *ptr);
+int		xfree(void *ptr);
 int		xclose(int fd);
 int		xopen(char *pathname, int flags);
+void		free_var(t_list_var *list);
+int		check_if_alias(char *name, t_list_var *alias);
 
 #endif
