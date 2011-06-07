@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sun May 22 22:04:01 2011 timothee maurin
+** Last update Mon Jun  6 17:54:49 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@
 char		*traitement_var(char *str, int *j, t_shell *shell)
 {
   char		*bef = my_strcopynalloc_gen(str, *j);
-  char		*af ;
+  char		*af;
   int		i = *j;
   char		*buf;
   char		*tmp;

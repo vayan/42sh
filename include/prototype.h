@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun May 22 23:02:07 2011 maxime constantinian
+** Last update Mon Jun  6 18:11:21 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -126,7 +126,7 @@ int		my_strcmp(char *s1, char *s2);
 void		change_env(char **env, int *tb);
 void		change_env_last(char **env, int *tb);
 int		count_param(char **av);
-void		change_dir(char **av, char **env, int *tb);
+int		change_dir(char **av, char **env, int *tb);
 int		write_error(char *to_write, char *param);
 int		my_setenv(char **value, char **env, int *tb);
 int		my_getnbr(char *str);

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Apr 26 19:49:14 2011 maxime constantinian
-** Last update Sun May 22 04:22:00 2011 maxime constantinian
+** Last update Tue Jun  7 15:30:40 2011 timothee maurin
 */
 
 #include	"shell.h"
@@ -18,6 +18,7 @@ void		parser(char *str, t_shell *shell)
   int		i = 0;
   int		j = 0;
 
+  str = funct_alias(str, shell);
   nb_sep = if_have_sep(str);
   shell->commande->cmd = xmalloc(sizeof(*(shell->commande->cmd)));
   if (nb_sep)

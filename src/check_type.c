@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Sun May 22 22:49:10 2011 maxime constantinian
+** Last update Tue Jun  7 17:09:18 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -23,6 +23,15 @@ int		check_if_builtin(char *name)
   return (0);
 }
 
+int		check_if_alias(char *name, t_list_var *alias)
+{
+  while (alias->next != 0 && strcmp(name, alias->name) != 0)
+    alias = alias->next;
+  if (alias->next == 0)
+    return (0);
+  return (1);
+}
+
 int		check_type(char *name, t_shell *shell)
 {
   if (name)
@@ -31,7 +40,7 @@ int		check_type(char *name, t_shell *shell)
 	return (2);
       if (recup_hach(shell->tab_hach, name))
 	return (3);
-      if (access(name, F_OK) != -1)
+      if ((name[0] == '.' || name[0] == '/') && access(name, F_OK) != -1)
 	return (4);
     }
   return (0);
