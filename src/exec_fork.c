@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Mon Jun  6 17:54:49 2011 timothee maurin
+** Last update Tue Jun  7 18:19:51 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@
 char		*traitement_var(char *str, int *j, t_shell *shell)
 {
   char		*bef = my_strcopynalloc_gen(str, *j);
-  char		*af;
+  char		*af ;
   int		i = *j;
   char		*buf;
   char		*tmp;
@@ -64,6 +64,18 @@ void		modif_cmd(t_commande *cmd, t_shell *shell)
     }
 }
 
+void		wait_test(int returnfork)
+{
+  int		status = 0;
+
+  if (xfork(0) == 0)
+    {
+      while (returnfork != wait4(returnfork, &status, WNOWAIT, 0))
+	usleep(100);
+      exit(42);
+    }
+}
+
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
                                int *tab, char *str)
 {
@@ -71,18 +83,22 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
   int		status = 0;
 
   modif_cmd(cmd, shell);
-  if ((returnfork = xfork()))
+  if ((returnfork = xfork(0)))
     {
       if (tab)
-        {
-          if (tab[0] != 0)
-            xclose(tab[0]);
-          if (tab[1] != 0)
-            xclose(tab[1]);
-        }
-      while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
-        usleep(100);
-      return (return_good_return_value(status));
+	{
+	  if (tab[0] != 0)
+	    xclose(tab[0]);
+	  if (tab[1] != 0)
+	    xclose(tab[1]);
+	}
+      if (tab[1] == 0 || xpipe(&tab[1], 1))
+	{
+	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
+	    usleep(100);
+	  return (xfork(1) * 0 + return_good_return_value(status));
+	}
+      return (0);
     }
   else
     fils_fonction(cmd, shell, tab, str);
