@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Tue Jun  7 17:49:07 2011 timothee maurin
+** Last update Wed Jun  8 18:33:04 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -84,24 +84,24 @@ char		*funct_alias(char *cmd, t_shell *sh)
   char		*tmp;
   int		i = 0;
   int		n;
-  int		tmp2;
+  int		tmp2 = 0;
   t_list_var	*alias = 0;
 
   while (cmd[i] != '\0')
     {
-      while ((cmd[i] == 9 || cmd[i] == ' ') && cmd[i] != '\0')
-	i++;
+      while ((cmd[i] == 9 || cmd[i] == ' ' || cmd[i] == ';' || cmd[i] == '|')
+	     && cmd[i] != '\0' && ((i = i + 1) || 1));
       n = i;
-      while (cmd[i] != 9 && cmd[i] != ' ' && cmd[i] != '\0' && (i++ || 1));
-      tmp2 = i - n;
-      tmp = strndup(&(cmd[n]), tmp2);
+      while (cmd[i] != 9 && cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|'
+	     && cmd[i] != '\0' && (i++ || 1));
+      tmp = strndup(&(cmd[n]), i - n);
       if (!(which_type(cmd, n, &tmp2)) && check_if_alias(tmp, sh->alias) == 1)
 	{
 	  alias = find_good_alias(sh->alias, tmp);
 	  if (alias && alias->name && alias->var)
 	    if (strlen(tmp) + strlen(alias->var) > 0
 		&& strlen(tmp) + strlen(alias->var) + strlen(cmd) > 8192)
-	      realloc(cmd, strlen(tmp) + strlen(alias->var) + strlen(cmd));
+	      xrealloc(cmd, strlen(tmp) + strlen(alias->var) + strlen(cmd));
 	  cmd = replace_alias(alias->var, cmd, n, i);
 	}
     }
