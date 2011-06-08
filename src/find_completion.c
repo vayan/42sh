@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sun May 22 15:39:37 2011 timothee maurin
-** Last update Sun May 22 15:40:16 2011 timothee maurin
+** Last update Wed Jun  8 18:06:26 2011 timothee maurin
 */
 
 #include <string.h>
@@ -24,6 +24,8 @@ t_completion	*find_completion(int type, char *buf, int pos, int begin)
   t_shell	*tmp;
 
   tmp = recup_shell(0);
+  if (type && buf[begin - 1] == ';')
+    begin++;
   if (type)
     return (find_commande(buf, pos, begin - 1, tmp->tab_hach));
   else
