@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Mon May 23 11:08:06 2011 maxime constantinian
+** Last update Wed Jun  8 17:43:42 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -42,9 +42,9 @@ int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
     {
       tab[1] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab, 0);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell, tab);
+	exec_type_cmd(cmd->next[0], shell, tab, 0);
     }
   return (0);
 }
@@ -68,9 +68,9 @@ int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
     {
       tab[1] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab, 0);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell, tab);
+	exec_type_cmd(cmd->next[0], shell, tab, 0);
     }
   return (0);
 }
@@ -93,9 +93,9 @@ int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
     {
       tab[0] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab, 0);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell, tab);
+	exec_type_cmd(cmd->next[0], shell, tab, 0);
     }
   return (0);
 }
@@ -143,9 +143,9 @@ int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
     {
       tab[0] = fd;
       if (cmd->next[1]->next && cmd->next[1]->next[1])
-	exec_type_cmd(cmd->next[1]->next[1], shell, tab);
+	exec_type_cmd(cmd->next[1]->next[1], shell, tab, 0);
       if (cmd->next[0])
-	exec_type_cmd(cmd->next[0], shell, tab);
+	exec_type_cmd(cmd->next[0], shell, tab, 0);
     }
   return (0);
 }

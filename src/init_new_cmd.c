@@ -5,9 +5,10 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Fri Apr 29 19:02:04 2011 maxime constantinian
-** Last update Fri May 20 15:51:49 2011 timothee maurin
+** Last update Wed Jun  8 19:06:29 2011 maxime constantinian
 */
 
+#include	<unistd.h>
 #include	"shell.h"
 #include	"prototype.h"
 
