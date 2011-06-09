@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Tue Jun  7 18:19:51 2011 maxime constantinian
+** Last update Thu Jun  9 18:05:52 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -64,27 +64,24 @@ void		modif_cmd(t_commande *cmd, t_shell *shell)
     }
 }
 
-void		wait_test(int returnfork)
-{
-  int		status = 0;
-
-  if (xfork(0) == 0)
-    {
-      while (returnfork != wait4(returnfork, &status, WNOWAIT, 0))
-	usleep(100);
-      exit(42);
-    }
-}
-
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
                                int *tab, char *str)
 {
-  int		returnfork;
+  static pid_t	test;
+  pid_t		returnfork;
   int		status = 0;
 
   modif_cmd(cmd, shell);
   if ((returnfork = xfork(0)))
     {
+      if (test == 0)
+	{
+	  setpgid(returnfork, returnfork);
+	  tcsetpgrp(0, returnfork);
+	  test = returnfork;
+	}
+      else
+	setpgid(returnfork, test);
       if (tab)
 	{
 	  if (tab[0] != 0)
@@ -96,6 +93,7 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
 	{
 	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
 	    usleep(100);
+	  tcsetpgrp(0, getpgrp());
 	  return (xfork(1) * 0 + return_good_return_value(status));
 	}
       return (0);

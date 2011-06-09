@@ -5,24 +5,26 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Wed Jun  8 10:31:56 2011 maxime constantinian
+** Last update Wed Jun  8 19:07:01 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
 # define	PROTYPE_H__
 
+#include	<unistd.h>
+
 char		*funct_alias(char *cmd, t_shell *sh);
 int		return_type_red(char *str);
 char		*my_strcopynalloc(char *str);
 char		*my_strcopynalloc_gen(char *str, int len);
-int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tabs);
+int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *ta, int i);
 char		*my_get_env(char *str, char **env);
 void		*xmalloc(int size);
 char		**str_to_wordtab(char *str);
 char		**str_to_wordtab_red(char *str);
 char		*recup_hach(t_hach_bin *num, char *name);
 int		*xpipe(int *num, int mode);
-int		xfork(int mode);
+pid_t		xfork(int mode);
 void		xdup2(int oldfd, int newfd);
 int		isfile(char *str);
 int		my_strlen_hach(char *str);

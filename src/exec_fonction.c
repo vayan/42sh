@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Tue Jun  7 18:22:18 2011 maxime constantinian
+** Last update Wed Jun  8 17:37:12 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -39,26 +39,24 @@ void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int		ret;
 
-  ret = exec_type_cmd(cmd->next[0], shell, tab);
-  if (ret == 0)
-    {
-      tab[0] = 0;
-      tab[1] = 0;
-      exec_type_cmd(cmd->next[1], shell, tab);
-    }
+  ret = exec_type_cmd(cmd->next[0], shell, tab, 0);
+  tab[0] = 0;
+  tab[1] = 0;
+  exec_type_cmd(cmd->next[1], shell, tab, ret);
 }
 
 void		or_fonction(t_commande *cmd, t_shell *shell, int *tab)
 {
   int	ret;
 
-  ret = exec_type_cmd(cmd->next[0], shell, tab);
+  ret = exec_type_cmd(cmd->next[0], shell, tab, 0);
+  tab[0] = 0;
+  tab[1] = 0;
   if (ret != 0)
-    {
-      tab[0] = 0;
-      tab[1] = 0;
-      exec_type_cmd(cmd->next[1], shell, tab);
-    }
+    ret = 0;
+  else
+    ret = 1;
+  exec_type_cmd(cmd->next[1], shell, tab, ret);
 }
 
 int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
@@ -77,31 +75,33 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
       xclose(tab_pipe[1]);
       fprintf(stderr, "42sh: Ambiguous redirect.\n");
     }
-  exec_type_cmd(cmd->next[0], shell, tab_ret);
+  exec_type_cmd(cmd->next[0], shell, tab_ret, 0);
   tab_ret[0] = tab_pipe[0];
   tab_ret[1] = 0;
-  return (exec_type_cmd(cmd->next[1], shell, tab_ret));
+  return (exec_type_cmd(cmd->next[1], shell, tab_ret, 0));
 }
 
-int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab)
+int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret = 0;
 
-  if (cmd->type == OP_PIP)
+  if (i == 0 && cmd->type == OP_PIP)
     ret = pipe_fonction(cmd, shell, tab);
   if (cmd->type == OP_AND)
     and_fonction(cmd, shell, tab);
   if (cmd->type == OP_OR)
     or_fonction(cmd, shell, tab);
-  if (cmd->type == CMD)
+  if (i == 0 && cmd->type == CMD)
     ret = exec_fonction(cmd, shell, tab);
-  if (cmd->type == OP_SRR)
+  if (i == 0 && cmd->type == OP_SRR)
     ret = srd_fonction(cmd, shell, tab);
-  if (cmd->type == OP_DRR)
+  if (i == 0 && cmd->type == OP_DRR)
     ret = drd_fonction(cmd, shell, tab);
-  if (cmd->type == OP_DRL)
+  if (i == 0 && cmd->type == OP_DRL)
     ret = drl_fonction(cmd, shell, tab);
-  if (cmd->type == OP_SRL)
+  if (i == 0 && cmd->type == OP_SRL)
     ret = srl_fonction(cmd, shell, tab);
+  if (ret == 0 && i != 0)
+    ret = i;
   return (ret);
 }

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Tue Jun  7 17:05:54 2011 timothee maurin
+** Last update Thu Jun  9 17:55:27 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -56,6 +56,7 @@ int		exec_in_builtin(char **cmdeuh, t_shell *shell,
 void		fils_fonction(t_commande *cmd, t_shell *shell,
 			      int *tab, char *str)
 {
+  //  fprintf(stderr, "42sh: setpgrp failed : %s.\n", strerror(errno));
   if (tab && tab[1])
     xdup2(tab[1], 1);
   if (tab && tab[0])
@@ -106,11 +107,11 @@ void		exec_cmd(t_shell *shell)
     {
       while (shell->commande->cmd->next[i])
 	{
-	  exec_type_cmd(shell->commande->cmd->next[i], shell, tab);
+	  exec_type_cmd(shell->commande->cmd->next[i], shell, tab, 0);
 	  i++;
 	}
     }
   else
-    exec_type_cmd(shell->commande->cmd, shell, tab);
+    exec_type_cmd(shell->commande->cmd, shell, tab, 0);
   free_graph_parseur(shell->commande->cmd);
 }
