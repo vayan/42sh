@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Thu Jun  9 18:05:52 2011 maxime constantinian
+** Last update Thu Jun  9 19:50:53 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -75,13 +75,13 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
   if ((returnfork = xfork(0)))
     {
       if (test == 0)
-	{
-	  setpgid(returnfork, returnfork);
-	  tcsetpgrp(0, returnfork);
-	  test = returnfork;
-	}
+      	{
+      	  setpgid(returnfork, returnfork);
+      	  tcsetpgrp(0, returnfork);
+      	  test = returnfork;
+      	}
       else
-	setpgid(returnfork, test);
+      	setpgid(returnfork, test);
       if (tab)
 	{
 	  if (tab[0] != 0)
@@ -93,7 +93,7 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
 	{
 	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
 	    usleep(100);
-	  tcsetpgrp(0, getpgrp());
+	  test = 0;
 	  return (xfork(1) * 0 + return_good_return_value(status));
 	}
       return (0);

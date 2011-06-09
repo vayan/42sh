@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Mar  1 18:27:42 2011 timothee maurin
-** Last update Wed Jun  8 19:05:45 2011 maxime constantinian
+** Last update Thu Jun  9 19:56:02 2011 timothee maurin
 */
 
 #include <wait.h>

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Wed Jun  8 19:07:01 2011 maxime constantinian
+** Last update Thu Jun  9 19:59:35 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -37,7 +37,7 @@ void		check_or(char *str, t_commande *cmd);
 void		check_and(char *str, t_commande *cmd);
 int		if_have_sep(char *str);
 int		xwrite(int, char *, int);
-void		copy_env(char **env, t_shell *shell);
+int		copy_env(char **env, t_shell *shell);
 void		add_hachtab_to_shell(t_shell *shell);
 void		parser(char *str, t_shell *shell);
 void		exec_cmd(t_shell *shell);

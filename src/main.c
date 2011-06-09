@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Mon Jun  6 18:07:43 2011 timothee maurin
+** Last update Thu Jun  9 19:59:00 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -35,20 +35,26 @@ void		main_bis(t_shell *shell)
   exit(0);
 }
 
+void            nothing(int signal)
+{
+  signal = signal;
+  tcsetpgrp(0, getpgrp());
+}
+
 int		main(int ac, char **av, char **envp)
 {
   t_shell		*shell = xmalloc(sizeof(t_shell));
   struct termios	term2;
 
   ac = ac;
-  av = av;
-  copy_env(envp, shell);
+  av = av + copy_env(envp, shell);
   add_hachtab_to_shell(shell);
   recup_shell(shell);
   if (init_termios(&term2))
     main_bis(shell);
   desactivate_mode_raw(&term2);
   parse_rc(shell);
+  signal(SIGTTOU, nothing);
   while (42)
     {
       signal(SIGINT, &funct_noexit);
