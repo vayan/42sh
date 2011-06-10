@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Wed Jun  8 17:37:12 2011 maxime constantinian
+** Last update Fri Jun 10 11:52:25 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -35,28 +35,29 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
   return (1);
 }
 
-void		and_fonction(t_commande *cmd, t_shell *shell, int *tab)
+void		and_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret;
 
-  ret = exec_type_cmd(cmd->next[0], shell, tab, 0);
+  ret = exec_type_cmd(cmd->next[0], shell, tab, i);
   tab[0] = 0;
   tab[1] = 0;
   exec_type_cmd(cmd->next[1], shell, tab, ret);
 }
 
-void		or_fonction(t_commande *cmd, t_shell *shell, int *tab)
+void		or_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
-  int	ret;
+  int		ret;
 
-  ret = exec_type_cmd(cmd->next[0], shell, tab, 0);
+  ret = exec_type_cmd(cmd->next[0], shell, tab, i);
   tab[0] = 0;
   tab[1] = 0;
   if (ret != 0)
     ret = 0;
   else
     ret = 1;
-  exec_type_cmd(cmd->next[1], shell, tab, ret);
+  if (i == 0)
+    exec_type_cmd(cmd->next[1], shell, tab, ret);
 }
 
 int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
@@ -88,9 +89,9 @@ int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
   if (i == 0 && cmd->type == OP_PIP)
     ret = pipe_fonction(cmd, shell, tab);
   if (cmd->type == OP_AND)
-    and_fonction(cmd, shell, tab);
+    and_fonction(cmd, shell, tab, i);
   if (cmd->type == OP_OR)
-    or_fonction(cmd, shell, tab);
+    or_fonction(cmd, shell, tab, i);
   if (i == 0 && cmd->type == CMD)
     ret = exec_fonction(cmd, shell, tab);
   if (i == 0 && cmd->type == OP_SRR)
@@ -103,5 +104,5 @@ int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
     ret = srl_fonction(cmd, shell, tab);
   if (ret == 0 && i != 0)
     ret = i;
-  return (ret);
+  return (ret + i);
 }
