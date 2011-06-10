@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Tue Jun  7 17:09:18 2011 timothee maurin
+** Last update Fri Jun 10 15:11:56 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -18,7 +18,8 @@ int		check_if_builtin(char *name)
   if (strcmp(name, "env") == 0 || strcmp(name, "setenv") == 0
       || strcmp(name, "unsetenv") == 0 || strcmp(name, "echo") == 0
       || strcmp(name, "exit") == 0 || strcmp(name, "cd") == 0
-      || strcmp(name, "set") == 0 || strcmp(name, "unset") == 0)
+      || strcmp(name, "set") == 0 || strcmp(name, "unset") == 0
+      || strcmp(name, "alias") == 0 || strcmp(name, "unalias") == 0)
     return (1);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Wed Jun  8 19:04:01 2011 timothee maurin
+** Last update Fri Jun 10 16:11:37 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -58,24 +58,15 @@ int		my_set_alias(char **av, int *tab)
   char		**tmp = xmalloc(4 * sizeof(*tmp));
   t_shell	*shell = recup_shell(0);
   int		i = 0;
+  t_list_var	*end;
 
   if (!(shell->alias))
     shell->alias = xmalloc(sizeof(t_list_var));
+  end = shell->alias;
+  while (end->next != 0)
+    end = end->next;
   if (av[1] == 0 && free_tmp_alias(tmp, 0))
     return (aff_var(shell->alias, tab));
-  while (av[++i])
-    {
-      tmp[2] = 0;
-      if (check_equal(av[i]) == 1)
-	tmp[1] = strdup(av[i]);
-      else if ((tmp_nb = strlen_equal(av[i])))
-	{
-	  tmp[1] =  strndup(av[i], tmp_nb);
-	  tmp[2] = strdup(&(av[i][tmp_nb + 1]));
-	}
-      add_to_set_list(tmp, shell->alias);
-      free_tmp_alias(tmp, 1);
-    }
-  free_tmp_alias(tmp, 0);
+  test_alias(av, &(shell->alias), &end);
   return (0);
 }
