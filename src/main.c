@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Thu Jun  9 19:59:00 2011 timothee maurin
+** Last update Fri Jun 10 19:38:02 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -37,8 +37,15 @@ void		main_bis(t_shell *shell)
 
 void            nothing(int signal)
 {
-  signal = signal;
-  tcsetpgrp(0, getpgrp());
+  static int	sauv;
+
+  if (signal == SIGTTOU || signal == SIGTTIN)
+    {
+      if (tcgetpgrp(0) != sauv)
+	tcsetpgrp(0, sauv);
+    }
+  else
+    sauv = signal;
 }
 
 int		main(int ac, char **av, char **envp)
@@ -48,12 +55,14 @@ int		main(int ac, char **av, char **envp)
 
   ac = ac;
   av = av + copy_env(envp, shell);
+  nothing(getpgrp());
   add_hachtab_to_shell(shell);
   recup_shell(shell);
   if (init_termios(&term2))
     main_bis(shell);
   desactivate_mode_raw(&term2);
   parse_rc(shell);
+  signal(SIGTTIN, nothing);
   signal(SIGTTOU, nothing);
   while (42)
     {
