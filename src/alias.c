@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Fri Jun 10 16:42:45 2011 timothee maurin
+** Last update Fri Jun 10 17:35:11 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -81,10 +81,9 @@ t_list_var	*find_good_alias(t_list_var *al, char *tmp)
   return (last_one);
 }
 
-char		*funct_alias(char *cmd, t_shell *sh)
+char		*funct_alias(char *cmd, t_shell *sh, int i)
 {
   char		*tmp;
-  int		i = 0;
   int		n;
   int		tmp2 = 0;
   t_list_var	*alias = 0;
@@ -97,7 +96,8 @@ char		*funct_alias(char *cmd, t_shell *sh)
       while (cmd[i] != 9 && cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|'
 	     && cmd[i] != '\0' && (i++ || 1));
       tmp = strndup(&(cmd[n]), i - n);
-      if (!(which_type_alias(cmd, n, &tmp2)) && check_if_alias(tmp, sh->alias) == 1)
+      if (!(which_type_alias(cmd, n, &tmp2))
+	  && check_if_alias(tmp, sh->alias) == 1)
 	{
 	  alias = find_good_alias(sh->alias, tmp);
 	  if (alias && alias->name && alias->var)

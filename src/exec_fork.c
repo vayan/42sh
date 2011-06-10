@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Fri Jun 10 15:25:28 2011 timothee maurin
+** Last update Fri Jun 10 19:13:49 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -74,14 +74,8 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
   modif_cmd(cmd, shell);
   if ((returnfork = xfork(0)))
     {
-      if (test == 0)
-      	{
-      	  setpgid(returnfork, returnfork);
-      	  tcsetpgrp(0, returnfork);
-      	  test = returnfork;
-      	}
-      else
-      	setpgid(returnfork, test);
+      setpgid(returnfork, returnfork);
+      tcsetpgrp(0, returnfork);
       if (tab)
 	{
 	  if (tab[0] != 0)

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Thu Jun  9 19:59:35 2011 timothee maurin
+** Last update Fri Jun 10 17:36:12 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -13,7 +13,7 @@
 
 #include	<unistd.h>
 
-char		*funct_alias(char *cmd, t_shell *sh);
+char		*funct_alias(char *cmd, t_shell *sh, int i);
 int		return_type_red(char *str);
 char		*my_strcopynalloc(char *str);
 char		*my_strcopynalloc_gen(char *str, int len);

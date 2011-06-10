@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Thu Jun  9 17:55:27 2011 maxime constantinian
+** Last update Fri Jun 10 19:29:49 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -61,6 +61,8 @@ void		fils_fonction(t_commande *cmd, t_shell *shell,
     xdup2(tab[1], 1);
   if (tab && tab[0])
     xdup2(tab[0], 0);
+  setpgid(0, 0);
+  tcsetpgrp(0, getpgrp());
   if (execve(str, cmd->cmd, shell->env) == -1)
     exit(fprintf(stderr, "42sh: execve failed : %s.\n", strerror(errno)));
 }
