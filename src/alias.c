@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Wed Jun  8 18:33:04 2011 timothee maurin
+** Last update Fri Jun 10 16:42:45 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -36,7 +36,7 @@ char		*replace_alias(char *to_place, char *cmd, int dep, int arr)
 
 int		already_found(t_list_var *alias, t_list_var *used)
 {
-  while (used->next && strcmp(alias->name, used->name))
+  while (alias && alias->name && used->next && strcmp(alias->name, used->name))
     used = used->next;
   if (used->next)
     return (1);
@@ -45,8 +45,10 @@ int		already_found(t_list_var *alias, t_list_var *used)
 
 t_list_var		*dup_name_var(t_list_var *al, t_list_var *verif)
 {
-  verif->name = strdup(al->name);
-  verif->var = strdup(al->var);
+  if (al->name)
+    verif->name = strdup(al->name);
+  if (al->var)
+    verif->var = strdup(al->var);
   return (al);
 }
 
@@ -63,7 +65,7 @@ t_list_var	*find_good_alias(t_list_var *al, char *tmp)
       last_one = dup_name_var(al, verif);
       while (al && al->next != 0 && ((al = save) || 1))
 	{
-	  while (al->next && strcmp(al->name, verif->var) != 0
+	  while (al && al->next && strcmp(al->name, verif->var) != 0
 		 && (al = al->next));
 	  if (already_found(al, verif_begin))
 	    al = 0;
@@ -95,7 +97,7 @@ char		*funct_alias(char *cmd, t_shell *sh)
       while (cmd[i] != 9 && cmd[i] != ' ' && cmd[i] != ';' && cmd[i] != '|'
 	     && cmd[i] != '\0' && (i++ || 1));
       tmp = strndup(&(cmd[n]), i - n);
-      if (!(which_type(cmd, n, &tmp2)) && check_if_alias(tmp, sh->alias) == 1)
+      if (!(which_type_alias(cmd, n, &tmp2)) && check_if_alias(tmp, sh->alias) == 1)
 	{
 	  alias = find_good_alias(sh->alias, tmp);
 	  if (alias && alias->name && alias->var)

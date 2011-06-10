@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Thu Jun  9 19:50:53 2011 timothee maurin
+** Last update Fri Jun 10 15:25:28 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -122,8 +122,10 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
     ret = my_set(cmd->cmd, tab_built);
   if (strcmp(cmd->cmd[0], "unset") == 0)
     ret = my_unset(cmd->cmd);
-  if (strcmp(cmd->cmd[0], "unsetenv") == 0)
-    ret = my_unsetenv(cmd->cmd, shell->env);
+  if (strcmp(cmd->cmd[0], "alias") == 0)
+    ret = my_set_alias(cmd->cmd, tab_built);
+  if (strcmp(cmd->cmd[0], "unalias") == 0)
+    ret = my_unset_alias(cmd->cmd, tab_built);
   update_var_with_ret(ret);
   return (ret);
 }
