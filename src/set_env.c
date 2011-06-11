@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Fri Apr 29 10:39:58 2011 yann vaillant
-** Last update Sun May 22 15:58:56 2011 timothee maurin
+** Last update Sat Jun 11 18:56:08 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -80,7 +80,7 @@ int	my_setenv(char **value, char **env, int *tab)
 	}
       free(name_env);
     }
-  env = realloc(env, (x + 2) * sizeof(*env));
+  env = xrealloc(env, (x + 2) * sizeof(*env));
   env[x] = add_to_env + 0 * *(env[x + 1] = 0);
   shell->env = env;
   return (0);

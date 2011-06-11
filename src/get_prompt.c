@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Sun May 22 13:40:59 2011 Vaillant Yann
+** Last update Sat Jun 11 18:54:40 2011 maxime constantinian
 */
 
 #include <string.h>
@@ -41,8 +41,8 @@ char	*test_balise(char *prompt, int i)
 int	add_to_prompt(char **format_prompt, char **temp, int *z, int *i)
 {
   *z = strlen(*format_prompt) + 2;
-  *format_prompt = realloc(*format_prompt,
-			   ((*z + strlen(*temp)) * sizeof(char)));
+  *format_prompt = xrealloc(*format_prompt,
+			    ((*z + strlen(*temp)) * sizeof(char)));
 
   strcat(*format_prompt, *temp);
   free(*temp);
@@ -66,7 +66,7 @@ char	*parse_prompt(char *prompt)
       else if (prompt[i])
 	{
 	  x = strlen(format_prompt);
-	  format_prompt = realloc(format_prompt, (x + 2 * sizeof(char)));
+	  format_prompt = xrealloc(format_prompt, (x + 2 * sizeof(char)));
 	  format_prompt[x] = prompt[i];
 	  format_prompt[x + 1] = '\0';
 	}

@@ -5,12 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sat Jun 11 18:12:43 2011 timothee maurin
+** Last update Sat Jun 11 19:05:01 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<string.h>
+#include	<errno.h>
 #include	<unistd.h>
 #include	<sys/wait.h>
 #include	"shell.h"
@@ -36,7 +37,7 @@ char		*traitement_var(char *str, int *j, t_shell *shell)
 	free(bef);
 	return (str + (*j = i) * 0);
       }
-  tmp = realloc(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1);
+  tmp = xrealloc(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1);
   snprintf(tmp, strlen(bef) + strlen(buf) + strlen(af) + 1,
 	   "%s%s%s", bef, buf, af);
   *j = strlen(bef) + strlen(buf);
@@ -67,27 +68,24 @@ void		modif_cmd(t_commande *cmd, t_shell *shell)
 int		exec_with_fork(t_commande *cmd, t_shell *shell,
                                int *tab, char *str)
 {
-  static pid_t	test;
-  pid_t		returnfork;
+  int		returnfork;
   int		status = 0;
 
   modif_cmd(cmd, shell);
   if ((returnfork = xfork(0)))
     {
-      setpgid(returnfork, returnfork);
-      tcsetpgrp(0, returnfork);
-      if (tab)
-	{
-	  if (tab[0] != 0)
-	    xclose(tab[0]);
-	  if (tab[1] != 0)
-	    xclose(tab[1]);
-	}
+      if (setpgid(returnfork, returnfork) == -1)
+	fprintf(stderr, "42sh: setpgid failed: %s", strerror(errno));
+      if (tcsetpgrp(0, returnfork) == -1)
+	fprintf(stderr, "42sh: tcsetpgrp failed: %s", strerror(errno));
+      if (tab && tab[0] != 0)
+	xclose(tab[0]);
+      if (tab && tab[1] != 0)
+	xclose(tab[1]);
       if (tab[1] == 0 || xpipe(&tab[1], 1))
 	{
 	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
 	    usleep(100);
-	  test = 0;
 	  return (xfork(1) * 0 + return_good_return_value(status));
 	}
       return (0);

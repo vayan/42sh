@@ -5,13 +5,11 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sat Jun 11 18:13:18 2011 timothee maurin
+** Last update Sat Jun 11 19:12:23 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
 # define	PROTYPE_H__
-
-#include	<unistd.h>
 
 int		aff_var(t_list_var *list_var, int *tb);
 int             check_if_have_cmd(t_commande *cmd);
@@ -29,7 +27,7 @@ char		**str_to_wordtab(char *str);
 char		**str_to_wordtab_red(char *str);
 char		*recup_hach(t_hach_bin *num, char *name);
 int		*xpipe(int *num, int mode);
-pid_t		xfork(int mode);
+int		xfork(int mode);
 void		xdup2(int oldfd, int newfd);
 int		isfile(char *str);
 int		my_strlen_hach(char *str);
@@ -174,5 +172,6 @@ int		xopen(char *pathname, int flags);
 void		free_var(t_list_var *list);
 int		check_if_alias(char *name, t_list_var *alias);
 void		*xrealloc(void *ptr, int size);
+void		(*xsignal(int sig, void (*func)(int)))(int);
 
 #endif
