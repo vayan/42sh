@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Fri Jun 10 19:29:49 2011 timothee maurin
+** Last update Sat Jun 11 00:07:19 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -109,6 +109,8 @@ void		exec_cmd(t_shell *shell)
     {
       while (shell->commande->cmd->next[i])
 	{
+	  tab[0] = 0;
+	  tab[1] = 0;
 	  exec_type_cmd(shell->commande->cmd->next[i], shell, tab, 0);
 	  i++;
 	}
