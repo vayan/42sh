@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Sat Jun 11 16:08:52 2011 maxime constantinian
+** Last update Sat Jun 11 18:00:49 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -39,6 +39,8 @@ int		and_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret;
 
+  if (check_if_have_cmd(cmd) == 0)
+    return (fprintf(stderr, "Invalid null command.\n"));
   ret = exec_type_cmd(cmd->next[0], shell, tab, i);
   tab[0] = 0;
   tab[1] = 0;
@@ -50,6 +52,8 @@ int		or_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret;
 
+  if (check_if_have_cmd(cmd) == 0)
+    return (fprintf(stderr, "Invalid null command.\n"));
   ret = exec_type_cmd(cmd->next[0], shell, tab, i);
   tab[0] = 0;
   tab[1] = 0;
@@ -66,6 +70,8 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
   int		tab_pipe[2];
   int		tab_ret[2];
 
+  if (check_if_have_cmd(cmd) == 0)
+    return (fprintf(stderr, "Invalid null command.\n"));
   xpipe(tab_pipe, 0);
   tab_ret[0] = tab[0];
   tab_ret[1] = tab[1];
@@ -95,6 +101,10 @@ int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
     ret = or_fonction(cmd, shell, tab, i);
   if (i == 0 && cmd->type == CMD)
     ret = exec_fonction(cmd, shell, tab);
+  if (cmd->type == OP_SRR || cmd->type == OP_DRR
+      || cmd->type == OP_SRL || cmd->type == OP_DRL)
+    if (check_if_have_cmd(cmd) == 0)
+      return (fprintf(stderr, "Invalid null command.\n"));
   if (i == 0 && cmd->type == OP_SRR)
     ret = srd_fonction(cmd, shell, tab);
   if (i == 0 && cmd->type == OP_DRR)

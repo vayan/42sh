@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Fri Jun 10 17:58:00 2011 maxime constantinian
+** Last update Sat Jun 11 16:37:44 2011 maxime constantinian
 */
 
 #include	<string.h>
