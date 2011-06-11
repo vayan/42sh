@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed Mar 16 20:12:26 2011 maxime constantinian
-** Last update Sat Mar 26 01:53:57 2011 maxime constantinian
+** Last update Sat Jun 11 16:09:27 2011 maxime constantinian
 */
 
 int		my_getnbr(char *str)
@@ -17,6 +17,8 @@ int		my_getnbr(char *str)
   i = 0;
   result = 0;
   ifneg = 0;
+  if (str == 0)
+    return (0);
   while (str[i] && str[i] == '-')
     {
       ifneg = 1;
