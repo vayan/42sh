@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Fri Jun 10 17:35:11 2011 timothee maurin
+** Last update Sun Jun 12 00:59:31 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -14,14 +14,13 @@
 
 char		*replace_alias(char *to_place, char *cmd, int dep, int arr)
 {
+  int		tmp = arr;
   int		i = 0;
 
   while (i != -1 && to_place[i] != '\0')
     {
       if (i + dep < arr)
-	{
-	  cmd[i + dep] = to_place[i];
-	}
+	cmd[i + dep] = to_place[i];
       else
 	{
 	  my_strcpy_buf(&(cmd[i + dep + strlen(&(to_place[i]))]),
@@ -31,6 +30,11 @@ char		*replace_alias(char *to_place, char *cmd, int dep, int arr)
 	}
       i++;
     }
+  while (cmd[tmp] != ' ' && cmd[tmp] != 9 && cmd[tmp] != ';' && cmd[tmp] != '|'
+	 && cmd[tmp] != '&' && cmd[tmp] != '\0')
+    tmp++;
+  if (i + dep < arr && i != -1)
+    my_strcpy(&(cmd[dep + i]), &(cmd[tmp]));
   return (cmd);
 }
 
