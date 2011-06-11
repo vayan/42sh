@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Fri Jun 10 11:52:25 2011 maxime constantinian
+** Last update Sat Jun 11 15:53:45 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -35,17 +35,17 @@ int		exec_fonction(t_commande *cmd, t_shell *shell, int *tab)
   return (1);
 }
 
-void		and_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
+int		and_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret;
 
   ret = exec_type_cmd(cmd->next[0], shell, tab, i);
   tab[0] = 0;
   tab[1] = 0;
-  exec_type_cmd(cmd->next[1], shell, tab, ret);
+  return (exec_type_cmd(cmd->next[1], shell, tab, ret));
 }
 
-void		or_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
+int		or_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret;
 
@@ -56,8 +56,7 @@ void		or_fonction(t_commande *cmd, t_shell *shell, int *tab, int i)
     ret = 0;
   else
     ret = 1;
-  if (i == 0)
-    exec_type_cmd(cmd->next[1], shell, tab, ret);
+  return (exec_type_cmd(cmd->next[1], shell, tab, ret));
 }
 
 int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
@@ -84,14 +83,14 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
 
 int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
-  int		ret = 0;
+  int		ret = i;
 
   if (i == 0 && cmd->type == OP_PIP)
     ret = pipe_fonction(cmd, shell, tab);
   if (cmd->type == OP_AND)
-    and_fonction(cmd, shell, tab, i);
+    ret = and_fonction(cmd, shell, tab, i);
   if (cmd->type == OP_OR)
-    or_fonction(cmd, shell, tab, i);
+    ret = or_fonction(cmd, shell, tab, i);
   if (i == 0 && cmd->type == CMD)
     ret = exec_fonction(cmd, shell, tab);
   if (i == 0 && cmd->type == OP_SRR)
@@ -102,7 +101,5 @@ int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
     ret = drl_fonction(cmd, shell, tab);
   if (i == 0 && cmd->type == OP_SRL)
     ret = srl_fonction(cmd, shell, tab);
-  if (ret == 0 && i != 0)
-    ret = i;
-  return (ret + i);
+  return (ret);
 }
