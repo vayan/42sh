@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sat Jun 11 17:04:07 2011 maxime constantinian
+## Last update Sat Jun 11 19:09:52 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -117,7 +117,8 @@ SRC=    src/main.c \
 	src/alias.c \
 	src/xrealloc.c \
 	src/my_alias.c \
-	src/check_if_have_cmd.c
+	src/check_if_have_cmd.c \
+	src/xsignal.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 

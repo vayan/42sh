@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Tue Mar  1 18:27:42 2011 timothee maurin
-** Last update Thu Jun  9 19:56:02 2011 timothee maurin
+** Last update Sat Jun 11 18:26:59 2011 maxime constantinian
 */
 
 #include <wait.h>
@@ -35,7 +35,7 @@ int		kill_all(int *sauv, int i)
   return (ret);
 }
 
-pid_t		xfork(int mode)
+int		xfork(int mode)
 {
   static int	*sauv = 0;
   static int	i = 0;

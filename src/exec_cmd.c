@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat Jun 11 00:07:19 2011 timothee maurin
+** Last update Sat Jun 11 19:02:46 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -56,7 +56,6 @@ int		exec_in_builtin(char **cmdeuh, t_shell *shell,
 void		fils_fonction(t_commande *cmd, t_shell *shell,
 			      int *tab, char *str)
 {
-  //  fprintf(stderr, "42sh: setpgrp failed : %s.\n", strerror(errno));
   if (tab && tab[1])
     xdup2(tab[1], 1);
   if (tab && tab[0])
@@ -81,6 +80,8 @@ void		aff_warning(int stat_val)
     fprintf(stderr, "Stack fault!\n");
   if (stat_val == SIGPIPE)
     fprintf(stderr, "Broken pipe!\n");
+  if (stat_val == SIGBUS)
+    fprintf(stderr, "Bus error (bad memory access)!\n");
 }
 
 int		return_good_return_value(int stat_val)
