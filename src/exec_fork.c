@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Fri Jun 10 19:13:49 2011 timothee maurin
+** Last update Fri Jun 10 23:18:36 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -106,6 +106,8 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
     ret = exec_cd(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "setenv") == 0)
     ret = my_setenv(cmd->cmd, shell->env, tab_built);
+  if (strcmp(cmd->cmd[0], "unsetenv") == 0)
+    ret = my_unsetenv(cmd->cmd, shell->env);
   if (strcmp(cmd->cmd[0], "env") == 0)
     ret = env_funct(cmd->cmd, shell->env, tab_built);
   if (strcmp(cmd->cmd[0], "echo") == 0)
