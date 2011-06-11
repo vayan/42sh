@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sat Jun 11 19:05:01 2011 maxime constantinian
+** Last update Sat Jun 11 19:34:00 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -75,9 +75,9 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
   if ((returnfork = xfork(0)))
     {
       if (setpgid(returnfork, returnfork) == -1)
-	fprintf(stderr, "42sh: setpgid failed: %s", strerror(errno));
+	fprintf(stderr, "42sh: setpgid failed: %s\n", strerror(errno));
       if (tcsetpgrp(0, returnfork) == -1)
-	fprintf(stderr, "42sh: tcsetpgrp failed: %s", strerror(errno));
+	fprintf(stderr, "42sh: tcsetpgrp failed: %s\n", strerror(errno));
       if (tab && tab[0] != 0)
 	xclose(tab[0]);
       if (tab && tab[1] != 0)

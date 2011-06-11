@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue May 17 14:19:03 2011 maxime constantinian
-** Last update Fri Jun 10 15:11:56 2011 timothee maurin
+** Last update Sat Jun 11 19:43:08 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -26,9 +26,9 @@ int		check_if_builtin(char *name)
 
 int		check_if_alias(char *name, t_list_var *alias)
 {
-  while (alias->next != 0 && strcmp(name, alias->name) != 0)
+  while (alias && alias->next != 0 && strcmp(name, alias->name) != 0)
     alias = alias->next;
-  if (alias->next == 0)
+  if (alias == 0 || alias->next == 0)
     return (0);
   return (1);
 }

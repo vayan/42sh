@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Apr 26 17:25:15 2011 yann vaillant
-** Last update Wed May  4 17:55:10 2011 timothee maurin
+** Last update Sat Jun 11 19:28:43 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -19,10 +19,10 @@ char	*my_strcopynalloc_gen(char *src, int len)
   char	*retour;
   int	x = 0;
 
-  if (src == NULL)
-    return (NULL);
+  if (src == 0)
+    return (0);
   retour = xmalloc((len + 1) * sizeof(*retour));
-  while (x < len)
+  while (x < len && src[x])
     {
       retour[x] = src[x];
       x++;

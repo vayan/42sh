@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Sat Jun 11 19:15:09 2011 maxime constantinian
+** Last update Sat Jun 11 19:38:58 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -60,10 +60,10 @@ int		main(int ac, char **av, char **envp)
   av = av + copy_env(envp, shell) + (int)xsignal(SIGTTOU, nothing) * 0;
   add_hachtab_to_shell(shell);
   recup_shell(shell);
+  parse_rc(shell);
   if (init_termios(&term2))
     main_bis(shell);
   desactivate_mode_raw(&term2);
-  parse_rc(shell);
   while (42)
     {
       signal(SIGINT, &funct_noexit);
