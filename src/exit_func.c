@@ -5,7 +5,7 @@
 ** Login   <schoen_a@epitech.net>
 ** 
 ** Started on  Wed May  4 15:55:26 2011 arnaud schoenher
-** Last update Mon Jun  6 17:33:11 2011 timothee maurin
+** Last update Sun Jun 12 01:30:02 2011 timothee maurin
 */
 
 #include        <string.h>
@@ -22,14 +22,16 @@ void		exit_buf(char *buf, char *cha)
   char		*av[] = {"exit", "0", 0};
   t_shell	*shell;
 
-  buf = buf;
-  shell = recup_shell(0);
-  free_buf(shell->commande->buffer, 1);
-  free(shell->commande->buffer);
-  shell->commande->buffer = 0;
-  free(cha);
-  xwrite(0, "\n", 1);
-  exit_func(av, shell->env);
+  if (strlen(buf) == 0)
+    {
+      shell = recup_shell(0);
+      free_buf(shell->commande->buffer, 1);
+      free(shell->commande->buffer);
+      shell->commande->buffer = 0;
+      free(cha);
+      xwrite(0, "\n", 1);
+      exit_func(av, shell->env);
+    }
 }
 
 void		free_var(t_list_var *list)
