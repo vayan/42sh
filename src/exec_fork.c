@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Fri Jun 10 23:18:36 2011 timothee maurin
+** Last update Sat Jun 11 18:12:43 2011 timothee maurin
 */
 
 #include	<stdlib.h>
@@ -121,7 +121,7 @@ int		re_builtin(t_commande *cmd, t_shell *shell, int *tab_built)
   if (strcmp(cmd->cmd[0], "alias") == 0)
     ret = my_set_alias(cmd->cmd, tab_built);
   if (strcmp(cmd->cmd[0], "unalias") == 0)
-    ret = my_unset_alias(cmd->cmd, tab_built);
+    ret = my_unset_alias(cmd->cmd);
   update_var_with_ret(ret);
   return (ret);
 }

@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Fri Jun 10 17:36:12 2011 timothee maurin
+** Last update Sat Jun 11 18:13:18 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -13,6 +13,11 @@
 
 #include	<unistd.h>
 
+int		aff_var(t_list_var *list_var, int *tb);
+int             check_if_have_cmd(t_commande *cmd);
+int		my_unset_alias(char **av);
+int             my_set_alias(char **av, int *tb);
+int		which_type_alias(char *buf, int pos, int *begin);
 char		*funct_alias(char *cmd, t_shell *sh, int i);
 int		return_type_red(char *str);
 char		*my_strcopynalloc(char *str);
