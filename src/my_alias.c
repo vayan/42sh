@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Fri Jun 10 16:11:37 2011 timothee maurin
+** Last update Sat Jun 11 18:04:22 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -54,10 +54,8 @@ int		free_tmp_alias(char **tmp, int test)
 
 int		my_set_alias(char **av, int *tab)
 {
-  int		tmp_nb;
   char		**tmp = xmalloc(4 * sizeof(*tmp));
   t_shell	*shell = recup_shell(0);
-  int		i = 0;
   t_list_var	*end;
 
   if (!(shell->alias))
