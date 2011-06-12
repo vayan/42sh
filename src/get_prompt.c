@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May 18 17:02:52 2011 yann vaillant
-** Last update Sat Jun 11 18:54:40 2011 maxime constantinian
+** Last update Sun Jun 12 03:05:17 2011 timothee maurin
 */
 
 #include <string.h>
@@ -83,7 +83,7 @@ char		*get_prompt(t_shell *shell)
 
   while (var && var->next)
     {
-      if (strcmp(var->name, "PROMPT") == 0)
+      if (strcmp(var->name, "PROMPT") == 0 && var->var)
 	{
 	  prompt = xmalloc(strlen(var->var) + 1 * sizeof(*prompt));
 	  strcpy(prompt, var->var);

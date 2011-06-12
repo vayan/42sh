@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Mon May 23 11:59:29 2011 timothee maurin
+** Last update Sun Jun 12 03:58:10 2011 timothee maurin
 */
 
 #include	<errno.h>
@@ -39,8 +39,6 @@ void	change_env(char **env, int *tab)
   pwd = xmalloc(4 * sizeof(*pwd));
   pwd[0] = xmalloc(7 * sizeof(**pwd));
   pwd[1] = xmalloc(4 * sizeof(**pwd));
-  pwd[2] = xmalloc(2 * sizeof(**pwd));
-  pwd[2][0] = '/';
   pwd[0][0] = 's';
   pwd[0][1] = 'e';
   pwd[0][2] = 't';
@@ -52,7 +50,7 @@ void	change_env(char **env, int *tab)
   pwd[1][1] = 'W';
   pwd[1][2] = 'D';
   pwd[1][3] = '\0';
-  pwd[2] = my_pwd(pwd[2]);
+  pwd[2] = getcwd(0, 0);
   pwd[3] = 0;
   my_setenv(pwd, env, tab);
   free(pwd[0]);
@@ -69,9 +67,7 @@ char		*func_old_pwd(int test)
     {
       if (pwd)
 	free(pwd);
-      pwd = xmalloc(2 * sizeof(*pwd));
-      pwd[0] = '/';
-      pwd = my_pwd(pwd);
+      pwd = getcwd(0, 0);
     }
   if (test == 2 && pwd)
     {
@@ -86,6 +82,7 @@ char		*func_old_pwd(int test)
 
 int	change_dir(char **av, char **env, int *tab)
 {
+  func_old_pwd(1);
   if (chdir(av[1]) == -1)
     return (fprintf(stderr, "42sh: Cd : %s\n", strerror(errno)));
   change_env(env, tab);

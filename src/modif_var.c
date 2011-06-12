@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:18:58 2011 Vaillant Yann
-** Last update Sun May 22 17:36:02 2011 timothee maurin
+** Last update Sun Jun 12 03:25:18 2011 timothee maurin
 */
 
 #include <stdlib.h>
@@ -59,15 +59,16 @@ void		free_maillon_var(t_list_var *tmp)
     }
 }
 
-t_list_var      *remove_var_in_list(char *name_var, t_list_var *list_var)
+t_list_var      *remove_var_in_list(char *name_var, t_list_var **list_var,
+				    t_list_var *temp)
 {
   t_list_var	*tmp;
-  t_list_var	*temp = list_var;
 
   if (strcmp(temp->name, name_var) == 0)
     {
+      *list_var = (*list_var)->next;
       free_maillon_var(temp);
-      return (temp->next);
+      return (*list_var);
     }
   while (temp->next->next)
     {

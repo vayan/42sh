@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Sun May 22 18:10:11 2011 timothee maurin
+** Last update Sun Jun 12 03:25:54 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -59,7 +59,7 @@ int             my_unset(char **av)
       return (1);
     }
   while (av[++i])
-    remove_var_in_list(av[i], shell->variable);
+    remove_var_in_list(av[i], &(shell->variable), shell->variable);
   return (0);
 }
 

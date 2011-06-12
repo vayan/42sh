@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Sun Jun 12 00:59:31 2011 timothee maurin
+** Last update Sun Jun 12 04:30:16 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -17,7 +17,7 @@ char		*replace_alias(char *to_place, char *cmd, int dep, int arr)
   int		tmp = arr;
   int		i = 0;
 
-  while (i != -1 && to_place[i] != '\0')
+  while (to_place && i != -1 && to_place[i] != '\0')
     {
       if (i + dep < arr)
 	cmd[i + dep] = to_place[i];
@@ -33,7 +33,7 @@ char		*replace_alias(char *to_place, char *cmd, int dep, int arr)
   while (cmd[tmp] != ' ' && cmd[tmp] != 9 && cmd[tmp] != ';' && cmd[tmp] != '|'
 	 && cmd[tmp] != '&' && cmd[tmp] != '\0')
     tmp++;
-  if (i + dep < arr && i != -1)
+  if (to_place && i + dep < arr && i != -1)
     my_strcpy(&(cmd[dep + i]), &(cmd[tmp]));
   return (cmd);
 }
@@ -67,10 +67,10 @@ t_list_var	*find_good_alias(t_list_var *al, char *tmp)
   if (al && al->name)
     {
       last_one = dup_name_var(al, verif);
-      while (al && al->next != 0 && ((al = save) || 1))
+      while (al && al->next && al->next->next != 0 && ((al = save) || 1))
 	{
-	  while (al && al->next && strcmp(al->name, verif->var) != 0
-		 && (al = al->next));
+	  while (al && al->next && al->name && verif->var 
+		 && strcmp(al->name, verif->var) != 0 && (al = al->next));
 	  if (already_found(al, verif_begin))
 	    al = 0;
 	  else if (al->name && al->var)

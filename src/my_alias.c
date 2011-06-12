@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Sat Jun 11 18:04:22 2011 timothee maurin
+** Last update Sun Jun 12 04:02:19 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -24,11 +24,11 @@ int             my_unset_alias(char **av)
   i = 0;
   if (av[1] == 0)
     {
-      fprintf(stderr, "unset: Too few arguments.");
+      fprintf(stderr, "unalias: Too few arguments.");
       return (1);
     }
   while (av[++i])
-    remove_var_in_list(av[i], shell->alias);
+    remove_var_in_list(av[i], &(shell->alias), shell->alias);
   return (0);
 }
 
