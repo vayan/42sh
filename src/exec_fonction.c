@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:22:37 2011 maxime constantinian
-** Last update Sat Jun 11 18:00:49 2011 maxime constantinian
+** Last update Sun Jun 12 12:40:20 2011 maxime constantinian
 */
 
 #include	<unistd.h>
@@ -92,6 +92,7 @@ int		pipe_fonction(t_commande *cmd, t_shell *shell, int *tab)
 int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
 {
   int		ret = i;
+  static int	deja = 0;
 
   if (i == 0 && cmd->type == OP_PIP)
     ret = pipe_fonction(cmd, shell, tab);
@@ -101,10 +102,17 @@ int		exec_type_cmd(t_commande *cmd, t_shell *shell, int *tab, int i)
     ret = or_fonction(cmd, shell, tab, i);
   if (i == 0 && cmd->type == CMD)
     ret = exec_fonction(cmd, shell, tab);
-  if (cmd->type == OP_SRR || cmd->type == OP_DRR
-      || cmd->type == OP_SRL || cmd->type == OP_DRL)
-    if (check_if_have_cmd(cmd) == 0)
-      return (fprintf(stderr, "Invalid null command.\n"));
+  if ((cmd->type == OP_SRR || cmd->type == OP_DRR
+       || cmd->type == OP_SRL || cmd->type == OP_DRL) && deja == 0)
+    {
+      if (check_if_have_cmd(cmd) == 0)
+	return (fprintf(stderr, "Invalid null command.\n"));
+      else
+	deja = 1;
+    }
+  else if ((cmd->type == OP_SRR || cmd->type == OP_DRR
+	    || cmd->type == OP_SRL || cmd->type == OP_DRL) && deja == 1)
+    deja = 0;
   if (i == 0 && cmd->type == OP_SRR)
     ret = srd_fonction(cmd, shell, tab);
   if (i == 0 && cmd->type == OP_DRR)
