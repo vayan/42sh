@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 02:16:59 2011 maxime constantinian
-** Last update Sat Jun 11 16:37:44 2011 maxime constantinian
+** Last update Sun Jun 12 19:21:23 2011 maxime constantinian
 */
 
 #include	<string.h>
@@ -29,7 +29,7 @@ int		srd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 
   if (tab[1] != 0)
     return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
-  if (cmd->next[1])
+  if (cmd->next[1] && check_if_not_redirection(cmd->next[1]->cmd[0]))
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
 	fd = open(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
@@ -57,7 +57,7 @@ int		drd_fonction(t_commande *cmd, t_shell *shell, int *tab)
 
   if (tab[1] != 0)
     return (fprintf(stderr, "42sh: Ambiguous output redirect.\n") * 0 + 127);
-  if (cmd->next[1])
+  if (cmd->next[1] && check_if_not_redirection(cmd->next[1]->cmd[0]))
     {
       if (access(cmd->next[1]->cmd[0], F_OK) == -1)
 	fd = open(cmd->next[1]->cmd[0], O_CREAT | O_WRONLY,
@@ -85,7 +85,7 @@ int		srl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 
   if (tab[0] != 0)
     return (fprintf(stderr, "42sh: Ambiguous input redirect.\n") * 0 + 127);
-  if (cmd->next[1])
+  if (cmd->next[1] && check_if_not_redirection(cmd->next[1]->cmd[0]))
     {
       if (access(cmd->next[1]->cmd[0], F_OK) != -1)
 	fd = open(cmd->next[1]->cmd[0], O_RDONLY);
@@ -135,7 +135,7 @@ int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab)
 
   if (tab[0] != 0)
     return (fprintf(stderr, "42sh: Ambiguous input redirect.\n") * 0 + 127);
-  if (cmd->next[1])
+  if (cmd->next[1] && check_if_not_redirection(cmd->next[1]->cmd[0]))
     {
       if (access("/tmp/azorox", F_OK) == -1)
 	fd = open("/tmp/azorox", O_CREAT | O_WRONLY,

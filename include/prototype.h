@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun Jun 12 18:02:08 2011 maxime constantinian
+** Last update Sun Jun 12 19:24:20 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
@@ -177,5 +177,6 @@ void		(*xsignal(int sig, void (*func)(int)))(int);
 int		count_word_parse(char *str);
 int		invalid_cmd_why(t_commande *cmd, int *d);
 int		set_group(int returnfork, int sauv);
+int		check_if_not_redirection(char *str);
 
 #endif
