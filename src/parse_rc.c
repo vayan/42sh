@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sun May 22 21:57:21 2011 Vaillant Yann
+** Last update Sun Jun 12 03:20:45 2011 timothee maurin
 */
 
 #include <unistd.h>
@@ -67,6 +67,8 @@ void	parse_ligne(int fd, t_shell *shell)
       free(toparse);
       free_tab(name_var);
     }
+  shell->variable = buffer;
+  shell->alias = alias_buf;
 }
 
 int	parse_rc(t_shell *shell)

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May 18 17:56:30 2011 timothee maurin
-** Last update Fri Jun 10 17:52:45 2011 timothee maurin
+** Last update Sun Jun 12 04:19:20 2011 timothee maurin
 */
 
 #include	<sys/types.h>
@@ -27,15 +27,10 @@ int		which_type(char *buf, int pos, int *begin)
       *begin = pos + 1;
       while ((buf[pos] == ' ' || buf[pos] == 9) && pos > 0)
 	pos--;
-      if (buf[pos] == ' ' || buf[pos] == 9 || buf[pos] == ';')
-        {
-          if ((pos == 0 && (buf[pos] == ' ' || buf[pos] == 9)))
-	    return (1);
-          else
-	    return (0);
-        }
+      if (buf[pos] == '|' || buf[pos] == '&' || buf[pos] == ';' || pos == 0)
+	return (1);
       else
-        return (1);
+        return (0);
     }
 }
 

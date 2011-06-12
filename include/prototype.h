@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sat Jun 11 19:12:23 2011 maxime constantinian
+** Last update Sun Jun 12 03:26:42 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -82,7 +82,8 @@ int		drl_fonction(t_commande *cmd, t_shell *shell, int *tab1);
 char		*get_next_line(int fd);
 int		check_equal(char *str);
 int		strlen_equal(char *av);
-t_list_var	*remove_var_in_list(char *name_var, t_list_var *list_var);
+t_list_var	*remove_var_in_list(char *name_var, t_list_var **list_var,
+				    t_list_var *tmp);
 t_list_var	*update_var_in_list(char **name_var, t_list_var *list_var);
 int		check_if_exist_in_list(char *name_var, t_list_var *list_var);
 t_list_var	*add_var_to_list(char **name_var, t_list_var *list_var);

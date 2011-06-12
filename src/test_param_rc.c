@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue May 17 17:24:58 2011 Vaillant Yann
-** Last update Sun May 22 01:48:08 2011 timothee maurin
+** Last update Sun Jun 12 03:26:06 2011 timothee maurin
 */
 
 #include <string.h>
@@ -37,5 +37,5 @@ void    test_unset(char **name_var, t_list_var **buffer)
 {
   if (strcmp(name_var[0], "unset") == 0 &&
       check_if_exist_in_list(name_var[1], *buffer) == 1)
-    remove_var_in_list(name_var[1], *buffer);
+    remove_var_in_list(name_var[1], buffer, *buffer);
 }
