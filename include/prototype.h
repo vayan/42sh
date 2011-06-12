@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun Jun 12 03:26:42 2011 timothee maurin
+** Last update Sun Jun 12 17:31:38 2011 timothee maurin
 */
 
 #ifndef		PROTYPE_H__
@@ -174,5 +174,6 @@ void		free_var(t_list_var *list);
 int		check_if_alias(char *name, t_list_var *alias);
 void		*xrealloc(void *ptr, int size);
 void		(*xsignal(int sig, void (*func)(int)))(int);
+int		count_word_parse(char *str);
 
 #endif
