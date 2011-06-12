@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat Dec 18 12:20:22 2010 timothee maurin
-** Last update Sun May 22 16:15:44 2011 Vaillant Yann
+** Last update Sun Jun 12 18:26:44 2011 timothee maurin
 */
 
 #include <stdio.h>
@@ -24,8 +24,8 @@ DIR		*xopendir(char *dir)
   dirp = opendir(dir);
   if (dirp == 0)
     {
-      printf("%s\n", dir);
-      fprintf(stderr, "42sh : Opendir : %s\n", strerror(errno));
+      fprintf(stderr, "42sh: %s not found\n", dir);
+      return (0);
     }
   return (dirp);
 }
