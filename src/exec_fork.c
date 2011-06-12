@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat May 21 23:26:50 2011 maxime constantinian
-** Last update Sat Jun 11 19:34:00 2011 maxime constantinian
+** Last update Sun Jun 12 17:15:03 2011 maxime constantinian
 */
 
 #include	<stdlib.h>
@@ -70,14 +70,26 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
 {
   int		returnfork;
   int		status = 0;
+  static int	sauv = 0;
 
   modif_cmd(cmd, shell);
   if ((returnfork = xfork(0)))
     {
-      if (setpgid(returnfork, returnfork) == -1)
-	fprintf(stderr, "42sh: setpgid failed: %s\n", strerror(errno));
-      if (tcsetpgrp(0, returnfork) == -1)
-	fprintf(stderr, "42sh: tcsetpgrp failed: %s\n", strerror(errno));
+      if (sauv == 0)
+	{
+	  if (setpgid(returnfork, returnfork) == -1)
+	    fprintf(stderr, "42sh: setpgid failed: %s\n", strerror(errno));
+	  if (tcsetpgrp(0, getpgid(returnfork)) == -1)
+	    fprintf(stderr, "42sh: tcsetpgrp failed: %s\n", strerror(errno));
+	  sauv = returnfork;
+	}
+      else
+	{
+	  if (setpgid(returnfork, sauv) == -1)
+	    fprintf(stderr, "42sh: setpgid failed: %s\n", strerror(errno));
+	  if (tcsetpgrp(0, getpgid(returnfork)) == -1)
+            fprintf(stderr, "42sh: tcsetpgrp failed: %s\n", strerror(errno));
+	}
       if (tab && tab[0] != 0)
 	xclose(tab[0]);
       if (tab && tab[1] != 0)
@@ -86,6 +98,7 @@ int		exec_with_fork(t_commande *cmd, t_shell *shell,
 	{
 	  while (returnfork != wait4(returnfork, &status, WNOHANG, 0))
 	    usleep(100);
+	  sauv = 0;
 	  return (xfork(1) * 0 + return_good_return_value(status));
 	}
       return (0);
