@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 **
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Sun May 22 01:42:23 2011 timothee maurin
+** Last update Sun Jun 12 16:09:58 2011 maxime constantinian
 */
 
 #include	"shell.h"
@@ -30,9 +30,11 @@ char		**str_to_wordtab_parse_rc(char *str)
   char		**ret;
   int		nb_word;
 
-  nb_word = count_word(str);
+  nb_word = count_word_parse(str);
   ret = xmalloc(sizeof(*ret) * (nb_word + 1));
-  while (str[i])
+  if (nb_word == 0)
+    return (0);
+  while (str && str[i] && j < nb_word)
     {
       while (str[i] == ' ' || str[i] == '\t')
 	i++;

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Wed May  4 16:59:09 2011 yann vaillant
-** Last update Sun Jun 12 03:20:45 2011 timothee maurin
+** Last update Sun Jun 12 15:30:36 2011 maxime constantinian
 */
 
 #include <unistd.h>
@@ -46,8 +46,8 @@ void	init_list_var(t_list_var **list_var, t_list_var **buffer,
 
 void	parse_ligne(int fd, t_shell *shell)
 {
-  char	     **name_var;
-  char	     *toparse;
+  char	     **name_var = 0;
+  char	     *toparse = 0;
   t_list_var *list_var;
   t_list_var *buffer;
   t_list_var *alias;
@@ -58,14 +58,15 @@ void	parse_ligne(int fd, t_shell *shell)
   while ((toparse = get_next_line(fd)) != 0)
     {
       name_var = str_to_wordtab_parse_rc(toparse);
-      if (name_var[0])
+      if (name_var && name_var[0])
 	{
 	  test_set(name_var, &buffer, &list_var);
 	  test_alias(name_var, &alias_buf, &alias);
 	  test_unset(name_var, &buffer);
 	}
       free(toparse);
-      free_tab(name_var);
+      if (name_var)
+	free_tab(name_var);
     }
   shell->variable = buffer;
   shell->alias = alias_buf;

@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 22:06:36 2011 timothee maurin
-** Last update Sun May 22 21:23:00 2011 maxime constantinian
+** Last update Sun Jun 12 16:06:12 2011 maxime constantinian
 */
 
 #include <stdlib.h>
@@ -15,11 +15,14 @@ int	free_tab(char **tab)
   int	i;
 
   i = 0;
-  while (tab[i] != 0)
+  if (tab)
     {
-      free(tab[i]);
-      i++;
+      while (tab[i])
+	{
+	  free(tab[i]);
+	  i++;
+	}
+      free(tab);
     }
-  free(tab);
   return (0);
 }
