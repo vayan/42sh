@@ -5,36 +5,13 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Sat Apr 30 13:39:30 2011 maxime constantinian
-** Last update Sun Jun 12 16:10:50 2011 maxime constantinian
+** Last update Sun Jun 12 17:40:35 2011 maxime constantinian
 */
 
 #include	<glob.h>
 #include	<string.h>
 #include	"shell.h"
 #include	"prototype.h"
-
-int		count_word_parse(char *str)
-{
-  int		i = 0;
-  int		count_w = 0;
-  int		have_space = 1;
-
-  while (str && str[i])
-    {
-      if (str[i] == ' ' || str[i] == '\t')
-	have_space = 1;
-      else if (have_space == 1)
-	{
-	  have_space = 0;
-	  count_w++;
-	  if (str[i] == '"')
-	    while (str[++i] && str[i] != '"');
-	}
-      if (str[i])
-	i++;
-    }
-  return (count_w);
-}
 
 int		count_word(char	*str)
 {

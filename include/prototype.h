@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Wed May  4 11:14:59 2011 maxime constantinian
-** Last update Sun Jun 12 17:31:38 2011 timothee maurin
+** Last update Sun Jun 12 18:02:08 2011 maxime constantinian
 */
 
 #ifndef		PROTYPE_H__
@@ -175,5 +175,7 @@ int		check_if_alias(char *name, t_list_var *alias);
 void		*xrealloc(void *ptr, int size);
 void		(*xsignal(int sig, void (*func)(int)))(int);
 int		count_word_parse(char *str);
+int		invalid_cmd_why(t_commande *cmd, int *d);
+int		set_group(int returnfork, int sauv);
 
 #endif
