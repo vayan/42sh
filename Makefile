@@ -5,7 +5,7 @@
 ## Login   <consta_m@epitech.net>
 ## 
 ## Started on  Mon Feb 28 14:08:05 2011 maxime constantinian
-## Last update Sun Jun 12 17:47:45 2011 maxime constantinian
+## Last update Sun Jun 12 19:21:48 2011 maxime constantinian
 ##
 
 CC=     cc
@@ -119,7 +119,8 @@ SRC=    src/main.c \
 	src/my_alias.c \
 	src/check_if_have_cmd.c \
 	src/xsignal.c \
-	src/exec_fork_group.c
+	src/exec_fork_group.c \
+	src/check_if_not_redirection.c
 
 OBJ=    $(subst src/, $(OBJ_DIR)/, $(SRC))
 
