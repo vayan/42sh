@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Sun Jun 12 04:02:19 2011 timothee maurin
+** Last update Sun Jun 12 16:29:56 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -24,7 +24,7 @@ int             my_unset_alias(char **av)
   i = 0;
   if (av[1] == 0)
     {
-      fprintf(stderr, "unalias: Too few arguments.");
+      fprintf(stderr, "unalias: Too few arguments.\n");
       return (1);
     }
   while (av[++i])

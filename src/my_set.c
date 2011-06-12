@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Sat May 21 15:34:56 2011 timothee maurin
-** Last update Sun Jun 12 03:25:54 2011 timothee maurin
+** Last update Sun Jun 12 16:30:08 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -55,7 +55,7 @@ int             my_unset(char **av)
   i = 0;
   if (av[1] == 0)
     {
-      fprintf(stderr, "unset: Too few arguments.");
+      fprintf(stderr, "unset: Too few arguments.\n");
       return (1);
     }
   while (av[++i])

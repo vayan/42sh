@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Mon Jun  6 16:04:30 2011 timothee maurin
-** Last update Sun Jun 12 04:30:16 2011 timothee maurin
+** Last update Sun Jun 12 16:01:30 2011 timothee maurin
 */
 
 #include	<string.h>
@@ -69,7 +69,7 @@ t_list_var	*find_good_alias(t_list_var *al, char *tmp)
       last_one = dup_name_var(al, verif);
       while (al && al->next && al->next->next != 0 && ((al = save) || 1))
 	{
-	  while (al && al->next && al->name && verif->var 
+	  while (al && al->next && al->name && verif->var
 		 && strcmp(al->name, verif->var) != 0 && (al = al->next));
 	  if (already_found(al, verif_begin))
 	    al = 0;
