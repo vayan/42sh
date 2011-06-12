@@ -5,7 +5,7 @@
 ** Login   <maurin_t@epitech.net>
 ** 
 ** Started on  Wed May  4 17:53:01 2011 timothee maurin
-** Last update Sun Jun 12 03:58:10 2011 timothee maurin
+** Last update Sun Jun 12 16:27:02 2011 timothee maurin
 */
 
 #include	<errno.h>
@@ -52,10 +52,12 @@ void	change_env(char **env, int *tab)
   pwd[1][3] = '\0';
   pwd[2] = getcwd(0, 0);
   pwd[3] = 0;
-  my_setenv(pwd, env, tab);
+  if (pwd[2])
+    my_setenv(pwd, env, tab);
   free(pwd[0]);
   free(pwd[1]);
-  free(pwd[2]);
+  if (pwd[2])
+    free(pwd[2]);
   free(pwd);
 }
 
@@ -71,7 +73,8 @@ char		*func_old_pwd(int test)
     }
   if (test == 2 && pwd)
     {
-      free(pwd);
+      if (pwd)
+	free(pwd);
       pwd = 0;
     }
   if (pwd)

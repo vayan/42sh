@@ -5,7 +5,7 @@
 ** Login   <consta_m@epitech.net>
 ** 
 ** Started on  Tue Mar  8 11:45:43 2011 maxime constantinian
-** Last update Sat Jun 11 19:38:58 2011 maxime constantinian
+** Last update Sun Jun 12 16:27:53 2011 timothee maurin
 */
 
 #include	<unistd.h>
@@ -47,7 +47,10 @@ void            nothing(int signal)
 	  fprintf(stderr, "42sh: tcsetpgrp failed: %s\n", strerror(errno));
     }
   else
-    sauv = signal;
+    {
+      xsignal(SIGQUIT, &funct_noexit);
+      sauv = signal;
+    }
 }
 
 int		main(int ac, char **av, char **envp)
@@ -66,13 +69,13 @@ int		main(int ac, char **av, char **envp)
   desactivate_mode_raw(&term2);
   while (42)
     {
-      signal(SIGINT, &funct_noexit);
+      xsignal(SIGINT, &funct_noexit);
       aff_prompt(0);
       cur_pos(0, 0, 0);
       mode_raw(&term2);
       get_next_comm(shell, &term2);
       desactivate_mode_raw(&term2);
-      signal(SIGINT, &funct_exit);
+      xsignal(SIGINT, &funct_exit);
       parser(shell->commande->buffer, shell);
       exec_cmd(shell);
     }
